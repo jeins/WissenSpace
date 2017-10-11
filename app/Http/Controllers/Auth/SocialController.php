@@ -35,12 +35,6 @@ class SocialController extends Controller
      */
     public function getHandler($provider)
     {
-        if(Input::get('denied') !== ''){
-            return redirect()->to('login')
-                ->with('status', 'danger')
-                ->with('message', trans('auth.denied'));
-        }
-
         $userObject = Socialite::driver($provider)->user();
 
         $socialUser = null;
