@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSocialLoginsTable extends Migration
+class CreateMakersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateSocialLoginsTable extends Migration
      */
     public function up()
     {
-        Schema::create('social_logins', function (Blueprint $table) {
+        Schema::create('makers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
-            $table->string('provider');
-            $table->text('social_id');
+            $table->string('name');
+            $table->string('twitter_username')->unique()->nullable();
+            $table->integer('product_id')->unsigned()->index();
             $table->timestamps();
-            
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateSocialLoginsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_logins');
+        Schema::dropIfExists('makers');
     }
 }
