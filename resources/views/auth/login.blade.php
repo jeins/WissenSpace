@@ -15,3 +15,5 @@
             <a class="button is-link">Login Facebook</a>
         </div>
     </div>
+
+@endsection

@@ -25,15 +25,15 @@ Route::get('/home', ['as' => 'public.home', 'uses' => 'HomeController@index']);
 
 // User Routes
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('logout');
+    Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 });
 
 
 // Admin Routes
 Route::prefix('admin')->group(function(){
     Route::get('/login', ['as' => 'admin.login', 'uses' => 'Auth\AdminLoginController@loginView']);
-    Route::post('/login', ['as' => 'admin.login.submit', 'uses' => 'Auth\AdminLoginController@doLogin']);
-    Route::get('/logout', ['as' => 'admin.logout', 'uses' => 'Auth\AdminLoginController@doLogout']);
+    Route::post('/login', ['as' => 'admin.login.submit', 'uses' => 'Auth\AdminLoginController@login']);
+    Route::get('/logout', ['as' => 'admin.logout', 'uses' => 'Auth\AdminLoginController@logout']);
 
     Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'Admin\AdminDashboardController@indexView']);
 });
