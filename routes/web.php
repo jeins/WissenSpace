@@ -27,3 +27,13 @@ Route::get('/home', ['as' => 'public.home', 'uses' => 'HomeController@index']);
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('logout');
 });
+
+
+// Admin Routes
+Route::prefix('admin')->group(function(){
+    Route::get('/login', ['as' => 'admin.login', 'uses' => 'Auth\AdminLoginController@loginView']);
+    Route::post('/login', ['as' => 'admin.login.submit', 'uses' => 'Auth\AdminLoginController@doLogin']);
+    Route::get('/logout', ['as' => 'admin.logout', 'uses' => 'Auth\AdminLoginController@doLogout']);
+
+    Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'Admin\AdminDashboardController@indexView']);
+});

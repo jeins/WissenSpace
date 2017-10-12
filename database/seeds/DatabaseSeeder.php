@@ -49,6 +49,8 @@ class DatabaseSeeder extends Seeder
                 'product_id' => $product->id
             ]);
         });
-        
+
+        //Admin Account
+        factory(App\Models\Admin::class, 1)->create();
     }
 }
