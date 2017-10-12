@@ -22,3 +22,8 @@ Route::get('/login/redirect/{provider}', ['as' => 'auth.redirect', 'uses' => 'Au
 Route::get('/login/handle/{provider}', ['as' => 'auth.handle', 'uses' => 'Auth\SocialController@getHandler']);
 
 Route::get('/home', ['as' => 'public.home', 'uses' => 'HomeController@index']);
+
+// User Routes
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('logout');
+});
