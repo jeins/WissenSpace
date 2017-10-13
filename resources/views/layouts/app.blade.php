@@ -20,7 +20,7 @@
     {{-- Styles --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    @yield('template_linked_css')
+    @yield('page_css')
 
     {{-- Scripts --}}
     <script>
@@ -28,8 +28,6 @@
                 'csrfToken' => csrf_token(),
             ]) !!};
     </script>
-
-    @yield('head')
 
 </head>
 <body>
@@ -42,7 +40,8 @@
 </div>
 
 {{-- Scripts --}}
-@yield('footer_scripts')
+<script src="{{ asset('js/app.js') }}"></script>
+@yield('page_script')
 
 </body>
 </html>
