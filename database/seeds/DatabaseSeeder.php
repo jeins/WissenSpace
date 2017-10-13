@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'artikel'],
             ['name' => 'custom'],
         ]);
-        
+
         //Tags
         DB::table('tags')->insert([
             ['name' => 'kimia'],

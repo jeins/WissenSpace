@@ -9,8 +9,8 @@ class Product extends Model
     protected $guarded = [
         'id', 'status'
     ];
-    
-    public function owner()
+
+    public function user()
     {
         return $this->belongsTo('App\Models\User');
     }
