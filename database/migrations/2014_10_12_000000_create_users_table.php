@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('token');
             $table->integer('point')->default(0);
             $table->boolean('activated')->default(false);
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

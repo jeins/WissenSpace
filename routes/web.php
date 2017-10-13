@@ -18,6 +18,9 @@ Route::get('/login/handle/{provider}', ['as' => 'auth.handle', 'uses' => 'Auth\S
 
 Route::get('/home', ['as' => 'public.home', 'uses' => 'HomeController@index']);
 
+Route::get('/kontribusi', ['as' => 'contribute', 'uses' => 'ProductController@add']);
+Route::post('/upload/tmp/images', ['as' => 'upload.tmp.image', 'uses' => 'ProductController@uploadThumbnail']);
+Route::get('/tmp/images/{userId}/{image}', ['as' => 'view.tmp.image', 'uses' => 'ImageController@viewTmpImage']);
 // User Routes
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
