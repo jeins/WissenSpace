@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('tagline');
             $table->text('subject');
             $table->string('thumbnail');
+            $table->text('images')->nullable();
             $table->string('link', 255)->unique();
             $table->tinyInteger('status')->default(1);
             $table->integer('user_id')->unsigned()->index();

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'youtube'],
             ['name' => 'app'],
             ['name' => 'artikel'],
+            ['name' => 'buku'],
             ['name' => 'custom'],
         ]);
 

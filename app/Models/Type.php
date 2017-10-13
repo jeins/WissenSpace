@@ -10,6 +10,6 @@ class Type extends Model
     
     public function products()
     {
-        return $this->hasMany('App\Models\Product');
+        return $this->belongsTo('App\Models\Product');
     }
 }
