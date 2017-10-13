@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Maker;
+use App\Models\User;
 use Cookie;
 use App\Models\Tag;
 use App\Models\Type;
@@ -9,7 +11,6 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Validation\Rules\In;
 
 class ProductController extends Controller
 {
@@ -63,7 +64,37 @@ class ProductController extends Controller
         $tags = Tag::all();
 
         return view('products.add')
-            ->with('categories', $tags);
+            ->with('tags', $tags);
+    }
+
+    public function doAdd(Request $request)
+    {
+        $productData = $request->all();
+
+        $user = User::find(Auth::user()->id);
+        $tag = Tag::find($productData['tag_id']);
+
+        $product = new Product();
+        foreach ($productData['info'] as $key=>$val){
+            $product[$key] = $val;
+        }
+
+        $maker = new Maker();
+        foreach ($productData['owner'] as $key=>$val){
+            $maker[$key] = $val;
+        }
+
+        $product->slug = strtolower(str_replace(' ', '-', $product->name));
+        $product->thumbnail = $productData['thumbnail'];
+        $product->images = json_encode($productData['images']);
+        $product->type_id = $productData['type_id'];
+        $user->products()->save($product);
+        $product->makers()->save($maker);
+        $product->save();
+
+        $tag->products()->attach($product);
+
+        return response()->json(['productId' => $product->id], 200);
     }
 
     public function uploadThumbnail()

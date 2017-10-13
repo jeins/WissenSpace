@@ -16,8 +16,6 @@ class ImageController extends Controller
         File::makeDirectory($globalTmpImagePath, $mode = 0755, true, true);
         Image::make($file)->resize(200, 200)->save($globalTmpImagePath . $fileName);
 
-        // $this->updateDataToDb();
-
         return $fileName;
     }
 
