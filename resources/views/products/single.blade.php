@@ -30,4 +30,16 @@
         <b><a href="/profile/{{$comment->user->name}}"> {{'@'.$comment->user->name}}</a></b> pada {{$comment->created_at->diffForHumans() }} <br>
         {{$comment->subject}}
     </p>
+    @if(Auth::check())
+        @if ($comment->user->id === Auth::user()->id)
+            <a href="/products/comment/{{$comment->id}}/edit">Edit</a>
+        @endif
+    @endif
 @endforeach
+
+<form action="/products/comment/{{$product->id}}" method="POST">
+    <textarea name="subject" placeholder="komentar saya.."rows="8" cols="80"></textarea>
+    {{csrf_field()}}
+    <input type="submit" value="post komentar">
+</form>
+<br>

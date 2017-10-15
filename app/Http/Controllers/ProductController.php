@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Maker;
-use App\Models\User;
+
 use Cookie;
 use App\Models\Tag;
+use App\Models\User;
 use App\Models\Type;
+use App\Models\Maker;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,7 @@ class ProductController extends Controller
     {
         $tags = Tag::all();
         $types = Type::all();
-        $products = Product::with('tags')->withCount('comments')->get();
+        $products = Product::with('tags')->withCount('comments')->orderBy('id','desc')->get();
 
         return view('products/index', compact('products', 'tags', 'types'));
     }
@@ -30,9 +31,8 @@ class ProductController extends Controller
     {
         $product = Product::with('comments.user')->where('slug', $slug)->first();
 
-        if ($product === null) {
+        if ($product === null)
             abort(404);
-        }
 
         return view('products/single', compact('product'));
     }
@@ -41,7 +41,7 @@ class ProductController extends Controller
     {
         $tags = Tag::all();
         $types = Type::all();
-        $products = Product::with('tags')->withCount('comments')->whereHas('tags', function ($q) use ($name) {
+        $products = Product::with('tags')->withCount('comments')->orderBy('id','desc')->whereHas('tags', function ($q) use ($name) {
             $q->where('name', $name);
         })->get();
 
@@ -54,9 +54,36 @@ class ProductController extends Controller
         $types = Type::all();
         $type_id = Type::where('name', $name)->first();
 
-        $products = Product::with('tags')->withCount('comments')->where('type_id', $type_id->id)->get();
+        $products = Product::with('tags')->withCount('comments')->orderBy('id','desc')->where('type_id', $type_id->id)->get();
 
         return view('products/index', compact('products', 'tags', 'types'));
+    }
+
+    public function loadMore($id)
+    {
+        $products = Product::where('id', '<', $id)->orderBy('id','desc')->take(10)->get();
+
+        //TODO::
+        //If else buat kalo /planet atau /media (filter)
+        //currently $request->fullUrl() not working to check url
+
+        foreach($products as $product){
+            echo "<div id='products'>
+                    <a href='/explore/". $product->slug ."' class='each-product' data-id=".$product->id.">
+                        <img src=".$product->thumbnail." width='100'>
+                        <h3>". $product->name ."</h3>
+                        <p>". $product->tagline ."</p>
+                        <p>".$product->comments_count." Komentar</p>";
+
+                        foreach ($product->tags as $tag){
+                            echo "<span>#".$tag->name."</span>";
+                        }
+                    echo "</a>
+                </div>";
+        }
+
+        if(Product::where('id', '<', $id)->count() > 10)
+            echo "<a class='button is-primary load-more'> Explore Lagi </a>";
     }
 
     public function add()

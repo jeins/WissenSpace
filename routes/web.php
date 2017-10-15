@@ -9,6 +9,7 @@ Route::get('/profile/{name}', 'ProfileController@show');
 Route::get('/explore/{slug}', 'ProductController@show');
 Route::get('/explore/planet/{name}', 'ProductController@filterTag');
 Route::get('/explore/media/{name}', 'ProductController@filterMedia');
+Route::get('/explore/load-more/{id}' , 'ProductController@loadMore');
 
 // Authentication Routes
 Auth::routes();
@@ -25,6 +26,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/kontribusi', ['as' => 'contribute.post', 'uses' => 'ProductController@doAdd']);
     Route::post('/upload/tmp/images', ['as' => 'upload.tmp.image', 'uses' => 'ProductController@uploadThumbnail']);
     Route::get('/tmp/images/{userId}/{image}', ['as' => 'view.tmp.image', 'uses' => 'ImageController@viewTmpImage']);
+    Route::post('/products/comment/{id}', 'ProductCommentController@save');
+    Route::put('/products/comment/{id}', 'ProductCommentController@update');
+    Route::get('/products/comment/{id}/edit', 'ProductCommentController@edit');
 });
 
 
