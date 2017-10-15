@@ -89,9 +89,7 @@ class ProductController extends Controller
     public function add()
     {
         $tags = Tag::all();
-
-        return view('products.add')
-            ->with('tags', $tags);
+        return view('products.add', compact('tags'));
     }
 
     public function doAdd(Request $request)

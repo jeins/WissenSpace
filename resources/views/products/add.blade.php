@@ -184,6 +184,11 @@
                         </form>
                     </div>
                 </div>
+
+                <a class="product-next-button button is-success is-outlined is-flex"
+                   onclick="setActiveTab('#pemilik')">Lanjut</a>
+
+                 <br>
             </div>
 
             <div id="pemilik" class="tab-pane animated">
