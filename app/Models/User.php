@@ -33,7 +33,9 @@ class User extends Authenticatable
         'token',
         'point',
         'activated',
-        'photo'
+        'photo',
+        'social_media',
+        'status'
     ];
 
     /**

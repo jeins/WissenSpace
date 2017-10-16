@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->integer('point')->default(0);
             $table->boolean('activated')->default(false);
             $table->string('photo')->nullable();
+            $table->text('social_media')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
