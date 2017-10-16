@@ -9,7 +9,10 @@ Route::get('/profile/{name}', 'ProfileController@show');
 Route::get('/explore/{slug}', 'ProductController@show');
 Route::get('/explore/planet/{name}', 'ProductController@filterTag');
 Route::get('/explore/media/{name}', 'ProductController@filterMedia');
+//LoadMore
 Route::get('/explore/load-more/{id}' , 'ProductController@loadMore');
+Route::get('/explore/planet/{name}/load-more/{id}' , 'ProductController@loadMore');
+Route::get('/explore/media/{name}/load-more/{id}' , 'ProductController@loadMore');
 
 // Authentication Routes
 Auth::routes();

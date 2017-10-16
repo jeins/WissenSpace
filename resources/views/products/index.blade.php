@@ -28,7 +28,7 @@
         <div class="column">
             <h3>Produk lists</h3>
             <ul>
-                @foreach ($products->take(10) as $product)
+                @foreach ($products->take(2) as $product)
                     <div id="products">
                         <a href='/explore/{{$product->slug}}' class="each-product" data-id="{{$product->id}}">
                             <img src="{{$product->thumbnail}}" width="100">
@@ -43,7 +43,7 @@
                 @endforeach
 
                 <!-- loadmore  -->
-                @if($products->count() > 10)
+                @if($products->count() > 2)
                   <a class="button is-primary load-more">Explore Lagi</a>
                 @endif
             </ul>
@@ -64,7 +64,7 @@
             */
             $(document).on('click touchstart', '.load-more', function(){
                 var _this = $(this).hide();
-                var _url = "/explore/load-more/" + _this.prev('#products').find('.each-product').last().attr('data-id');
+                var _url = window.location.href  + "/load-more/" + _this.prev('#products').find('.each-product').last().attr('data-id');
 
                 $.get(_url ,function(data){
                   _this.replaceWith(data);

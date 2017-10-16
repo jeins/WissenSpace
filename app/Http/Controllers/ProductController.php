@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Cookie;
 use App\Models\Tag;
 use App\Models\User;
@@ -59,15 +58,25 @@ class ProductController extends Controller
         return view('products/index', compact('products', 'tags', 'types'));
     }
 
-    public function loadMore($id)
+    public function loadMore(Request $request, $name_or_id, $id = null)
     {
-        $products = Product::where('id', '<', $id)->orderBy('id','desc')->take(10)->get();
+        $limit = 2;
+        $products = Product::where('id', '<', $name_or_id)->orderBy('id','desc')->get();
 
-        //TODO::
-        //If else buat kalo /planet atau /media (filter)
-        //currently $request->fullUrl() not working to check url
+        if(str_contains($request->fullUrl(), 'planet')) {
+            $products = Product::with('tags')->withCount('comments')
+                        ->orderBy('id','desc')->whereHas('tags', function ($q) use ($name_or_id) {
+                            $q->where('name', $name_or_id);
+                        })->where('id', '<', $id)->orderBy('id','desc')->get();
+        }
 
-        foreach($products as $product){
+        if(str_contains($request->fullUrl(), 'media')) {
+            $type_id  = Type::where('name', $name_or_id)->first();
+            $products = Product::with('tags')->withCount('comments')->orderBy('id','desc')
+                                ->where('type_id', $type_id->id)->where('id', '<', $id)->get();
+        }
+
+        foreach($products->take($limit) as $product){
             echo "<div id='products'>
                     <a href='/explore/". $product->slug ."' class='each-product' data-id=".$product->id.">
                         <img src=".$product->thumbnail." width='100'>
@@ -82,7 +91,7 @@ class ProductController extends Controller
                 </div>";
         }
 
-        if(Product::where('id', '<', $id)->count() > 10)
+        if($products->count() > $limit)
             echo "<a class='button is-primary load-more'> Explore Lagi </a>";
     }
 
