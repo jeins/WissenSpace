@@ -130,15 +130,4 @@ class ProductController extends Controller
 
         return response()->json(['productId' => $product->id], 200);
     }
-
-    public function uploadThumbnail()
-    {
-        if(Input::hasFile('file')){
-            $image = ImageController::uploadTmpImage(Input::file('file'));
-
-            return response()->json(['image_url' => route('view.tmp.image', ['userId' => Auth::user()->id, 'image' => $image])], 200);
-        }
-
-        return response()->json(false, 200);
-    }
 }

@@ -171,7 +171,7 @@
                 <div id="thumbnail" class="columns is-centered">
                     <div class="column is-half">
                         <div class="dz-preview"></div>
-                        <form id="product-add-thumbnail" name="product-add-thumbnail" method="POST" action="{{route('upload.tmp.image')}}" class="dropzone" enctype="multipart/form-data">
+                        <form id="product-add-thumbnail" method="POST" action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}" class="dropzone" enctype="multipart/form-data">
                             <img id="product-thumbnail">
                         </form>
                     </div>
@@ -180,7 +180,7 @@
                 <h1 class="title">Upload Images</h1>
                 <div class="columns is-centered">
                     <div class="column is-half">
-                        <form id="product-add-images" name="product-add-images" method="POST" action="{{route('upload.tmp.image')}}" class="dropzone" enctype="multipart/form-data">
+                        <form id="product-add-images" name="product-add-images" method="POST" action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}" class="dropzone" enctype="multipart/form-data">
                         </form>
                     </div>
                 </div>
@@ -351,7 +351,7 @@
                     setTimeout(function() {
                         $('#thumbnail .dz-message').text('Drop files here to upload').show();
                     }, 1000);
-                    productData.thumbnail = res.image_url;
+                    productData.thumbnail = res.image;
                     $('#product-thumbnail').attr('src', res.image_url);
                 });
                 //TODO handling error
@@ -362,7 +362,7 @@
         var imagesOption = {
             init: function(){
                 this.on("success", function(file, res){
-                    productData.images.push(res.image_url);
+                    productData.images.push(res.image);
                 });
             }
         };

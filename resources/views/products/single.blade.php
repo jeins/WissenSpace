@@ -4,8 +4,7 @@
 <a href='{{$product->link}}'>Link: {{$product->link}}</a>
 
 <br>
-<img src="{{$product->thumbnail}}" width="100">
-
+<img width="100" src="{{$product->thumbnail ? route('image.view', ['type' => \App\Http\Controllers\ImageController::PRODUCT_TYPE, 'image' => $product->thumbnail]): 'https://cdn1.iconfinder.com/data/icons/business-charts/512/customer-512.png'}}">
 <hr>
 <p>{{ $product->subject }}</p>
 

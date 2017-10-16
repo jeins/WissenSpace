@@ -5,7 +5,7 @@ Route::get('/', function () {
 });
 
 Route::get('/explore', 'ProductController@index');
-Route::get('/profile/{name}', 'ProfileController@show');
+Route::get('/profile/{name}', ['as' => 'profile.show', 'uses' => 'ProfileController@show']);
 Route::get('/explore/{slug}', 'ProductController@show');
 Route::get('/explore/planet/{name}', 'ProductController@filterTag');
 Route::get('/explore/media/{name}', 'ProductController@filterMedia');
@@ -21,17 +21,19 @@ Route::get('/login/redirect/{provider}', ['as' => 'auth.redirect', 'uses' => 'Au
 Route::get('/login/handle/{provider}', ['as' => 'auth.handle', 'uses' => 'Auth\SocialController@getHandler']);
 
 Route::get('/home', ['as' => 'public.home', 'uses' => 'HomeController@index']);
+Route::get('/image/{type}/{image}', ['as' => 'image.view', 'uses' => 'ImageController@show']);
 
 // User Routes
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
     Route::get('/kontribusi', ['as' => 'contribute', 'uses' => 'ProductController@add']);
     Route::post('/kontribusi', ['as' => 'contribute.post', 'uses' => 'ProductController@doAdd']);
-    Route::post('/upload/tmp/images', ['as' => 'upload.tmp.image', 'uses' => 'ProductController@uploadThumbnail']);
-    Route::get('/tmp/images/{userId}/{image}', ['as' => 'view.tmp.image', 'uses' => 'ImageController@viewTmpImage']);
+    Route::post('/upload/image/{type}', ['as' => 'image.upload', 'uses' => 'ImageController@upload']);
     Route::post('/products/comment/{id}', 'ProductCommentController@save');
     Route::put('/products/comment/{id}', 'ProductCommentController@update');
     Route::get('/products/comment/{id}/edit', 'ProductCommentController@edit');
+
+    Route::post('/profile/update/{userId}', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 });
 
 
