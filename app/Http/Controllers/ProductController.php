@@ -33,7 +33,15 @@ class ProductController extends Controller
         if ($product === null)
             abort(404);
 
-        return view('products/single', compact('product'));
+        $isAllowEdit = $this->isAllowToEdit(Auth::user()->id);
+
+        $tmpImages = json_decode($product->images);
+        array_walk($tmpImages, function(&$image, &$index){
+            $image = route('image.view', [ImageController::PRODUCT_TYPE, $image]);
+        });
+        $product->images = $tmpImages;
+
+        return view('products/single', compact('product', 'isAllowEdit'));
     }
 
     public function filterTag($name)
@@ -106,7 +114,6 @@ class ProductController extends Controller
         $productData = $request->all();
 
         $user = User::find(Auth::user()->id);
-        $tag = Tag::find($productData['tag_id']);
 
         $product = new Product();
         foreach ($productData['info'] as $key=>$val){
@@ -126,7 +133,10 @@ class ProductController extends Controller
         $product->makers()->save($maker);
         $product->save();
 
-        $tag->products()->attach($product);
+        foreach ($productData['tag_id'] as $tag){
+            $tag = Tag::find($tag);
+            $tag->products()->attach($product);
+        }
 
         return response()->json(['productId' => $product->id], 200);
     }

@@ -50,6 +50,12 @@
             margin: 2em auto;
             display: block;
         }
+
+        .product-tags-selected{
+            border: 1px solid;
+            padding: 15px;
+            width: 100%;
+        }
     </style>
 @endsection
 
@@ -135,8 +141,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input" name="subject"
-                                       placeholder="{{trans('product.add.info.description')}}">
+                                <textarea id="product-subject" name="subject" class="textarea is-flex"  placeholder="{{trans('product.add.info.description')}}"></textarea>
                             </div>
                         </div>
                     </div>
@@ -145,18 +150,35 @@
                 {{--CATEGORIES--}}
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Kategorie</label>
+                        <label class="label">Tag / Kategorie</label>
                     </div>
                     <div class="field-body">
-                        <div class="field is-narrow">
+                        <div class="field">
                             <div class="control">
-                                <div class="select is-fullwidth">
-                                    <select id="product-tags">
-                                        @foreach ($tags as $tag)
-                                            <option value="{{$tag->id}}">{{ucfirst($tag->name)}}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="tile is-ancestor">
+                                    <div class="select is-multiple tile is-parent is-vertical is-4">
+                                        <div class="tile">
+                                            <div class="tile is-child">
+                                                <select id="product-tags" multiple size="3">
+                                                    @foreach ($tags as $tag)
+                                                        <option value="{{$tag->id}}" name="{{ucfirst($tag->name)}}">{{ucfirst($tag->name)}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="tile is-child">
+                                                <button class="button" onclick="addTag()">
+                                                <span class="icon">
+                                                  <i class="fa fa-plus"></i>
+                                                </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tile is-parent">
+                                        <div class="tags product-tags-selected"></div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -240,7 +262,7 @@
                 tagline: '',
                 subject: ''
             },
-            tag_id: '',
+            tag_id: [],
             thumbnail: '',
             images: [],
             owner: {
@@ -260,6 +282,25 @@
                 $(this).addClass('is-active');
                 return true;
             });
+        }
+
+        function addTag(){
+            var tagId = $('#product-tags').val();
+
+            _.forEach(tagId, function (id) {console.log(id)
+                var tagName = $('#product-tags').find("option[value='"+id+"']").attr('name');
+
+                $('#product-tags option[value="'+id+'"]').remove();
+
+                $('.product-tags-selected').append('<span class="tag is-success">'+tagName+'<button onclick="removeTag(this)" tagId="'+id+'" tagName="'+tagName+'" class="tag-remove-selected delete is-small"></button></span>');
+            });
+        }
+
+        function removeTag(currTag){
+            var tagId = $(currTag).attr('tagId');
+            var tagName = $(currTag).attr('tagName');
+            $('#product-tags').append('<option value="'+tagId+'" name="'+tagName+'">'+tagName+'</option>');
+            $(currTag).parent().remove();
         }
 
         function setActiveTab(currentHash) {
@@ -285,7 +326,7 @@
         }
 
         function setProductInfo() {
-            var productInfoKeys = ['link', 'name', 'tagline', 'subject'];
+            var productInfoKeys = ['link', 'name', 'tagline'];
 
             _.forEach(productInfoKeys, function (key) {
                 var valueOf = $('#informasi').find('input[name="' + key + '"]').val();
@@ -293,8 +334,12 @@
                 productData['info'][key] = valueOf;
             });
 
-            productData['tag_id'] = $('#product-tags').val();
+            productData['info']['subject'] = $('#product-subject').val();
 
+            $('.product-tags-selected').find('button').each(function (index, el){
+                productData['tag_id'].push($(el).attr('tagId'));
+            });
+console.log(productData);
             setActiveTab('#media');
         }
 

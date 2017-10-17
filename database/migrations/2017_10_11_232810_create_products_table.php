@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('tagline');
-            $table->text('subject');
+            $table->text('subject')->nullable();
             $table->string('thumbnail');
             $table->text('images')->nullable();
             $table->string('link', 255)->unique();
