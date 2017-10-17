@@ -35,11 +35,13 @@ class ProductController extends Controller
 
         $isAllowEdit = $this->isAllowToEdit(Auth::user()->id);
 
-        $tmpImages = json_decode($product->images);
-        array_walk($tmpImages, function(&$image, &$index){
-            $image = route('image.view', [ImageController::PRODUCT_TYPE, $image]);
-        });
-        $product->images = $tmpImages;
+        if($product->images){
+            $tmpImages = json_decode($product->images);
+            array_walk($tmpImages, function(&$image, &$index){
+                $image = route('image.view', [ImageController::PRODUCT_TYPE, $image]);
+            });
+            $product->images = $tmpImages;
+        }
 
         return view('products/single', compact('product', 'isAllowEdit'));
     }

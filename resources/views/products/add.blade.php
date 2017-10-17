@@ -339,7 +339,7 @@
             $('.product-tags-selected').find('button').each(function (index, el){
                 productData['tag_id'].push($(el).attr('tagId'));
             });
-console.log(productData);
+
             setActiveTab('#media');
         }
 
@@ -396,7 +396,7 @@ console.log(productData);
                     setTimeout(function() {
                         $('#thumbnail .dz-message').text('Drop files here to upload').show();
                     }, 1000);
-                    productData.thumbnail = res.image;
+                    productData.thumbnail = res.image_url;
                     $('#product-thumbnail').attr('src', res.image_url);
                 });
                 //TODO handling error
