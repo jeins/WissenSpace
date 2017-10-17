@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/kontribusi', ['as' => 'contribute', 'uses' => 'ProductController@add']);
     Route::post('/kontribusi', ['as' => 'contribute.post', 'uses' => 'ProductController@doAdd']);
     Route::post('/upload/image/{type}', ['as' => 'image.upload', 'uses' => 'ImageController@upload']);
-    Route::post('/products/comment/{id}', 'ProductCommentController@save');
+    Route::post('/products/comment/{id}', ['as' => 'product.comment.post', 'uses' => 'ProductCommentController@save']);
     Route::put('/products/comment/{id}', 'ProductCommentController@update');
     Route::get('/products/comment/{id}/edit', 'ProductCommentController@edit');
 

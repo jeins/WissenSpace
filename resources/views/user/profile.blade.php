@@ -121,13 +121,19 @@
                             </div>
 
                             <div class="level-right">
-                                <div class="columns">
-                                    <div class="column">
-                                        <span class="button is-static is-small is-flex"> 0</span>
-                                    </div>
-                                    <div class="column">
-                                        <span class="button is-static is-small is-flex"> 0</span>
-                                    </div>
+                                <div class="tags">
+                                    <span class="tag">
+                                        <span class="icon is-small">
+                                          <i class="fa fa-heart"></i>
+                                        </span>
+                                        <span>0</span>
+                                    </span>
+                                    <span class="tag">
+                                        <span class="icon is-small">
+                                          <i class="fa fa-comment"></i>
+                                        </span>
+                                        <span>0</span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
