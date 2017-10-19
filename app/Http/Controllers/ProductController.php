@@ -33,8 +33,6 @@ class ProductController extends Controller
         if ($product === null)
             abort(404);
 
-        $isAllowEdit = $this->isAllowToEdit(Auth::user()->id);
-
         if($product->images){
             $tmpImages = json_decode($product->images);
             array_walk($tmpImages, function(&$image, &$index){
@@ -43,7 +41,7 @@ class ProductController extends Controller
             $product->images = $tmpImages;
         }
 
-        return view('products/single', compact('product', 'isAllowEdit'));
+        return view('products/single', compact('product'));
     }
 
     public function filterTag($name)

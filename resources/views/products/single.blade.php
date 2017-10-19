@@ -18,7 +18,6 @@
                                     <div class="content">
                                         <div class="level">
                                             <div class="level-left">
-
                                                 <h1 class="title">{{$product->name}}</h1>
                                             </div>
 
@@ -27,6 +26,12 @@
                                             </div>
                                         </div>
                                         <p>{{$product->tagline}}</p>
+
+                                        @if (Auth::check())
+                                            @if (Auth::user()->id === $product->user->id)
+                                                <a class="button" href='#'>Edit</a>
+                                            @endif
+                                        @endif
                                     </div>
                                     <nav class="level">
                                         <div class="level-left">
