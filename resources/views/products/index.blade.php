@@ -4,25 +4,32 @@
     <h1>Welome! @WissenSpace</h1>
     <div class="columns">
       <div class="column is-one-quarter">
-        <a href="/kontribusi">+ Post</a>
+            <h3>Planet</h3>
+            <ul>
+                @foreach ($tags as $tag)
+                    <li>
+                        <a href="/explore/planet/{{$tag->name}}"> {{$tag->name}} </a>
+                    </li>
+                @endforeach
+            </ul>
 
-        <h3>Planet</h3>
-        <ul>
-            @foreach ($tags as $tag)
-                <li>
-                    <a href="/explore/planet/{{$tag->name}}"> {{$tag->name}} </a>
-                </li>
-            @endforeach
-        </ul>
+            <h3>Media</h3>
+            <ul>
+                @foreach ($types as $type)
+                    <li>
+                        <a href="/explore/media/{{$type->name}}"> {{$type->name}} </a>
+                    </li>
+                @endforeach
+            </ul>
 
-        <h3>Media</h3>
-        <ul>
-            @foreach ($types as $type)
-                <li>
-                    <a href="/explore/media/{{$type->name}}"> {{$type->name}} </a>
-                </li>
-            @endforeach
-        </ul>
+            <hr>
+            <a href="/tentang">Tentang</a>
+            <a href="/team">Team</a>
+            <a href="/faq">Tanya</a>
+            <hr>
+            <a href="https://twitter.com/wissenspace">Tw</a>
+            <a href="https://facebook.com/wissenspace">Fb</a>
+            <a href="https://instagram.com/wissenspace">ig</a>
         </div>
 
         <div class="column">

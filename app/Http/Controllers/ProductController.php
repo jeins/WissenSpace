@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $tags = Tag::all();
+        $tags = Tag::select('name')->has('products')->get();
         $types = Type::all();
         $products = Product::with('tags')->withCount('comments')->orderBy('id','desc')->get();
 
@@ -46,7 +46,7 @@ class ProductController extends Controller
 
     public function filterTag($name)
     {
-        $tags = Tag::all();
+        $tags = Tag::select('name')->has('products')->get();
         $types = Type::all();
         $products = Product::with('tags')->withCount('comments')->orderBy('id','desc')->whereHas('tags', function ($q) use ($name) {
             $q->where('name', $name);
@@ -57,7 +57,7 @@ class ProductController extends Controller
 
     public function filterMedia($name)
     {
-        $tags = Tag::all();
+        $tags = Tag::select('name')->has('products')->get();
         $types = Type::all();
         $type_id = Type::where('name', $name)->first();
 
@@ -69,7 +69,7 @@ class ProductController extends Controller
     public function loadMore(Request $request, $name_or_id, $id = null)
     {
         $limit = 2;
-        $products = Product::where('id', '<', $name_or_id)->orderBy('id','desc')->get();
+        $products = Product::where('id', '<', $name_or_id)->withCount('comments')->orderBy('id','desc')->get();
 
         if(str_contains($request->fullUrl(), 'planet')) {
             $products = Product::with('tags')->withCount('comments')

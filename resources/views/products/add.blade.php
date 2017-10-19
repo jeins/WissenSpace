@@ -214,7 +214,7 @@
             </div>
 
             <div id="pemilik" class="tab-pane animated">
-                <h1 class="title">Upload pemilik</h1>
+                <h1 class="title">Info pemilik (youtube/ penulis artikel / aplikasi)</h1>
 
                 {{--NAME--}}
                 <div class="field is-horizontal">

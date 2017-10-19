@@ -159,7 +159,7 @@
                 <div class="tile">
                     <div class="tile is-parent is-vertical">
                         <div class="tile is-child box">
-                            <h3 class="subtitle">Di Post oleh</h3>
+                            <h3 class="subtitle">Astronot</h3>
                             <a href="/profile/{{$product->user->name}}"> {{$product->user->name}} </a>
                         </div>
                         <div class="tile is-child box">

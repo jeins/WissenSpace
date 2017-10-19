@@ -1,9 +1,9 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', 'HomeController@welcome');
+Route::get('/faq', 'HomeController@faq');
+Route::get('/team', 'HomeController@team');
+Route::get('/tentang', 'HomeController@about');
 Route::get('/explore', 'ProductController@index');
 Route::get('/profile/{name}', ['as' => 'profile.show', 'uses' => 'ProfileController@show']);
 Route::get('/explore/{slug}', 'ProductController@show');

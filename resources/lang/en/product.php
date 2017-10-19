@@ -8,7 +8,7 @@ return [
     'add.tab.pemilik' => 'Pemilik',
 
     'add.jenis.title' => 'Mau share link apa?',
-    'add.jenis.subtitle' => '*Pilih link yang mau anda share, kalau mau menulis sendiri pilih "tulisan baru"',
+    'add.jenis.subtitle' => '*Pilih link yang mau dishare"',
 
     'add.info.title' => 'Silakan Isi Informasi Product',
     'add.info.url' => 'Paste URL, (contoh: https://sekolahkoding.com)',

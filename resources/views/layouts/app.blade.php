@@ -33,6 +33,18 @@
 </head>
 <body>
 <div id="app">
+    <nav>
+        <a href="/">
+            <img src="/images/logo.png" alt="logo wissenspace" width="150">
+        </a>
+        <a href="/explore" class="button is-primary"> Galaksi</a>
+        <a href="/kontribusi" class="button is-primary">+ Kontribusi</a>
+        @if (Auth::guest())
+            <a href="/login" class="button is-info">Login/Daftar</a>
+        @else
+            <a href="/logout" class="button is-danger">Logout</a>
+        @endif
+    </nav>
 
     <div class="container">
         @yield('content')
