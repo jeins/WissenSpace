@@ -3,6 +3,10 @@
     <link href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css" rel="stylesheet">
 
     <style>
+        #flow-tabs li:not(.is-clickable) {
+          pointer-events: none;
+        }
+
         .tab-pane {
             display: none;
         }
@@ -62,8 +66,8 @@
 @section('content')
     <div class="container is-widescreen">
         <div class="tabs is-centered">
-            <ul>
-                <li class="product-add-tab"><a href="#jenis">{{trans('product.add.tab.jenis')}}</a></li>
+            <ul id="flow-tabs">
+                <li class="product-add-tab is-clickable"><a href="#jenis">{{trans('product.add.tab.jenis')}}</a></li>
                 <li class="product-add-tab"><a href="#informasi">{{trans('product.add.tab.informasi')}}</a></li>
                 <li class="product-add-tab"><a href="#media">{{trans('product.add.tab.media')}}</a></li>
                 <li class="product-add-tab"><a href="#pemilik">{{trans('product.add.tab.pemilik')}}</a></li>
@@ -321,7 +325,8 @@
             $(obj).removeClass('is-outlined');
 
             productData['type_id'] = type;
-
+            
+            $('#flow-tabs li:nth-child(2)').addClass('is-clickable');
             setActiveTab('#informasi');
         }
 
@@ -330,7 +335,6 @@
 
             _.forEach(productInfoKeys, function (key) {
                 var valueOf = $('#informasi').find('input[name="' + key + '"]').val();
-
                 productData['info'][key] = valueOf;
             });
 
@@ -340,6 +344,7 @@
                 productData['tag_id'].push($(el).attr('tagId'));
             });
 
+            $('#flow-tabs li:nth-child(3)').addClass('is-clickable');
             setActiveTab('#media');
         }
 
