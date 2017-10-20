@@ -103,16 +103,16 @@ class ProductController extends Controller
             echo "<a class='button is-primary load-more'> Explore Lagi </a>";
     }
 
-    public function add()
+    public function create()
     {
         $tags = Tag::all();
-        return view('products.add', compact('tags'));
+        return view('products.create', compact('tags'));
     }
 
-    public function doAdd(Request $request)
+    public function post(Request $request)
     {
         $productData = $request->all();
-
+        
         $user = User::find(Auth::user()->id);
 
         $product = new Product();

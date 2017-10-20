@@ -359,7 +359,8 @@
             )
             .then(function (response) {
                 if(response){
-                    window.location = '/home';
+                    console.log(response)
+                    window.location = '/explore';
                 }
             })
             .catch(function (error) {

@@ -45,12 +45,6 @@
                                             <div class="tags">
                                                 <span class="tag">
                                                     <span class="icon is-small">
-                                                      <i class="fa fa-heart"></i>
-                                                    </span>
-                                                    <span>0</span>
-                                                </span>
-                                                <span class="tag">
-                                                    <span class="icon is-small">
                                                       <i class="fa fa-comment"></i>
                                                     </span>
                                                     <span>0</span>
@@ -85,14 +79,7 @@
                             <div class="content">
                                 <nav class="level">
                                     <div class="level-left">
-                                        {{--TODO:::--}}
-                                        <a class="button is-danger level-item">
-                                                    <span class="icon">
-                                                      <i class="fa fa-heart-o"></i>
-                                                    </span>
-                                            <span>Like</span>
-                                        </a>
-                                        <a class="button is-primary level-item">
+                                        <a class="button is-primary level-item" href='{{$product->link}}'>
                                                     <span class="icon">
                                                       <i class="fa fa-globe"></i>
                                                     </span>
