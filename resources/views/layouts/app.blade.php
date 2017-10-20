@@ -42,6 +42,7 @@
         @if (Auth::guest())
             <a href="/login" class="button is-info">Login/Daftar</a>
         @else
+            <a href="/profile/{{Auth::user()->name}}" class="button is-info">Profile</a>
             <a href="/logout" class="button is-danger">Logout</a>
         @endif
     </nav>

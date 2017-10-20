@@ -79,14 +79,14 @@ class SocialController extends Controller
 
             auth()->login($socialUser, true);
 
-            return redirect('home')->with('success', trans('auth.registerSuccess'));
+            return redirect('/explore')->with('success', trans('auth.registerSuccess'));
         }
 
         $socialUser = $getUserFromEmail;
 
         auth()->login($socialUser, true);
 
-        return redirect('home');
+        return redirect('/explore');
     }
 
     private function generateNewUserName($userName)

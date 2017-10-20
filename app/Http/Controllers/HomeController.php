@@ -17,11 +17,6 @@ class HomeController extends Controller
         return view('pages.welcome', compact('top_products', 'new_products'));
     }
 
-    public function index()
-    {
-        return view('pages.home');
-    }
-
     public function faq()
     {
         return view('pages.faq');
