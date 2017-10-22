@@ -23,3 +23,4 @@
 9. run: `$ php artisan migrate`
 10. run: `$ composer dump-autoload`
 11. untuk melihat website run : `$ php artisan serve`
+
