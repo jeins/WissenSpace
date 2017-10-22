@@ -1,0 +1,10 @@
+#!/bin/sh
+ 
+ssh wissenspace@wissenspace.com <<EOF
+  cd ~/dev
+  git pull origin master
+  composer install
+  php artisan migrate:fresh
+  php artisan db:seed
+  exit
+EOF
