@@ -6,7 +6,7 @@ Route::get('/team', 'HomeController@team');
 Route::get('/tentang', 'HomeController@about');
 Route::get('/explore', 'ProductController@index');
 Route::get('/profile/{name}', ['as' => 'profile.show', 'uses' => 'ProfileController@show']);
-Route::get('/explore/{slug}', 'ProductController@show');
+Route::get('/explore/{slug}', ['as' => 'product.view', 'uses' => 'ProductController@show']);
 Route::get('/explore/planet/{name}', 'ProductController@filterTag');
 Route::get('/explore/media/{name}', 'ProductController@filterMedia');
 //LoadMore
@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/products/comment/{id}', ['as' => 'product.comment.post', 'uses' => 'ProductCommentController@save']);
     Route::put('/products/comment/{id}', 'ProductCommentController@update');
     Route::get('/products/comment/{id}/edit', 'ProductCommentController@edit');
+    Route::get('/products/edit/{id}', ['as' => 'product.edit', 'uses' => 'ProductController@edit']);
 
     Route::post('/profile/update/{userId}', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 });

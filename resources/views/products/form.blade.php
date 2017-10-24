@@ -79,13 +79,13 @@
                 <h1 class="title">{{trans('product.add.jenis.title')}}</h1>
 
                 <div class="columns">
-                    <div class="column"><a class="button is-large is-outlined is-danger is-flex"
+                    <div class="column"><a class="button is-large is-outlined is-danger is-flex" id="productType1"
                                            onclick="setProductType(this, '1')">Youtube Channel / Video</a></div>
-                    <div class="column"><a class="button is-large is-outlined is-primary is-flex"
+                    <div class="column"><a class="button is-large is-outlined is-primary is-flex" id="productType2"
                                            onclick="setProductType(this, '2')">Aplikasi Web/Mobile</a></div>
-                    <div class="column"><a class="button is-large is-outlined is-warning is-flex"
+                    <div class="column"><a class="button is-large is-outlined is-warning is-flex" id="productType3"
                                            onclick="setProductType(this, '3')">Artikel Bacaan</a></div>
-                    <div class="column"><a class="button is-large is-outlined is-info is-flex"
+                    <div class="column"><a class="button is-large is-outlined is-info is-flex" id="productType4"
                                            onclick="setProductType(this, '4')">Buku</a></div>
                 </div>
 
@@ -258,22 +258,7 @@
 
 @section('page_script')
     <script type="text/javascript">
-        var productData = {
-            type_id: '',
-            info: {
-                name: '',
-                link: '',
-                tagline: '',
-                subject: ''
-            },
-            tag_id: [],
-            thumbnail: '',
-            images: [],
-            owner: {
-                name: '',
-                twitter_username: ''
-            }
-        };
+        var productData = {!! json_encode($field) !!};
         var firstTab = 'jenis';
 
         init();
@@ -286,12 +271,33 @@
                 $(this).addClass('is-active');
                 return true;
             });
+
+            if(_.has(productData, 'product_id')){
+                $('#productType' + productData['type_id']).removeClass('is-outlined');
+
+                var productInfoKeys = ['link', 'name', 'tagline'];
+
+                _.forEach(productInfoKeys, function (key) {
+                    $('#informasi').find('input[name="' + key + '"]').val(productData.info[key]);
+                });
+
+                _.forEach(productData.tag_id, function(id, i){
+                    var tagName = productData.tag_name[i];
+
+                    $('#product-tags option[value="'+id+'"]').remove();
+                    $('.product-tags-selected').append('<span class="tag is-success">'+tagName+'<button onclick="removeTag(this)" tagId="'+id+'" tagName="'+tagName+'" class="tag-remove-selected delete is-small"></button></span>');
+                });
+                $('#product-subject').val(productData.info.subject);
+                $('#product-thumbnail').attr('src', productData.thumbnail);
+                $('#pemilik').find('input[name="owner_name"]').val(productData.owner.name);
+                $('#pemilik').find('input[name="owner_twitter"]').val(productData.owner.twitter_username);
+            }
         }
 
         function addTag(){
             var tagId = $('#product-tags').val();
 
-            _.forEach(tagId, function (id) {console.log(id)
+            _.forEach(tagId, function (id) {
                 var tagName = $('#product-tags').find("option[value='"+id+"']").attr('name');
 
                 $('#product-tags option[value="'+id+'"]').remove();
@@ -305,6 +311,8 @@
             var tagName = $(currTag).attr('tagName');
             $('#product-tags').append('<option value="'+tagId+'" name="'+tagName+'">'+tagName+'</option>');
             $(currTag).parent().remove();
+
+            _.pull(productData['tag_id'], parseInt(tagId));
         }
 
         function setActiveTab(currentHash) {
@@ -364,8 +372,7 @@
             )
             .then(function (response) {
                 if(response){
-                    console.log(response)
-                    window.location = '/explore';
+                    window.location = response.data;
                 }
             })
             .catch(function (error) {

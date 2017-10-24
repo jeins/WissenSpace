@@ -29,7 +29,7 @@
 
                                         @if (Auth::check())
                                             @if (Auth::user()->id === $product->user->id)
-                                                <a class="button" href='#'>Edit</a>
+                                                <a class="button" href='{{route('product.edit', $product->id)}}'>Edit</a>
                                             @endif
                                         @endif
                                     </div>
