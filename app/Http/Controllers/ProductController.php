@@ -41,7 +41,7 @@ class ProductController extends Controller
         if ($product === null)
             abort(404);
 
-        if ($product->images) {
+        if (!empty($product->images) && $product->images !== 'null') {
             $tmpImages = json_decode($product->images);
             array_walk($tmpImages, function (&$image, &$index) {
                 $image = route('image.view', [ImageController::PRODUCT_TYPE, $image]);
@@ -267,7 +267,7 @@ class ProductController extends Controller
             ]
         ];
 
-        if ($product && $tags && $makers) {
+        if ($product) {
             $field['product_id'] = $product->id;
             $field['type_id'] = $product->type_id;
 
@@ -277,12 +277,16 @@ class ProductController extends Controller
 
             $field['thumbnail'] = $product['thumbnail'];
             $field['images'] = json_decode($product['images']);
+        }
 
+        if(count($tags)){
             foreach ($tags as $tag) {
                 $field['tag_id'][] = $tag->id;
-                $field['tag_name'][] = $tag->name;
+                $field['tag_name'][] = ucfirst($tag->name);
             }
+        }
 
+        if(count($makers)){
             foreach (array_keys($field['owner']) as $key) {
                 $field['owner'][$key] = $makers[0][$key]; //TODO enable more thane one makers
             }
@@ -305,5 +309,13 @@ class ProductController extends Controller
         ];
 
         return response($feed);
+    }
+
+    public function isProductDataExist(Request $request)
+    {
+        $productData = $request->all();
+        $isExist = Product::where($productData['key'], '=', $productData['value'])->exists();
+
+        return response()->json(['isExist' => $isExist], 200);
     }
 }

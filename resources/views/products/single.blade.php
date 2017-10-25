@@ -75,7 +75,7 @@
                                 </div>
                             </article>
                         </div>
-                        @if($product->images)
+                        @if($product->images && $product->images !== 'null')
                             <div class="tile is-child box">
                                 <div class="columns">
                                     <div class="column">

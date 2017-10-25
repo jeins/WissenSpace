@@ -31,11 +31,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
     Route::get('/kontribusi', ['as' => 'contribute', 'uses' => 'ProductController@create']);
     Route::post('/kontribusi', ['as' => 'contribute.post', 'uses' => 'ProductController@post']);
-    Route::post('/upload/image/{type}', ['as' => 'image.upload', 'uses' => 'ImageController@upload']);
+
     Route::post('/products/comment/{id}', ['as' => 'product.comment.post', 'uses' => 'ProductCommentController@save']);
     Route::put('/products/comment/{id}', 'ProductCommentController@update');
     Route::get('/products/comment/{id}/edit', 'ProductCommentController@edit');
     Route::get('/products/edit/{id}', ['as' => 'product.edit', 'uses' => 'ProductController@edit']);
+
+    Route::post('/upload/image/{type}', ['as' => 'image.upload', 'uses' => 'ImageController@upload']);
+    Route::delete('/image/{type}/{image}', ['as' => 'image.delete', 'uses' => 'ImageController@delete']);
 
     Route::post('/profile/update/{userId}', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 });

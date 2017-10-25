@@ -98,7 +98,7 @@
                 {{--URL--}}
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Link / URL</label>
+                        <label class="label">Link / URL *</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -112,7 +112,7 @@
                 {{--NAME--}}
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Nama</label>
+                        <label class="label">Nama * </label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -154,7 +154,7 @@
                 {{--CATEGORIES--}}
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Tag / Kategorie</label>
+                        <label class="label">Tag / Kategorie *</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -188,12 +188,11 @@
                     </div>
                 </div>
 
-                <a class="product-next-button button is-success is-outlined is-flex"
-                   onclick="setProductInfo()">Lanjut</a>
+                <a class="product-next-button button is-success is-outlined is-flex" disabled>Lanjut</a>
             </div>
 
             <div id="media" class="tab-pane animated">
-                <h1 class="title">Upload Thumbnail</h1>
+                <h1 class="title">Upload Thumbnail *</h1>
                 <div id="thumbnail" class="columns is-centered">
                     <div class="column is-half">
                         <div class="dz-preview"></div>
@@ -211,8 +210,7 @@
                     </div>
                 </div>
 
-                <a class="product-next-button button is-success is-outlined is-flex"
-                   onclick="setActiveTab('#pemilik')">Lanjut</a>
+                <a class="product-next-button button is-success is-outlined is-flex" disabled>Lanjut</a>
 
                  <br>
             </div>
@@ -223,7 +221,7 @@
                 {{--NAME--}}
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Nama Pemilik</label>
+                        <label class="label">Nama Pemilik *</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -249,8 +247,7 @@
                 </div>
 
 
-                <a class="product-next-button button is-success is-outlined is-flex"
-                   onclick="postProduct()">Post Product</a>
+                <a class="product-next-button button is-success is-outlined is-flex" disabled>Post Product</a>
             </div>
         </div>
     </div>
@@ -260,11 +257,15 @@
     <script type="text/javascript">
         var productData = {!! json_encode($field) !!};
         var firstTab = 'jenis';
+        var requiredInformation = {'link': false, 'name': false, 'tags': false};
+        var requiredOwner = {'owner_name': false};
+        var requiredMedia = {'thumbnail': false};
 
         init();
 
         function init() {
             setActiveTab(firstTab);
+            checkRequiredField();
 
             $('li.product-add-tab').click(function () {
                 $('li.product-add-tab').removeClass('is-active');
@@ -273,6 +274,14 @@
             });
 
             if(_.has(productData, 'product_id')){
+                requiredInformation = {'link': true, 'name': true, 'tags': true};
+                requiredOwner = {'owner_name': true};
+                requiredMedia = {'thumbnail': true};
+
+                enableNextButton('informasi', requiredInformation);
+                enableNextButton('pemilik', requiredOwner);
+                enableNextButton('media', requiredMedia);
+
                 $('#productType' + productData['type_id']).removeClass('is-outlined');
 
                 var productInfoKeys = ['link', 'name', 'tagline'];
@@ -309,7 +318,7 @@
         function removeTag(currTag){
             var tagId = $(currTag).attr('tagId');
             var tagName = $(currTag).attr('tagName');
-            $('#product-tags').append('<option value="'+tagId+'" name="'+tagName+'">'+tagName+'</option>');
+            $('#product-tags').append('<option value="'+tagId+'" name="'+tagName+'"style="text-transform: capitalize">'+tagName+'</option>');
             $(currTag).parent().remove();
 
             _.pull(productData['tag_id'], parseInt(tagId));
@@ -379,6 +388,52 @@
                 console.error(error);
             });
         }
+
+        function checkRequiredField(){
+            $('#informasi input[name="link"], input[name="name"]').change(function(){
+                var key = $(this).attr('name');
+                requiredInformation[key] = !!$(this).val();
+
+                enableNextButton('informasi', requiredInformation);
+            });
+
+            $('#informasi').on('DOMSubtreeModified', '.product-tags-selected', function () {
+                requiredInformation['tags'] = ($(this).find('button').length > 0);
+                enableNextButton('informasi', requiredInformation);
+            })
+
+            $('#pemilik').find('input[name="owner_name"]').change(function(){
+                requiredOwner['owner_name'] = !!$(this).val();
+
+                enableNextButton('pemilik', requiredOwner);
+            });
+        }
+
+        function enableNextButton(id, values){
+            var btn = $('#'+id).find('.product-next-button');
+            var tmpVal = true;
+
+            _.forEach(values, function(value){
+                if(!value){
+                    tmpVal = false;
+                }
+            });
+
+            if(tmpVal){
+                $(btn).removeAttr('disabled');
+
+                if(id === 'informasi'){
+                    $(btn).attr('onClick', 'setProductInfo()');
+                } else if(id === 'pemilik'){
+                    $(btn).attr('onClick', 'postProduct()');
+                } else if(id === 'media'){
+                    $(btn).attr('onClick', "setActiveTab('#pemilik')");
+                }
+            } else{
+                $(btn).attr('disabled', true);
+                $(btn).removeAttr('onClick');
+            }
+        }
     </script>
 
     <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
@@ -411,6 +466,9 @@
                     }, 1000);
                     productData.thumbnail = res.image_url;
                     $('#product-thumbnail').attr('src', res.image_url);
+
+                    requiredMedia.thumbnail = true;
+                    enableNextButton('media', requiredMedia);
                 });
                 //TODO handling error
                 this.on("error", function(file, res) {});
@@ -418,7 +476,30 @@
         };
 
         var imagesOption = {
+            addRemoveLinks: true,
             init: function(){
+                if(productData['images']){
+                    var me = this;
+
+                    _.forEach(productData['images'], function (imgName) {
+                        var img = {name: imgName, type: 'image/jpeg'};
+                        me.options.addedfile.call(me, img);
+                        me.options.thumbnail.call(me, img, '/image/p/' + imgName);
+                        img.previewElement.classList.add('dz-success');
+                        img.previewElement.classList.add('dz-complete');
+                    });
+                }
+
+                this.on('removedfile', function (file) {
+                    var imgName = file.name;
+
+                    _.pull(productData['images'], imgName);
+
+                    axios.delete(
+                        "/image/p/" + imgName,
+                        {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+                    )
+                });
                 this.on("success", function(file, res){
                     productData.images.push(res.image);
                 });

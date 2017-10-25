@@ -42,4 +42,13 @@ class ImageController extends Controller
 
         return Image::make(storage_path() . $imagePath . $image)->response();
     }
+
+    //TODO check security
+    public function delete($type, $image)
+    {
+        $imagePath = $type === self::USER_TYPE ? self::USER_PHOTO_PATH : self::PRODUCT_IMAGES_PATH;
+        $imageFullPath = storage_path() . $imagePath . '/';
+
+        Image::make($imageFullPath . $image)->destroy();
+    }
 }
