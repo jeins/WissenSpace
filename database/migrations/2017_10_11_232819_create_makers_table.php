@@ -16,7 +16,7 @@ class CreateMakersTable extends Migration
         Schema::create('makers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('twitter_username')->unique()->nullable();
+            $table->string('twitter_username')->nullable();
             $table->integer('product_id')->unsigned()->index();
             $table->timestamps();
 

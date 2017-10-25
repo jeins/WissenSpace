@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Welome! @WissenSpace</h1>
     <div class="columns">
       <div class="column is-one-quarter">
             <h3>Planet</h3>
@@ -23,17 +22,17 @@
             </ul>
 
             <hr>
-            <a href="/tentang">Tentang</a>
-            <a href="/team">Team</a>
+            <a href="/tentang">Tentang</a> /
+            <a href="/team">Team</a> /
             <a href="/faq">Tanya</a>
             <hr>
-            <a href="https://twitter.com/wissenspace">Tw</a>
-            <a href="https://facebook.com/wissenspace">Fb</a>
-            <a href="https://instagram.com/wissenspace">ig</a>
+            <a href="https://twitter.com/wissenspace">Twitter</a> /
+            <a href="https://facebook.com/wissenspace">Facebook</a> /
+            <a href="https://instagram.com/wissenspace">Instagram</a>
+            
         </div>
 
         <div class="column">
-            <h3>Produk lists</h3>
             <ul>
                 @foreach ($products->take(2) as $product)
                     <div id="products">

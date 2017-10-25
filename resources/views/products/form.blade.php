@@ -333,7 +333,7 @@
             $(obj).removeClass('is-outlined');
 
             productData['type_id'] = type;
-            
+
             $('#flow-tabs li:nth-child(2)').addClass('is-clickable');
             setActiveTab('#informasi');
         }

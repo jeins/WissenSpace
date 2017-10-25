@@ -37,13 +37,13 @@
         <a href="/">
             <img src="/images/logo.png" alt="logo wissenspace" width="150">
         </a>
-        <a href="/explore" class="button is-primary"> Galaksi</a>
-        <a href="/kontribusi" class="button is-primary">+ Kontribusi</a>
+        <a href="/explore" class="button is-primary"> Galaksi 🌏</a>
+        <a href="/kontribusi" class="button is-primary">+Kontribusi 🚀</a>
         @if (Auth::guest())
-            <a href="/login" class="button is-info">Login/Daftar</a>
+            <a href="/login" class="button is-info">Login/Daftar 🌝</a>
         @else
-            <a href="/profile/{{Auth::user()->name}}" class="button is-info">Profile</a>
-            <a href="/logout" class="button is-danger">Logout</a>
+            <a href="/profile/{{Auth::user()->name}}" class="button is-info">Profile 👾</a>
+            <a href="/logout" class="button is-danger">Logout 🌛</a>
         @endif
     </nav>
 
@@ -51,10 +51,14 @@
         @yield('content')
     </div>
 
+    <footer class="container section">
+        <p>&copy;2017 WissenSpace 🌏🚀👾🌚🌝</p>
+    </footer>
 </div>
 
 {{-- Scripts --}}
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @yield('page_script')
 
 </body>

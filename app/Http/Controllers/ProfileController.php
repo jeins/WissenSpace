@@ -12,7 +12,7 @@ class ProfileController extends Controller
 
     public function show($name)
     {
-        $user = User::with('products', 'product_comments')->where('name', $name)->first();
+        $user = User::with('products.comments')->where('name', $name)->first();
 
         $isAllowEdit = $this->isAllowToEdit($user->id);
         $socialMedia = json_decode($user->social_media);

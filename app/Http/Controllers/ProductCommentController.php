@@ -11,13 +11,17 @@ class ProductCommentController extends Controller
 {
     public function save(Request $request, $id)
     {
+        $request->validate([
+            'subject' => 'required|min:10'
+        ]);
+
         $product = Product::find($id);
         $product->comments()->create([
             'subject' => $request->subject,
             'user_id' => Auth::user()->id
         ]);
 
-        return redirect('explore/' . $product->slug)->with('success', 'komentar anda berhasil dipost, +1 kontribusi');
+        return redirect('explore/' . $product->slug)->with('success', 'komentar anda berhasil dipost!');
     }
 
     public function edit($comment_id)
@@ -32,6 +36,10 @@ class ProductCommentController extends Controller
 
     public function update(Request $request, $comment_id)
     {
+        $request->validate([
+            'subject' => 'required|min:10'
+        ]);
+
         $comment = ProductComment::find($comment_id);
         $product = Product::find($comment->product_id);
 
@@ -43,6 +51,6 @@ class ProductCommentController extends Controller
             'subject' => $request->subject
         ]);
 
-        return redirect('explore/' . $product->slug)->with('success', 'komentar anda berhasil diedit, +1 kontribusi');
+        return redirect('explore/' . $product->slug)->with('success', 'komentar anda berhasil diedit');
     }
 }

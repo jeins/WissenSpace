@@ -37,7 +37,9 @@
                                         <div class="level-left">
                                             <div class="tags">
                                                 @foreach ($product->tags as $tag)
-                                                    <span class="level-item tag">#{{$tag->name}}</span>
+                                                    <span class="level-item tag">
+                                                        <a href="/explore/planet/{{$tag->name}}">#{{$tag->name}}</a>
+                                                    </span>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -47,7 +49,7 @@
                                                     <span class="icon is-small">
                                                       <i class="fa fa-comment"></i>
                                                     </span>
-                                                    <span>0</span>
+                                                    <span>{{$product->comments->count()}}</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -79,7 +81,7 @@
                             <div class="content">
                                 <nav class="level">
                                     <div class="level-left">
-                                        <a class="button is-primary level-item" href='{{$product->link}}'>
+                                        <a class="button is-primary level-item" href='{{$product->link}}' target="_blank">
                                                     <span class="icon">
                                                       <i class="fa fa-globe"></i>
                                                     </span>
@@ -92,19 +94,25 @@
                         </div>
                         <div class="tile is-child box">
                             <p class="title">Diskusi</p>
-
-                            <div class="columns">
-                                <div class="column">
-                                    <form action="{{route('product.comment.post', $product->id)}}" role="form" method="POST">
-                                        <textarea name="subject" placeholder="komentar saya.."rows="8" cols="80" class="is-flex"></textarea>
-                                        {{csrf_field()}}
-                                        <br>
-                                        <button class="button is-success" type="submit">
-                                            Post Komentar
-                                        </button>
-                                    </form>
+                            @if (Auth::check())
+                                <div class="columns">
+                                    <div class="column">
+                                        <form action="{{route('product.comment.post', $product->id)}}" role="form" method="POST">
+                                            @if ($errors->has('subject'))
+                                                 <p class="help is-danger">{{ $errors->first('subject') }}</p>
+                                            @endif
+                                            <textarea name="subject" placeholder="komentar saya.." class="textarea"></textarea>
+                                            {{csrf_field()}}
+                                            <br>
+                                            <button class="button is-success" type="submit">
+                                                Post Komentar
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <a class="button" href='/login'> Login untuk komentar</a>
+                            @endif
 
                             @foreach ($product->comments as $comment)
                                 <div>
@@ -151,9 +159,16 @@
                         </div>
                         <div class="tile is-child box">
                             <h3 class="subtitle">Pemilik</h3>
-                            @foreach ($product->makers as $maker)
-                                <a href='https://twitter.com/{{$maker->twitter_username}}'>{{$maker->name}} </a> -
-                            @endforeach
+                            @if($product->makers->count())
+                                @foreach ($product->makers as $maker)
+                                    <li> <a href='https://twitter.com/{{$maker->twitter_username}}'>{{$maker->name}} </a> </li>
+                                @endforeach
+                            @else
+                                <li>Tidak ada keterangan</li>
+                            @endif
+                        </div>
+                        <div class="tile is-child box">
+                            <a href="/explore">Kembali ke Galaksi </a>
                         </div>
                     </div>
                 </div>
@@ -164,6 +179,11 @@
 
 @section('page_script')
     <script type="text/javascript">
+        // sweetalert
+        @if (session('success'))
+          swal("Selamat!", "{{ session('success') }}", "success")
+        @endif
+
         $('.product-image-thumbnail').click(function(){
             var imageUrl = $(this).attr('image-url');
             $('#show-image').attr('src', imageUrl);

@@ -63,6 +63,7 @@
                     <div class="content">
                         <p><strong>{{$user->full_name}}</strong></p>
                         <p>{{$user->status}}</p>
+                        <p>Point: {{$user->point}}</p>
                         <br>
                     </div>
                     <nav class="level is-mobile">
@@ -124,15 +125,9 @@
                                 <div class="tags">
                                     <span class="tag">
                                         <span class="icon is-small">
-                                          <i class="fa fa-heart"></i>
-                                        </span>
-                                        <span>0</span>
-                                    </span>
-                                    <span class="tag">
-                                        <span class="icon is-small">
                                           <i class="fa fa-comment"></i>
                                         </span>
-                                        <span>0</span>
+                                        <span>{{$product->comments->count()}}</span>
                                     </span>
                                 </div>
                             </div>

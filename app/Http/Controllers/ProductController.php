@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductTag;
 use Cookie;
+use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\User;
 use App\Models\Type;
 use App\Models\Maker;
 use App\Models\Product;
+use App\Models\ProductTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -17,6 +18,11 @@ class ProductController extends Controller
 {
     const PRODUCT_THUMBNAIL_PATH = 'product_thumbnail';
     const PRODUCT_IMAGES_PATH = 'product_images';
+
+    public function __construct()
+    {
+        Carbon::setLocale('id');
+    }
 
     public function index()
     {
@@ -118,10 +124,13 @@ class ProductController extends Controller
 
         if (array_key_exists('product_id', $productData)) {
             $productSlug = $this->updateProduct($productData);
+            $message = 'Berhasil DiUpdate!';
         } else {
             $productSlug = $this->addNewProduct($productData);
+            $message = 'Terima kasih kontribusinya!';
         }
 
+        $request->session()->flash('success', $message);
         return response()->json(route('product.view', $productSlug), 200);
     }
 
@@ -134,7 +143,14 @@ class ProductController extends Controller
         foreach ($productData['info'] as $key => $val) {
             $product[$key] = $val;
         }
-        $product->slug = strtolower(str_replace(' ', '-', $product->name));
+
+        $slug = strtolower(str_replace(' ', '-', $product->name));
+        //if slug already exists
+        if (Product::where('slug', $slug)->first() != null) {
+            $slug .= '-' . time();
+        }
+
+        $product->slug = $slug;
         $product->thumbnail = $productData['thumbnail'];
         $product->images = json_encode($productData['images']);
         $product->type_id = $productData['type_id'];
@@ -182,14 +198,22 @@ class ProductController extends Controller
 
         $maker = new Maker();
         if($productData['owner']['name']){
-
             foreach ($productData['owner'] as $key => $val) {
                 $maker[$key] = $val;
             }
-
         }
 
-        $product->slug = strtolower(str_replace(' ', '-', $product->name));
+        //add user point
+        $user->point = $user->point + 10;
+        $user->save();
+
+        $slug = strtolower(str_replace(' ', '-', $product->name));
+        //if slug already exists
+        if (Product::where('slug', $slug)->first() != null) {
+            $slug .= '-' . time();
+        }
+
+        $product->slug = $slug;
         $product->thumbnail = $productData['thumbnail'];
         $product->images = json_encode($productData['images']);
         $product->type_id = $productData['type_id'];
