@@ -32,6 +32,7 @@
 </head>
 <body>
 <div id="app">
+    <div class="container">
     <nav>
         <a href="/">
             <img src="/images/logo.png" alt="logo wissenspace" width="150">
@@ -45,7 +46,8 @@
             <a href="/logout" class="button is-danger">Logout 🌛</a>
         @endif
     </nav>
-
+    </div>
+    
     <div class="container">
         @yield('content')
     </div>

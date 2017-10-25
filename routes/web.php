@@ -5,6 +5,7 @@ Route::get('/faq', 'HomeController@faq');
 Route::get('/team', 'HomeController@team');
 Route::get('/tentang', 'HomeController@about');
 Route::get('/explore', 'ProductController@index');
+Route::get('explore/load/instagram', 'ProductController@load_instagram');
 Route::get('/profile/{name}', ['as' => 'profile.show', 'uses' => 'ProfileController@show']);
 Route::get('/explore/{slug}', ['as' => 'product.view', 'uses' => 'ProductController@show']);
 Route::get('/explore/planet/{name}', 'ProductController@filterTag');

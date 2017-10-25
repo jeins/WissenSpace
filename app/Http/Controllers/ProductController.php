@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Models\Type;
 use App\Models\Maker;
+use GuzzleHttp\Client;
 use App\Models\Product;
 use App\Models\ProductTag;
 use Illuminate\Http\Request;
@@ -288,5 +289,21 @@ class ProductController extends Controller
         }
 
         return $field;
+    }
+
+    //get instagram feed last via ajax
+    public function load_instagram()
+    {
+        $client = new Client();
+        $res = $client->request('GET', 'https://www.instagram.com/wissenspace/media/')
+                     ->getBody();
+
+        $insta_feed = json_decode($res)->items[0];
+        $feed =  [
+            'last_image' => $insta_feed->images->standard_resolution->url,
+            'url' => $insta_feed->link
+        ];
+
+        return response($feed);
     }
 }

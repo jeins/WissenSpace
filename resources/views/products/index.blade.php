@@ -73,6 +73,10 @@
             </ul>
 
         </div>
+
+        <div class="column is-hidden-touch is-one-quarter">
+            <div class="insta-feed"></div>
+          </div>
      </div>
 
 @endsection
@@ -80,6 +84,18 @@
 
 @section('page_script')
      <script type="text/javascript">
+
+     //instagram ffeed
+    $.get("/explore/load/instagram", function(data){
+        if($.trim(data))
+        {
+            $('.insta-feed').append("<h3 class='is-bold is-center'>Instagram Feed</h3>"+
+                "<a href='"+data.url+"' target='_blank'>"+
+                    "<img src="+data.last_image+" alt='foto instagram terakhir wissenspace'>" +
+                "</a>");
+            }
+    });
+
 
      $(document).ready(function(){
             /*|--------------------------------------------------------------------
