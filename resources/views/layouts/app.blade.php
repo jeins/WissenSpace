@@ -8,8 +8,7 @@
     {{-- CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>WissenSpace Dev</title>
-    <meta name="description" content="WissenSpace Dev">
+    @yield('meta-data')
 
     {{-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --}}
         <!--[if lt IE 9]>

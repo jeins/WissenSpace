@@ -1,5 +1,23 @@
 @extends('layouts.app')
 
+@section('meta-data')
+    <title>Explore {{trans('info.title')}}</title>
+    <meta name="author" content="WissenSpace Team">
+    <meta name="description" content="Referensi belajar terbaru di wissenspace. {{trans('info.desc')}}">
+    <!-- twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="wissenspace">
+    <meta name="twitter:creator" content="WissenSpace Team">
+    <meta name="twitter:title" content="Explore {{trans('info.title')}}">
+    <meta name="twitter:url" content="https://wissenspace.com">
+    <meta name="twitter:description" content="Referensi belajar terbaru di wissenspace. {{trans('info.desc')}}">
+    <meta name="twitter:image:src" content="/images/logo.png">
+    <!-- facebook -->
+    <meta property="og:title" content="Explore {{trans('info.title')}}" />
+    <meta property="og:description" content="Referensi belajar terbaru di wissenspace. {{trans('info.desc')}}">
+    <meta property="og:image" content="/images/logo.png">
+@endsection
+
 @section('content')
     <div class="columns">
       <div class="column is-one-quarter">
@@ -29,7 +47,7 @@
             <a href="https://twitter.com/wissenspace">Twitter</a> /
             <a href="https://facebook.com/wissenspace">Facebook</a> /
             <a href="https://instagram.com/wissenspace">Instagram</a>
-            
+
         </div>
 
         <div class="column">

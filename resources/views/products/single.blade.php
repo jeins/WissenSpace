@@ -1,5 +1,23 @@
 @extends('layouts.app')
 
+@section('meta-data')
+    <title>{{$product->name . ' - ' . $product->tagline}}</title>
+    <meta name="author" content="WissenSpace Team">
+    <meta name="description" content="{{ $product->subject }}">
+    <!-- twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="{{$product->name . ' - ' . $product->tagline}}">
+    <meta name="twitter:creator" content="WissenSpace Team">
+    <meta name="twitter:title" content="{{$product->name . ' - ' . $product->tagline}}">
+    <meta name="twitter:url" content="https://wissenspace.com/explore/{{$product->slug}}">
+    <meta name="twitter:description" content="{{ $product->subject }}">
+    <meta name="twitter:image:src" content="{{$product->thumbnail}}">
+    <!-- facebook -->
+    <meta property="og:title" content="{{$product->name . ' - ' . $product->tagline}}" />
+    <meta property="og:description" content="{{ $product->subject }}">
+    <meta property="og:image" content="{{$product->thumbnail}}">
+@endsection
+
 @section('content')
     <div class="container">
         <div class="columns is-multiline">

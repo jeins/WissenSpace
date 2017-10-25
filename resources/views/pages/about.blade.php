@@ -1,4 +1,11 @@
 @extends('layouts.app')
+
+@section('meta-data')
+    <title>Tentang WissenSpace</title>
+    <meta name="author" content="WissenSpace Team">
+    <meta name="description" content="Tentang WissenSpace. {{trans('info.desc')}}">
+@endsection
+
 @section('content')
     <section class="hero">
         <div class="hero-body">
@@ -29,6 +36,11 @@
                     Hanya KITA yang mampu melaksanakannya<br>
               </p>
             </div>
+            <p>
+                <a href="/tentang">Tentang</a> /
+                <a href="/team">Team</a> /
+                <a href="/faq">Tanya</a>
+            </p>
         </div>
     </section>
 @endsection

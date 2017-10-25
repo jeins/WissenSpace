@@ -1,4 +1,11 @@
 @extends('layouts.app')
+
+@section('meta-data')
+    <title>FAQ WissenSpace</title>
+    <meta name="author" content="WissenSpace Team">
+    <meta name="description" content="Yang sering ditanyakan di WissenSpace. {{trans('info.desc')}}">
+@endsection
+
 @section('content')
     <section class="hero">
         <div class="hero-body">
@@ -37,6 +44,11 @@
               bibit manfaat yang kita tanam sekarang, pohonnya bisa ngelindungin banyak orang dan menghasilkan bibit bibit berikutnya!</p>
 
             </div>
+            <p>
+                <a href="/tentang">Tentang</a> /
+                <a href="/team">Team</a> /
+                <a href="/faq">Tanya</a>
+            </p>
         </div>
     </section>
 @endsection

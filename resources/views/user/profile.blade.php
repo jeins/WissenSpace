@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@section('meta-data')
+    <title>Profil {{$user->name}} di WissenSpace</title>
+@endsection
+
 @section('page_css')
     <link href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css" rel="stylesheet">
     <style>
