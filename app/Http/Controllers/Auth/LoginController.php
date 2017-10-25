@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -53,5 +54,14 @@ class LoginController extends Controller
         Session::flush();
 
         return redirect($this->redirectTo);
+    }
+
+    public function demoUser()
+    {
+        $getUser = User::inRandomOrder()->first();
+
+        auth()->login($getUser, true);
+
+        return redirect('/explore');
     }
 }

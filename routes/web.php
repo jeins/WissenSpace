@@ -10,6 +10,8 @@ Route::get('/profile/{name}', ['as' => 'profile.show', 'uses' => 'ProfileControl
 Route::get('/explore/{slug}', ['as' => 'product.view', 'uses' => 'ProductController@show']);
 Route::get('/explore/planet/{name}', 'ProductController@filterTag');
 Route::get('/explore/media/{name}', 'ProductController@filterMedia');
+Route::get('/image/{type}/{image}', ['as' => 'image.view', 'uses' => 'ImageController@show']);
+
 //LoadMore
 Route::get('/explore/load-more/{id}' , 'ProductController@loadMore');
 Route::get('/explore/planet/{name}/load-more/{id}' , 'ProductController@loadMore');
@@ -17,11 +19,12 @@ Route::get('/explore/media/{name}/load-more/{id}' , 'ProductController@loadMore'
 
 // Authentication Routes
 Auth::routes();
-
 Route::get('/login/redirect/{provider}', ['as' => 'auth.redirect', 'uses' => 'Auth\SocialController@getRedirect']);
 Route::get('/login/handle/{provider}', ['as' => 'auth.handle', 'uses' => 'Auth\SocialController@getHandler']);
-
-Route::get('/image/{type}/{image}', ['as' => 'image.view', 'uses' => 'ImageController@show']);
+// allow login with demo account
+if(config('app.debug')){
+    Route::get('/login/demo', ['as' => 'auth.demo', 'uses' => 'Auth\LoginController@demoUser']);
+}
 
 // User Routes
 Route::group(['middleware' => ['auth']], function () {

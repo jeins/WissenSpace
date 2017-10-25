@@ -41,7 +41,10 @@
         <a href="/kontribusi" class="button is-primary">+Kontribusi 🚀</a>
         @if (Auth::guest())
             <a href="/login" class="button is-info">Login/Daftar 🌝</a>
-        @else
+            @if(config('app.debug'))
+                <a href="{{route('auth.demo')}}" class="button is-dark">Login Demo</a>
+            @endif
+            @else
             <a href="/profile/{{Auth::user()->name}}" class="button is-info">Profile 👾</a>
             <a href="/logout" class="button is-danger">Logout 🌛</a>
         @endif
