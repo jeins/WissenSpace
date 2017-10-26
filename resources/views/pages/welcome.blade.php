@@ -19,29 +19,39 @@
 @endsection
 
 @section('content')
-    <section class="hero">
+    <section class="hero is-ws-grey has-medium-vm">
         <div class="hero-body">
             <div class="container">
-              <h1 class="title">
+              <h1 class="title is-3">
                 WissenSpace - Belajar hal baru setiap hari
               </h1>
-              <h2 class="subtitle">
+              <h2 class="subtitle is-4">
                 Punya referensi belajar menarik? yuk share di wissenspace!
               </h2>
+              <a href='/kontribusi' class="button">Pasang Link</a>
+              <a href='/explore' class="button">Lihat semuanya</a>
             </div>
         </div>
     </section>
 
-    <div class="section">
-        <h3>Popular Product</h3>
-        @foreach ($top_products as $top_product)
-            <li><a href="explore/{{$top_product->slug}}">{{$top_product->name}}</a></li>
-        @endforeach
+    <div class="columns">
+        <div class="column">
+            <div class="panel">
+                <h3 class="panel-heading">Referensi terramai</h3>
+                @foreach ($top_products as $top_product)
+                    <a class="panel-block" href="explore/{{$top_product->slug}}">{{$top_product->name}}</a>
+                @endforeach
+            </div>
+        </div>
 
-        <h3>New Product</h3>
-        @foreach ($new_products as $new_product)
-            <li><a href="explore/{{$new_product->slug}}">{{$new_product->name}}</a></li>
-        @endforeach
+        <div class="column">
+            <div class="panel">
+                <h3 class="panel-heading">Referensi terbaru</h3>
+                @foreach ($new_products as $new_product)
+                    <a class="panel-block" href="explore/{{$new_product->slug}}">{{$new_product->name}}</a>
+                @endforeach
+            </div>
+        </div>
     </div>
 
 @endsection

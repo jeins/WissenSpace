@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="notification">
-        Test
-    </div>
+    
     <div class="columns">
         <div class="column">
             <a href="{{route('auth.redirect',['provider' => 'google'])}}" class="button is-danger">Login Google</a>

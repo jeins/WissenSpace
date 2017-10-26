@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pages')
 
 @section('meta-data')
     <title>Team WissenSpace</title>
@@ -6,31 +6,69 @@
     <meta name="description" content="Team di balik WissenSpace. {{trans('info.desc')}}">
 @endsection
 
-@section('content')
-    <section class="hero">
-        <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                Team WissenSpace
-              </h1>
+@section('text')
+      <h1 class="title">
+        Team WissenSpace
+      </h1>
 
-               <p>
-                    (TIM-TIM)
-                    Tim wissenspace tersebar di Makassar, Jakarta & Berlin.
-                    Silahkan disapa kalau ketemu :P
-               </p>
-              <p>Juan Akbar/ kerjaan / - Foto</p>
-              <p>Fauzi / kerjaan / Foto</p>
-              <p>Sylvi / kerjaan / Foto</p>
-              <p>Ebin / kerjaan / Foto</p>
-              <p>Hilman / kerjaan / Foto</p>
+       <p>
+            Tim wissenspace tersebar di Makassar, Jakarta & Berlin.<br>
+            Silahkan disapa kalau ketemu :P
+       </p>
+
+        <br>
+        <div class="media">
+            <img class="media-left" src="/images/team/juan.jpg" alt="foto juan akbar" width="100">
+            <div class="media-right">
+                <div class="content">
+                    <div class="title is-size-4">Muh. Juan Akbar</div>
+                    <div class="subtitle">Aktvitas saat ini</div>
+                    <a href='' class="button" target="_blank">Halo!</a>
+                </div>
             </div>
-
-            <p>
-                <a href="/tentang">Tentang</a> /
-                <a href="/team">Team</a> /
-                <a href="/faq">Tanya</a>
-            </p>
         </div>
-    </section>
+
+        <div class="media">
+            <img class="media-left" src="/images/team/hilman.jpg" alt="foto hilman ramadhan" width="100">
+            <div class="media-right">
+                <div class="content">
+                    <div class="title is-size-4">Hilman Ramadhan</div>
+                    <div class="subtitle">Aktvitas saat ini</div>
+                    <a href='https://hilmanrdn.id' class="button" target="_blank">Halo!</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="media">
+            <img class="media-left" src="/images/team/sylvi.jpg" alt="foto Sylvia Martshalina" width="100">
+            <div class="media-right">
+                <div class="content">
+                    <div class="title is-size-4">Sylvia Martshalina</div>
+                    <div class="subtitle">Aktvitas saat ini</div>
+                    <a href='' class="button" target="_blank">Halo!</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="media">
+            <img class="media-left" src="/images/team/fauzi.jpg" alt="foto Fauzi Arif Senjaya" width="100">
+            <div class="media-right">
+                <div class="content">
+                    <div class="title is-size-4">Fauzi Arif Sanjaya</div>
+                    <div class="subtitle">Aktvitas saat ini</div>
+                    <a href='http://fauzias.me/' class="button" target="_blank">Halo!</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="media">
+            <img class="media-left" src="/images/team/ebin.jpg" alt="foto Ebin Aridansyah" width="100">
+            <div class="media-right">
+                <div class="content">
+                    <div class="title is-size-4">Ebin Ardiansyah</div>
+                    <div class="subtitle">Aktvitas saat ini</div>
+                    <a href='' class="button" target="_blank">Halo!</a>
+                </div>
+            </div>
+        </div>
 @endsection

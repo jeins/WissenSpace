@@ -185,9 +185,9 @@
                                 <li>Tidak ada keterangan</li>
                             @endif
                         </div>
-                        <div class="tile is-child box">
-                            <a href="/explore">Kembali ke Galaksi </a>
-                        </div>
+
+                            <a class="button is-info" href="/explore">Kembali ke Galaksi </a>
+
                     </div>
                 </div>
             </div>

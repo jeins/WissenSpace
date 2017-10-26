@@ -76,7 +76,7 @@ class ProductController extends Controller
 
     public function loadMore(Request $request, $name_or_id, $id = null)
     {
-        $limit = 2;
+        $limit = 10;
         $products = Product::where('id', '<', $name_or_id)->withCount('comments')->orderBy('id', 'desc')->get();
 
         if (str_contains($request->fullUrl(), 'planet')) {
@@ -93,22 +93,35 @@ class ProductController extends Controller
         }
 
         foreach ($products->take($limit) as $product) {
-            echo "<div id='products'>
-                    <a href='/explore/" . $product->slug . "' class='each-product' data-id=" . $product->id . ">
-                        <img src=" . $product->thumbnail . " width='100'>
-                        <h3>" . $product->name . "</h3>
-                        <p>" . $product->tagline . "</p>
-                        <p>" . $product->comments_count . " Komentar</p>";
+            echo "<a href='/explore/" . $product->slug ."' class='products media'  data-id=".$product->id.">
+                        <img class='media-left' src=" . $product->thumbnail . " width='100'>
+                        <div class='media-content'>
+                            <h3 class='title is-size-5 is-capitalized'>" . $product->name . "</h3>
+                            <p class='subtitle is-size-6'>" . $product->tagline . "</p>
+                            <div class='level'>
+                                <div class='level-left'>";
+                                foreach ($product->tags as $tag) {
+                                    echo "<span class='level-item tag'>#" . $tag->name . "</span>";
+                                }
 
-            foreach ($product->tags as $tag) {
-                echo "<span>#" . $tag->name . "</span>";
-            }
-            echo "</a>
-                </div>";
+                        echo "</div>
+                                <div class='level-right'>
+                                    <div class='tags'>
+                                        <span class='tag'>
+                                            <span class='icon is-small'>
+                                              <i class='fa fa-comment'></i>
+                                            </span>
+                                            <span>".$product->comments_count."</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>";
         }
 
         if ($products->count() > $limit)
-            echo "<a class='button is-primary load-more'> Explore Lagi </a>";
+            echo "<a class='button is-primary load-more is-fullwidth has-small-vm'> Explore Lagi </a>";
     }
 
     public function create()

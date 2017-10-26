@@ -10856,3 +10856,32 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
+.container {
+  max-width: 980px;
+}
+
+.hero.is-ws-grey {
+  background-color: #3a474a;
+}
+
+.hero.is-ws-grey .title,
+.hero.is-ws-grey .subtitle {
+  color: white;
+}
+
+.has-small-vm {
+  margin: 20px auto;
+}
+
+.has-medium-vm {
+  margin: 40px auto;
+}
+
+.products {
+  padding: 5px;
+}
+
+.products:hover {
+  background-color: #e8ebed;
+}
+

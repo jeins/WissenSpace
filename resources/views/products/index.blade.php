@@ -19,62 +19,73 @@
 @endsection
 
 @section('content')
-    <div class="columns">
+    <div class="columns has-medium-vm">
       <div class="column is-one-quarter">
-            <h3>Planet</h3>
-            <ul>
-                @foreach ($tags as $tag)
-                    <li>
-                        <a href="/explore/planet/{{$tag->name}}"> {{$tag->name}} </a>
-                    </li>
-                @endforeach
-            </ul>
+            <div>
+                <h3 class="is-size-5 has-text-weight-semibold">Planet</h3>
+                <ul>
+                    @foreach ($tags as $tag)
+                        <li>
+                            <a class="has-text-grey" href="/explore/planet/{{$tag->name}}"> #{{$tag->name}} </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
 
-            <h3>Media</h3>
-            <ul>
-                @foreach ($types as $type)
-                    <li>
-                        <a href="/explore/media/{{$type->name}}"> {{$type->name}} </a>
-                    </li>
-                @endforeach
-            </ul>
+            <div class="has-small-vm">
+                <h3 class="is-size-5 has-text-weight-semibold">Media</h3>
+                <ul>
+                    @foreach ($types as $type)
+                        <li>
+                            <a class="has-text-grey" href="/explore/media/{{$type->name}}"> {{$type->name}} </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
 
-            <hr>
-            <a href="/tentang">Tentang</a> /
-            <a href="/team">Team</a> /
-            <a href="/faq">Tanya</a>
-            <hr>
-            <a href="https://twitter.com/wissenspace">Twitter</a> /
-            <a href="https://facebook.com/wissenspace">Facebook</a> /
-            <a href="https://instagram.com/wissenspace">Instagram</a>
-
+            <div class="has-small-vm">
+                <h3 class="is-size-5 has-text-weight-semibold">WissenSpace</h3>
+                <a class="has-text-grey"  href="/tentang">Tentang</a> /
+                <a class="has-text-grey" href="/team">Team</a> /
+                <a class="has-text-grey" href="/faq">Tanya</a>
+            </div>
         </div>
 
         <div class="column">
-            <ul>
-                @foreach ($products->take(2) as $product)
-                    <div id="products">
-                        <a href='/explore/{{$product->slug}}' class="each-product" data-id="{{$product->id}}">
-                            <img src="{{$product->thumbnail}}" width="100">
-                            <h3>{{ $product->name }}</h3>
-                            <p>{{ $product->tagline }}</p>
-                            <p>{{$product->comments_count . ' Komentar'}}</p>
-                            @foreach ($product->tags as $tag)
-                                <span>#{{$tag->name}}</span>
-                            @endforeach
-                        </a>
+            @foreach ($products->take(10) as $product)
+                <a href='/explore/{{$product->slug}}' class="products media"  data-id="{{$product->id}}">
+                    <img class="media-left" src="{{$product->thumbnail}}" width="100">
+                    <div class="media-content">
+                        <h3 class="title is-size-5 is-capitalized">{{ $product->name }}</h3>
+                        <p class="subtitle is-size-6">{{ $product->tagline }}</p>
+                        <div class="level">
+                            <div class="level-left">
+                                @foreach ($product->tags as $tag)
+                                    <span class="level-item tag">#{{$tag->name}}</span>
+                                @endforeach
+                            </div>
+                            <div class="level-right">
+                                <div class="tags">
+                                    <span class="tag">
+                                        <span class="icon is-small">
+                                          <i class="fa fa-comment"></i>
+                                        </span>
+                                        <span>{{$product->comments_count}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                @endforeach
+                </a>
+            @endforeach
 
-                <!-- loadmore  -->
-                @if($products->count() > 2)
-                  <a class="button is-primary load-more">Explore Lagi</a>
-                @endif
-            </ul>
-
+            <!-- loadmore  -->
+            @if($products->count() > 10)
+              <a class="button is-primary load-more is-fullwidth has-small-vm">Explore Lagi</a>
+            @endif
         </div>
 
-        <div class="column is-hidden-touch is-one-quarter">
+        <div class="column is-one-quarter has-text-centered">
             <div class="insta-feed"></div>
           </div>
      </div>
@@ -104,7 +115,8 @@
             */
             $(document).on('click touchstart', '.load-more', function(){
                 var _this = $(this).hide();
-                var _url = window.location.href  + "/load-more/" + _this.prev('#products').find('.each-product').last().attr('data-id');
+                var _url = window.location.href  + "/load-more/" + _this.prev('.products').attr('data-id');
+                console.log(_url);
 
                 $.get(_url ,function(data){
                   _this.replaceWith(data);
