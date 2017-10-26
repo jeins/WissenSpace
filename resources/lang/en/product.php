@@ -8,10 +8,10 @@ return [
     'add.tab.pemilik' => 'Pemilik',
 
     'add.jenis.title' => 'Mau share link apa?',
-    'add.jenis.subtitle' => '*Pilih kategori yang mau dishare"',
+    'add.jenis.subtitle' => '*Pilih kategori yang mau dishare',
 
     'add.info.title' => 'Silakan Isi Informasinya',
-    'add.info.url' => 'Paste URL, (contoh: https://sekolahkoding.com)',
+    'add.info.url' => 'Paste URL, (contoh: https://google.com)',
     'add.info.name' => 'Nama Produk',
     'add.info.tagline' => 'Tagline / Slogan (max 120 chars) akan muncul sebagai preview',
     'add.info.description' => 'Deskripsi tentang produk ini',

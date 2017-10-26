@@ -60,7 +60,7 @@
         @yield('content')
     </div>
 
-    <footer class="has-small-vm has-text-centered">
+    <footer class="has-medium-vm has-text-centered">
         <p>&copy;2017 WissenSpace 🌏🚀👾🌚🌝</p>
         <a class="has-text-grey" href="https://twitter.com/wissenspace" target="_blank">Twitter</a> /
         <a class="has-text-grey" href="https://facebook.com/wissenspace" target="_blank">Facebook</a> /

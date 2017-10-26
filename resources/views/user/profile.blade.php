@@ -45,7 +45,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container has-medium-vm">
         <div class="box">
             <div id="info-box" class="level-left">
                 <span class="button is-static">{{$user->name}}</span>

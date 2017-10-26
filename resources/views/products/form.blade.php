@@ -192,7 +192,7 @@
             </div>
 
             <div id="media" class="tab-pane animated">
-                <h1 class="title">Upload Thumbnail *</h1>
+                <h1 class="title">Upload Thumbnail* (sebagai preview)</h1>
                 <div id="thumbnail" class="columns is-centered">
                     <div class="column is-half">
                         <div class="dz-preview"></div>
@@ -202,7 +202,7 @@
                     </div>
                 </div>
 
-                <h1 class="title">Upload Images</h1>
+                <h1 class="title">Upload Screenshot</h1>
                 <div class="columns is-centered">
                     <div class="column is-half">
                         <form id="product-add-images" name="product-add-images" method="POST" action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}" class="dropzone" enctype="multipart/form-data">
@@ -240,7 +240,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input" name="owner_twitter">
+                                <input class="input" name="owner_twitter" placeholder="twitter pemilik link ini (kalau ada)">
                             </div>
                         </div>
                     </div>
