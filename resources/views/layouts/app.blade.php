@@ -33,25 +33,31 @@
 <body>
 
     <div class="container has-small-vm">
-        <nav class="level">
-            <div class="level-left">
-                <a href="/">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="/" class="navbar-item">
                     <img src="/images/logo.png" alt="logo wissenspace" width="150">
                 </a>
+
+                <button class="button navbar-burger" data-target="navMenu">
+                  <span></span><span></span><span></span>
+                </button>
             </div>
 
-            <div class="level-right">
-                <a href="/explore" class="button is-info level-item"> Galaksi 🌏</a>
-                <a href="/kontribusi" class="button is-info  level-item">+Kontribusi 🚀</a>
-                @if (Auth::guest())
-                    <a href="/login" class="button is-info  level-item">Login/Daftar 🌝</a>
-                    @if(config('app.debug'))
-                        <a href="{{route('auth.demo')}}" class="button is-dark  level-item">Login Demo</a>
-                    @endif
-                    @else
-                    <a href="/profile/{{Auth::user()->name}}" class="button is-info  level-item">Profile 👾</a>
-                    <a href="/logout" class="button is-danger level-item">Logout 🌛</a>
-                @endif
+            <div class="navbar-menu has-small-vm" id="navMenu">
+                <div class="navbar-end">
+                  <a href="/explore" class="button is-info navbar-item"> Galaksi 🌏</a>
+                  <a href="/kontribusi" class="button is-info  navbar-item">+Kontribusi 🚀</a>
+                  @if (Auth::guest())
+                      <a href="/login" class="button is-info  navbar-item">Login/Daftar 🌝</a>
+                      @if(config('app.debug'))
+                          <a href="{{route('auth.demo')}}" class="button is-dark  navbar-item">Login Demo</a>
+                      @endif
+                      @else
+                      <a href="/profile/{{Auth::user()->name}}" class="button is-info  navbar-item">Profile 👾</a>
+                      <a href="/logout" class="button is-danger navbar-item">Logout 🌛</a>
+                  @endif
+                 </div>
             </div>
         </nav>
     </div>

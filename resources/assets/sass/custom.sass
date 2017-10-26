@@ -3,6 +3,18 @@ $main-grey-color: rgb(58, 71, 74);
 .container
     max-width: 980px
 
+.navbar-menu
+    a
+        margin-left: 5px
+
+.navbar-item img
+    max-height: 100%
+
+.container
+    .navbar
+        .navbar-menu
+            margin-right: 0
+
 .hero
     &.is-ws-grey
       background-color: $main-grey-color
@@ -19,3 +31,19 @@ $main-grey-color: rgb(58, 71, 74);
     padding: 5px
     &:hover
         background-color: #e8ebed
+
+@media (max-width: 1024px)
+    .navbar-menu
+        a
+            margin: 3px 0px
+
+@media (max-width: 760px)
+    body
+        width: 90%
+        margin: 0 auto
+        
+    .has-small-vm
+        margin: 10px auto
+
+    .has-medium-vm
+        margin: 20px auto

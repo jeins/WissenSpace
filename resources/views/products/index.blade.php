@@ -20,7 +20,7 @@
 
 @section('content')
     <div class="columns has-medium-vm">
-      <div class="column is-one-quarter">
+      <div class="column is-one-quarter is-hidden-touch">
             <div>
                 <h3 class="is-size-5 has-text-weight-semibold">Planet</h3>
                 <ul>
@@ -85,9 +85,40 @@
             @endif
         </div>
 
-        <div class="column is-one-quarter has-text-centered">
+        <div class="column is-one-quarter has-text-centered is-hidden-touch">
             <div class="insta-feed"></div>
-          </div>
+         </div>
+
+         <div class="column is-one-quarter is-hidden-desktop">
+               <div>
+                   <h3 class="is-size-5 has-text-weight-semibold">Planet</h3>
+                   <ul>
+                       @foreach ($tags as $tag)
+                           <li>
+                               <a class="has-text-grey" href="/explore/planet/{{$tag->name}}"> #{{$tag->name}} </a>
+                           </li>
+                       @endforeach
+                   </ul>
+               </div>
+
+               <div class="has-small-vm">
+                   <h3 class="is-size-5 has-text-weight-semibold">Media</h3>
+                   <ul>
+                       @foreach ($types as $type)
+                           <li>
+                               <a class="has-text-grey" href="/explore/media/{{$type->name}}"> {{$type->name}} </a>
+                           </li>
+                       @endforeach
+                   </ul>
+               </div>
+
+               <div class="has-small-vm">
+                   <h3 class="is-size-5 has-text-weight-semibold">WissenSpace</h3>
+                   <a class="has-text-grey"  href="/tentang">Tentang</a> /
+                   <a class="has-text-grey" href="/team">Team</a> /
+                   <a class="has-text-grey" href="/faq">Tanya</a>
+               </div>
+           </div>
      </div>
 
 @endsection
