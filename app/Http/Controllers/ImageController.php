@@ -11,8 +11,10 @@ class ImageController extends Controller
 {
     const USER_TYPE = 'u';
     const PRODUCT_TYPE = 'p';
+    const WISSENSPACE_TYPE = 'ws';
     const USER_PHOTO_PATH = '/images/user/';
     const PRODUCT_IMAGES_PATH = '/images/product/';
+    const WISSENSPACE_IMAGES_PATH = '/images/ws/';
 
     public static function upload($type)
     {
@@ -34,13 +36,24 @@ class ImageController extends Controller
 
     public function show($type, $image)
     {
-        if($type !== 'u' && $type !== 'p'){
+        if($type !== 'u' && $type !== 'p' && $type !== 'ws'){
             abort(403);
         }
 
-        $imagePath = $type === self::USER_TYPE ? self::USER_PHOTO_PATH : self::PRODUCT_IMAGES_PATH;
+        $imagePath = '';
 
-        return Image::make(storage_path() . $imagePath . $image)->response();
+        switch ($type)
+        {
+            case self::USER_TYPE: $imagePath = self::USER_PHOTO_PATH; break;
+            case self::PRODUCT_TYPE: $imagePath = self::PRODUCT_IMAGES_PATH; break;
+            case self::WISSENSPACE_TYPE: $imagePath = self::WISSENSPACE_IMAGES_PATH; break;
+        }
+
+        if($imagePath){
+            return Image::make(storage_path() . $imagePath . $image)->response();
+        }
+
+        return false;
     }
 
     //TODO check security

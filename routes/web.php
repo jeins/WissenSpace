@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/products/comment/{id}', 'ProductCommentController@update');
     Route::get('/products/comment/{id}/edit', 'ProductCommentController@edit');
     Route::get('/products/edit/{id}', ['as' => 'product.edit', 'uses' => 'ProductController@edit']);
+    Route::post('/product/validate', ['as' => 'product.validate', 'uses' => 'ProductController@validateProduct']);
 
     Route::post('/upload/image/{type}', ['as' => 'image.upload', 'uses' => 'ImageController@upload']);
     Route::delete('/image/{type}/{image}', ['as' => 'image.delete', 'uses' => 'ImageController@delete']);
