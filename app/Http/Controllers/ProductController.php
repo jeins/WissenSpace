@@ -46,6 +46,12 @@ class ProductController extends Controller
             array_walk($tmpImages, function (&$image, &$index) {
                 $image = route('image.view', [ImageController::PRODUCT_TYPE, $image]);
             });
+
+            if($product->youtube_id){
+                $tmpImages[] = route('image.view', [ImageController::WISSENSPACE_TYPE, 'youtube_play.png']);
+                $product->youtube_id = '//www.youtube.com/embed/' . $product->youtube_id;
+            }
+
             $product->images = $tmpImages;
         }
 
@@ -93,25 +99,25 @@ class ProductController extends Controller
         }
 
         foreach ($products->take($limit) as $product) {
-            echo "<a href='/explore/" . $product->slug ."' class='products media'  data-id=".$product->id.">
+            echo "<a href='/explore/" . $product->slug . "' class='products media'  data-id=" . $product->id . ">
                         <img class='media-left' src=" . $product->thumbnail . " width='100'>
                         <div class='media-content'>
                             <h3 class='title is-size-5 is-capitalized'>" . $product->name . "</h3>
                             <p class='subtitle is-size-6'>" . $product->tagline . "</p>
                             <div class='level'>
                                 <div class='level-left'>";
-                                foreach ($product->tags as $tag) {
-                                    echo "<span class='level-item tag'>#" . $tag->name . "</span>";
-                                }
+            foreach ($product->tags as $tag) {
+                echo "<span class='level-item tag'>#" . $tag->name . "</span>";
+            }
 
-                        echo "</div>
+            echo "</div>
                                 <div class='level-right'>
                                     <div class='tags'>
                                         <span class='tag'>
                                             <span class='icon is-small'>
                                               <i class='fa fa-comment'></i>
                                             </span>
-                                            <span>".$product->comments_count."</span>
+                                            <span>" . $product->comments_count . "</span>
                                         </span>
                                     </div>
                                 </div>
@@ -170,15 +176,15 @@ class ProductController extends Controller
         $product->type_id = $productData['type_id'];
         $product->save();
 
-        if($makers->count()){
-            foreach ($makers as $maker){
+        if ($makers->count()) {
+            foreach ($makers as $maker) {
                 foreach ($productData['owner'] as $key => $val) {
                     $maker[$key] = $val;
                 }
 
                 $maker->save();
             }
-        } else{
+        } else {
             $maker = new Maker();
 
             foreach ($productData['owner'] as $key => $val) {
@@ -189,7 +195,7 @@ class ProductController extends Controller
         }
 
         $numSavedTag = ProductTag::where('product_id', $id)->count();
-        if($numSavedTag !== count($productData['tag_id'])){
+        if ($numSavedTag !== count($productData['tag_id'])) {
             ProductTag::where('product_id', $id)->delete();
 
             foreach ($productData['tag_id'] as $tag) {
@@ -211,7 +217,7 @@ class ProductController extends Controller
         }
 
         $maker = new Maker();
-        if($productData['owner']['name']){
+        if ($productData['owner']['name']) {
             foreach ($productData['owner'] as $key => $val) {
                 $maker[$key] = $val;
             }
@@ -231,6 +237,7 @@ class ProductController extends Controller
         $product->thumbnail = $productData['thumbnail'];
         $product->images = json_encode($productData['images']);
         $product->type_id = $productData['type_id'];
+        $product->youtube_id = $productData['youtube_id'];
         $user->products()->save($product);
         $product->makers()->save($maker);
         $product->save();
@@ -272,6 +279,7 @@ class ProductController extends Controller
                 'subject' => ''
             ],
             'tag_id' => [],
+            'youtube_id' => '',
             'thumbnail' => '',
             'images' => [],
             'owner' => [
@@ -288,18 +296,20 @@ class ProductController extends Controller
                 $field['info'][$key] = $product[$key];
             }
 
-            $field['thumbnail'] = $product['thumbnail'];
-            $field['images'] = json_decode($product['images']);
+            $field['thumbnail'] = $product->thumbnail;
+            $field['images'] = json_decode($product->images);
+            $field['youtube_url'] = ($product->youtube_id) ? 'https://youtube.com/watch?v=' . $product->youtube_id : '';
+            $field['youtube_id'] = $product->youtube_id;
         }
 
-        if(count($tags)){
+        if (count($tags)) {
             foreach ($tags as $tag) {
                 $field['tag_id'][] = $tag->id;
                 $field['tag_name'][] = ucfirst($tag->name);
             }
         }
 
-        if(count($makers)){
+        if (count($makers)) {
             foreach (array_keys($field['owner']) as $key) {
                 $field['owner'][$key] = $makers[0][$key]; //TODO enable more thane one makers
             }
@@ -313,10 +323,10 @@ class ProductController extends Controller
     {
         $client = new Client();
         $res = $client->request('GET', 'https://www.instagram.com/wissenspace/media/')
-                     ->getBody();
+            ->getBody();
 
         $insta_feed = json_decode($res)->items[0];
-        $feed =  [
+        $feed = [
             'last_image' => $insta_feed->images->standard_resolution->url,
             'url' => $insta_feed->link
         ];
@@ -324,11 +334,59 @@ class ProductController extends Controller
         return response($feed);
     }
 
-    public function isProductDataExist(Request $request)
+    public function validateProduct(Request $request)
     {
         $productData = $request->all();
-        $isExist = Product::where($productData['key'], '=', $productData['value'])->exists();
+        $action = $productData['action'];
+        $isValid = true;
+        $data = '';
 
-        return response()->json(['isExist' => $isExist], 200);
+        switch ($action) {
+            case 'productUrl':
+                $productUrlExist = Product::where('link', 'LIKE', "%{$this->getDomain($productData['value'])}%")->exists();
+                $isValid = ($productUrlExist) ? false : true;
+                break;
+            case 'youtubeUrl':
+                $data = $this->getYoutubeId($productData['value']);
+                $isValid = ($data) ? true : false;
+        }
+
+        return response()->json(['isValid' => $isValid, 'data' => $data], 200);
+    }
+
+    private function getDomain($url)
+    {
+        if(strpos($url, 'http') === false){
+            $url = 'http://' . $url;
+        }
+
+        $pieces = parse_url($url);
+        $domain = isset($pieces['host']) ? $pieces['host'] : '';
+        $domainName = $url;
+
+        if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
+            $domainName = $regs['domain'];
+        }
+
+        return $domainName;
+    }
+
+    private function getYoutubeId($url)
+    {
+        $youtubeId = '';
+
+        if (preg_match('/youtube\.com\/watch\?v=([^\&\?\/]+)/', $url, $id)) {
+            $youtubeId = $id[1];
+        } else if (preg_match('/youtube\.com\/embed\/([^\&\?\/]+)/', $url, $id)) {
+            $youtubeId = $id[1];
+        } else if (preg_match('/youtube\.com\/v\/([^\&\?\/]+)/', $url, $id)) {
+            $youtubeId = $id[1];
+        } else if (preg_match('/youtu\.be\/([^\&\?\/]+)/', $url, $id)) {
+            $youtubeId = $id[1];
+        } else if (preg_match('/youtube\.com\/verify_age\?next_url=\/watch%3Fv%3D([^\&\?\/]+)/', $url, $id)) {
+            $youtubeId = $id[1];
+        }
+
+        return $youtubeId;
     }
 }

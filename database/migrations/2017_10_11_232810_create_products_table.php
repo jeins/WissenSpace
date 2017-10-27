@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->text('subject')->nullable();
             $table->string('thumbnail');
             $table->text('images')->nullable();
+            $table->text('youtube_id')->nullable();
             $table->string('link', 255)->unique();
             $table->tinyInteger('status')->default(1);
             $table->integer('user_id')->unsigned()->index();

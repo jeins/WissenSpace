@@ -192,21 +192,51 @@
             </div>
 
             <div id="media" class="tab-pane animated">
-                <h1 class="title">Upload Thumbnail* (sebagai preview)</h1>
-                <div id="thumbnail" class="columns is-centered">
-                    <div class="column is-half">
-                        <div class="dz-preview"></div>
-                        <form id="product-add-thumbnail" method="POST" action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}" class="dropzone" enctype="multipart/form-data">
-                            <img id="product-thumbnail">
-                        </form>
+                {{-- YOUTUBE URL --}}
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Youtube URL</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" name="youtubeUrl" placeholder="Youtube Url, (contoh: https://www.youtube.com/watch?v=xifBB2f28mw)">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <h1 class="title">Upload Screenshot</h1>
-                <div class="columns is-centered">
-                    <div class="column is-half">
-                        <form id="product-add-images" name="product-add-images" method="POST" action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}" class="dropzone" enctype="multipart/form-data">
-                        </form>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Upload Thumbnail* (sebagai preview)</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div id="thumbnail" class="columns is-centered">
+                                <div class="column is-half">
+                                    <div class="dz-preview"></div>
+                                    <form id="product-add-thumbnail" method="POST" action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}" class="dropzone" enctype="multipart/form-data">
+                                        <img id="product-thumbnail">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Upload Screenshot</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="columns is-centered">
+                                <div class="column is-half">
+                                    <form id="product-add-images" name="product-add-images" method="POST" action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}" class="dropzone" enctype="multipart/form-data">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -266,6 +296,7 @@
         function init() {
             setActiveTab(firstTab);
             checkRequiredField();
+            validateProductData();
 
             $('li.product-add-tab').click(function () {
                 $('li.product-add-tab').removeClass('is-active');
@@ -297,7 +328,10 @@
                     $('.product-tags-selected').append('<span class="tag is-success">'+tagName+'<button onclick="removeTag(this)" tagId="'+id+'" tagName="'+tagName+'" class="tag-remove-selected delete is-small"></button></span>');
                 });
                 $('#product-subject').val(productData.info.subject);
+
                 $('#product-thumbnail').attr('src', productData.thumbnail);
+                $('#media').find('input[name="youtubeUrl"]').val(productData.youtube_url);
+
                 $('#pemilik').find('input[name="owner_name"]').val(productData.owner.name);
                 $('#pemilik').find('input[name="owner_twitter"]').val(productData.owner.twitter_username);
             }
@@ -433,6 +467,66 @@
                 $(btn).attr('disabled', true);
                 $(btn).removeAttr('onClick');
             }
+        }
+
+        function validateProductData(){
+            //validate product url
+            $('#informasi').find('input[name="link"]').change(function(){
+                var value = $(this).val();
+                var inputLink = this;
+                if(value){
+                    axios.post(
+                        "{{route('product.validate')}}",
+                        {action: 'productUrl', value: value},
+                        {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+                    )
+                        .then(function (response) {
+                            var isValid = response.data.isValid;
+                            if(!isValid){
+                                var message = '<p class="help is-danger"> Product URL sudah tersedia </p>';
+                                $(inputLink).addClass('is-danger');
+                                $(inputLink).parent().parent().find('.help').remove();
+                                $(inputLink).parent().parent().append(message);
+                            } else{
+                                $(inputLink).removeClass('is-danger');
+                                $(inputLink).parent().parent().find('.help').remove();
+                            }
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        });
+                }
+            });
+
+            //validate youtube and get id
+            $('#media').find('input[name="youtubeUrl"]').change(function(){
+                var value = $(this).val();
+                var inputLink = this;
+                if(value){
+                    axios.post(
+                        "{{route('product.validate')}}",
+                        {action: 'youtubeUrl', value: value},
+                        {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+                    )
+                        .then(function (response) {
+                            var isValid = response.data.isValid;
+                            var youtubeId = response.data.data;
+                            if(!isValid){
+                                var message = '<p class="help is-danger"> Youtube URL tidak valid </p>';
+                                $(inputLink).addClass('is-danger');
+                                $(inputLink).parent().parent().find('.help').remove();
+                                $(inputLink).parent().parent().append(message);
+                            } else{
+                                $(inputLink).removeClass('is-danger');
+                                $(inputLink).parent().parent().find('.help').remove();
+                                productData['youtube_id'] = youtubeId;
+                            }
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        });
+                }
+            });
         }
     </script>
 
