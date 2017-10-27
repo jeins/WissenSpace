@@ -2,6 +2,7 @@
  
 ssh wissenspace@wissenspace.com <<EOF
   cd ~/dev
+  git reset --hard HEAD
   git pull origin master
   composer install
   php artisan migrate:fresh
