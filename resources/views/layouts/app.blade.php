@@ -32,51 +32,67 @@
 </head>
 <body>
 
-    <div class="container has-small-vm">
-        <nav class="navbar">
-            <div class="navbar-brand">
-                <a href="/" class="navbar-item">
-                    <img src="/images/logo.png" alt="logo wissenspace" width="150">
-                </a>
+<div class="container has-small-vm">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/" class="navbar-item">
+                <img src="/images/logo.png" alt="logo wissenspace" width="150">
+            </a>
 
-                <button class="button navbar-burger" data-target="navMenu">
-                  <span></span><span></span><span></span>
-                </button>
+            <button class="button navbar-burger" data-target="navMenu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <div class="navbar-menu has-small-vm" id="navMenu">
+            <div class="navbar-end">
+                <a href="/explore" class="button is-info navbar-item"> Galaksi 🌏</a>
+                @if (Auth::guest())
+                    <a id="show-login" class="button is-info navbar-item">Login/Daftar 🌝</a>
+                    @if(config('app.debug'))
+                        <a href="{{route('auth.demo')}}" class="button is-dark  navbar-item">Login Demo</a>
+                    @endif
+                @else
+                    <a href="/kontribusi" class="button is-info navbar-item">+Kontribusi 🚀</a>
+                    <a href="/profile/{{Auth::user()->name}}" class="button is-info  navbar-item">Profile 👾</a>
+                    <a href="/logout" class="button is-danger navbar-item">Logout 🌛</a>
+                @endif
             </div>
+        </div>
+    </nav>
+</div>
 
-            <div class="navbar-menu has-small-vm" id="navMenu">
-                <div class="navbar-end">
-                  <a href="/explore" class="button is-info navbar-item"> Galaksi 🌏</a>
-                  <a href="/kontribusi" class="button is-info  navbar-item">+Kontribusi 🚀</a>
-                  @if (Auth::guest())
-                      <a href="/login" class="button is-info  navbar-item">Login/Daftar 🌝</a>
-                      @if(config('app.debug'))
-                          <a href="{{route('auth.demo')}}" class="button is-dark  navbar-item">Login Demo</a>
-                      @endif
-                      @else
-                      <a href="/profile/{{Auth::user()->name}}" class="button is-info  navbar-item">Profile 👾</a>
-                      <a href="/logout" class="button is-danger navbar-item">Logout 🌛</a>
-                  @endif
-                 </div>
-            </div>
-        </nav>
-    </div>
+<div class="container">
+    @yield('content')
 
-    <div class="container">
-        @yield('content')
-    </div>
+    @if (Auth::guest())
+        @include('auth.login_modal')
+    @endif
+</div>
 
-    <footer class="has-medium-vm has-text-centered">
-        <p>&copy;2017 WissenSpace 🌏🚀👾🌚🌝</p>
-        <a class="has-text-grey" href="https://twitter.com/wissenspace" target="_blank">Twitter</a> /
-        <a class="has-text-grey" href="https://facebook.com/wissenspace" target="_blank">Facebook</a> /
-        <a class="has-text-grey" href="https://instagram.com/wissenspace" target="_blank">Instagram</a>
-    </footer>
+<footer class="has-medium-vm has-text-centered">
+    <p>&copy;2017 WissenSpace 🌏🚀👾🌚🌝</p>
+    <a class="has-text-grey" href="https://twitter.com/wissenspace" target="_blank">Twitter</a> /
+    <a class="has-text-grey" href="https://facebook.com/wissenspace" target="_blank">Facebook</a> /
+    <a class="has-text-grey" href="https://instagram.com/wissenspace" target="_blank">Instagram</a>
+</footer>
 
 
 {{-- Scripts --}}
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{ asset('js/sweetalert.min.js') }}"></script>
+
+<script type="text/javascript">
+    $("#show-login").click(function () {
+        $(".modal.login").addClass("is-active");
+    });
+
+    $("#close-modal, .modal-background").click(function () {
+        $(".modal.login").removeClass("is-active");
+        return false;
+    })
+</script>
+
 @yield('page_script')
 
 </body>

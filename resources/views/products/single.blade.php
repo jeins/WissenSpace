@@ -149,7 +149,7 @@
                                 </div>
                             </div>
                         @else
-                            <a class="button" href='/login'> Login untuk komentar</a>
+                            <a onclick='$(".modal.login").addClass("is-active")' class="button"> Login untuk komentar</a>
                         @endif
 
                         @foreach ($product->comments as $comment)
