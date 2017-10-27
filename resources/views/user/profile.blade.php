@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_css')
-    <link href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css" rel="stylesheet">
+    <link href="{{ asset('css/dropzone.css') }}" rel="stylesheet">
     <style>
         #info-box {
             margin-top: -21px;
@@ -60,7 +60,7 @@
             <article class="media">
                 <div class="media-left">
                     <figure class="image is-128x128">
-                        <img src="{{$user->photo ? route('image.view', ['type' => \App\Http\Controllers\ImageController::USER_TYPE, 'image' => $user->photo]): 'https://cdn1.iconfinder.com/data/icons/business-charts/512/customer-512.png'}}">
+                        <img src="{{$user->photo ? route('image.view', ['type' => \App\Http\Controllers\ImageController::USER_TYPE, 'image' => $user->photo]): route('image.view', [\App\Http\Controllers\ImageController::WISSENSPACE_TYPE, 'no_user_photo.png'])}}">
                     </figure>
                 </div>
 
@@ -156,7 +156,7 @@
             return false;
         })
     </script>
-    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <script src="{{ asset('js/dropzone.js') }}"></script>
     <script type="text/javascript">
         Dropzone.autoDiscover = false;
         var basicOption = {

@@ -47,7 +47,7 @@
                         <article class="media">
                             <div class="media-left">
                                 <figure class="image is-128x128">
-                                    <img src="{{$product->thumbnail ?: 'https://cdn1.iconfinder.com/data/icons/business-charts/512/customer-512.png'}}"
+                                    <img src="{{$product->thumbnail ?: route('image.view', [\App\Http\Controllers\ImageController::WISSENSPACE_TYPE, 'no_user_photo.png'])}}"
                                          alt="{{$product->name}}">
                                 </figure>
                             </div>

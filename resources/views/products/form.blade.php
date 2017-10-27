@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('page_css')
-    <link href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css" rel="stylesheet">
+    <link href="{{ asset('css/dropzone.css') }}" rel="stylesheet">
 
     <style>
         #flow-tabs li:not(.is-clickable) {
@@ -530,7 +530,7 @@
         }
     </script>
 
-    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <script src="{{ asset('js/dropzone.js') }}"></script>
     <script type="text/javascript">
         Dropzone.autoDiscover = false;
         var basicOption = {
