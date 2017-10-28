@@ -64,7 +64,7 @@
 @endsection
 
 @section('content')
-    <div class="container is-widescreen">
+    <div class="has-bottom-space">
         <div class="tabs is-centered">
             <ul id="flow-tabs">
                 <li class="product-add-tab is-clickable"><a href="#jenis">{{trans('product.add.tab.jenis')}}</a></li>
@@ -192,20 +192,6 @@
             </div>
 
             <div id="media" class="tab-pane animated">
-                {{-- YOUTUBE URL --}}
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">Youtube URL</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <input class="input" name="youtubeUrl" placeholder="Youtube Url, (contoh: https://www.youtube.com/watch?v=xifBB2f28mw)">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         <label class="label">Upload Thumbnail* (sebagai preview)</label>
@@ -235,6 +221,20 @@
                                     <form id="product-add-images" name="product-add-images" method="POST" action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}" class="dropzone" enctype="multipart/form-data">
                                     </form>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- YOUTUBE URL --}}
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Youtube URL</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" name="youtubeUrl" placeholder="url video (jika ada), (contoh: https://www.youtube.com/watch?v=xifBB2f28mw)">
                             </div>
                         </div>
                     </div>

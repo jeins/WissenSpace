@@ -3,13 +3,14 @@
     <div class="modal-content">
         <div class="box is-centered">
             <figure class="image">
-                <img src="{{route('image.view', [\App\Http\Controllers\ImageController::WISSENSPACE_TYPE, 'logo.jpg'])}}">
+                <img src="/images/logo.png"  width="200">
             </figure>
 
-            <div style="text-align: center; margin-bottom: 30px">
-                <p class="subtitle">Selamat datang di WissenSpace saatnya</p>
-                <p class="subtitle">berkontribusi untuk Indonesia! share link bermanfaat</p>
-                <p class="subtitle">yang kamu temukan di Internet</p>
+            <div class="has-medium-vm" style="text-align: center;">
+                <p class="subtitle">
+                    Selamat datang di WissenSpace
+                    <br> saatnya berkontribusi untuk Indonesia!
+                    <br> share link bermanfaatyang kamu temukan di Internet</p>
             </div>
 
             <div class="columns">

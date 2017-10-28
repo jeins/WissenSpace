@@ -10897,6 +10897,10 @@ label.panel-block:hover {
   background-color: #e8ebed;
 }
 
+.has-bottom-space {
+  margin-bottom: 100px;
+}
+
 @media (max-width: 1024px) {
   .navbar-menu a {
     margin: 3px 0px;
