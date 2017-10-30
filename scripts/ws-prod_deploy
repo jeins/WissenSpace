@@ -1,0 +1,9 @@
+#!/bin/sh
+ 
+ssh wissenspace@wissenspace.com <<EOF
+  cd ~/prod
+  git reset --hard HEAD
+  git pull origin master
+  composer install
+  exit
+EOF
