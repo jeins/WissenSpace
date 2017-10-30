@@ -86,7 +86,15 @@
         </div>
 
         <div class="column is-one-quarter has-text-centered is-hidden-touch">
-            <div class="insta-feed"></div>
+            <div class="notification is-primary">
+                <div class="title is-size-4">Halo!</div>
+                 <div class="subtitle">
+                    Tahu link belajar seru di internet?
+                    share di wissenspace yuk!
+                </div>
+                <a class="button" href='/kontribusi'>Kontribusi 🚀</a>
+            </div>
+            <div class="insta-feed notification is-primary"></div>
          </div>
 
          <div class="column is-one-quarter is-hidden-desktop">
@@ -131,7 +139,7 @@
     $.get("/explore/load/instagram", function(data){
         if($.trim(data))
         {
-            $('.insta-feed').append("<h3 class='is-bold is-center'>Instagram Feed</h3>"+
+            $('.insta-feed').append("<h3 class='subtitle'>Instagram Feed</h3>"+
                 "<a href='"+data.url+"' target='_blank'>"+
                     "<img src="+data.last_image+" alt='foto instagram terakhir wissenspace'>" +
                 "</a>");

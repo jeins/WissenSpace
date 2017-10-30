@@ -19,6 +19,7 @@ Route::get('/explore/media/{name}/load-more/{id}' , 'ProductController@loadMore'
 
 // Authentication Routes
 Auth::routes();
+Route::get('/login', ['as'=>'login', 'uses'=>'Auth\LoginController@show']);
 Route::get('/login/redirect/{provider}', ['as' => 'auth.redirect', 'uses' => 'Auth\SocialController@getRedirect']);
 Route::get('/login/handle/{provider}', ['as' => 'auth.handle', 'uses' => 'Auth\SocialController@getHandler']);
 // allow login with demo account

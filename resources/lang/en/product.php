@@ -13,7 +13,7 @@ return [
     'add.info.title' => 'Silakan Isi Informasinya',
     'add.info.url' => 'Paste URL, (contoh: https://google.com)',
     'add.info.name' => 'Nama Produk',
-    'add.info.tagline' => 'Tagline / Slogan (max 120 chars) akan muncul sebagai preview',
+    'add.info.tagline' => 'Contoh:tempat belajar kimia terbaik! (max 120 chars)',
     'add.info.description' => 'Deskripsi tentang produk ini',
     'add.info.category' => 'Pilih Kategorie'
 ];

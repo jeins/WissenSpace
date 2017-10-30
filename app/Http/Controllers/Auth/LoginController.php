@@ -64,4 +64,10 @@ class LoginController extends Controller
 
         return redirect('/explore');
     }
+
+    public function show()
+    {
+        return view('auth.login');
+    }
+
 }
