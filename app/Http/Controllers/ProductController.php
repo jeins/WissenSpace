@@ -343,8 +343,9 @@ class ProductController extends Controller
 
         switch ($action) {
             case 'productUrl':
-                $productUrlExist = Product::where('link', 'LIKE', "%{$this->getDomain($productData['value'])}%")->exists();
-                $isValid = ($productUrlExist) ? false : true;
+                $product = Product::where('link', 'LIKE', "%{$this->getDomain($productData['value'])}%");
+                $isValid = ($product->exists()) ? false : true;
+                $data = route('product.view', $product->first()->slug);
                 break;
             case 'youtubeUrl':
                 $data = $this->getYoutubeId($productData['value']);

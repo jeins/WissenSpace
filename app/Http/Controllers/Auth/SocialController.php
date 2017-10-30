@@ -7,6 +7,7 @@ use App\Models\Social;
 use App\Models\User;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\URL;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialController extends Controller
@@ -86,7 +87,7 @@ class SocialController extends Controller
 
         auth()->login($socialUser, true);
 
-        return redirect('/explore');
+        return redirect(URL::previous());
     }
 
     private function generateNewUserName($userName)

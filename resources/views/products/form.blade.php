@@ -4,7 +4,7 @@
 
     <style>
         #flow-tabs li:not(.is-clickable) {
-          pointer-events: none;
+            pointer-events: none;
         }
 
         .tab-pane {
@@ -25,16 +25,16 @@
         }
 
         .dropzone {
-            border: 1px dashed rgba(0,0,0,0.3);
+            border: 1px dashed rgba(0, 0, 0, 0.3);
             background: white;
             padding: 0;
         }
 
-        #thumbnail .dropzone{
+        #thumbnail .dropzone {
             height: 200px;
         }
 
-        #thumbnail .dz-preview{
+        #thumbnail .dz-preview {
             display: none;
         }
 
@@ -47,7 +47,7 @@
             margin: -30px 0;
         }
 
-        #product-thumbnail{
+        #product-thumbnail {
             width: 120px;
             height: 120px;
             border-radius: 20px;
@@ -55,7 +55,7 @@
             display: block;
         }
 
-        .product-tags-selected{
+        .product-tags-selected {
             border: 1px solid;
             padding: 15px;
             width: 100%;
@@ -145,7 +145,8 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <textarea id="product-subject" name="subject" class="textarea is-flex"  placeholder="{{trans('product.add.info.description')}}"></textarea>
+                                <textarea id="product-subject" name="subject" class="textarea is-flex"
+                                          placeholder="{{trans('product.add.info.description')}}"></textarea>
                             </div>
                         </div>
                     </div>
@@ -165,7 +166,8 @@
                                             <div class="tile is-child">
                                                 <select id="product-tags" multiple size="3">
                                                     @foreach ($tags as $tag)
-                                                        <option value="{{$tag->id}}" name="{{ucfirst($tag->name)}}">{{ucfirst($tag->name)}}</option>
+                                                        <option value="{{$tag->id}}"
+                                                                name="{{ucfirst($tag->name)}}">{{ucfirst($tag->name)}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -200,7 +202,8 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input" name="youtubeUrl" placeholder="Youtube Url, (contoh: https://www.youtube.com/watch?v=xifBB2f28mw)">
+                                <input class="input" name="youtubeUrl"
+                                       placeholder="Youtube Url, (contoh: https://www.youtube.com/watch?v=xifBB2f28mw)">
                             </div>
                         </div>
                     </div>
@@ -215,7 +218,9 @@
                             <div id="thumbnail" class="columns is-centered">
                                 <div class="column is-half">
                                     <div class="dz-preview"></div>
-                                    <form id="product-add-thumbnail" method="POST" action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}" class="dropzone" enctype="multipart/form-data">
+                                    <form id="product-add-thumbnail" method="POST"
+                                          action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}"
+                                          class="dropzone" enctype="multipart/form-data">
                                         <img id="product-thumbnail">
                                     </form>
                                 </div>
@@ -232,7 +237,9 @@
                         <div class="field">
                             <div class="columns is-centered">
                                 <div class="column is-half">
-                                    <form id="product-add-images" name="product-add-images" method="POST" action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}" class="dropzone" enctype="multipart/form-data">
+                                    <form id="product-add-images" name="product-add-images" method="POST"
+                                          action="{{route('image.upload', \App\Http\Controllers\ImageController::PRODUCT_TYPE)}}"
+                                          class="dropzone" enctype="multipart/form-data">
                                     </form>
                                 </div>
                             </div>
@@ -242,7 +249,7 @@
 
                 <a class="product-next-button button is-success is-outlined is-flex" disabled>Lanjut</a>
 
-                 <br>
+                <br>
             </div>
 
             <div id="pemilik" class="tab-pane animated">
@@ -270,7 +277,8 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input" name="owner_twitter" placeholder="twitter pemilik link ini (kalau ada)">
+                                <input class="input" name="owner_twitter"
+                                       placeholder="twitter pemilik link ini (kalau ada)">
                             </div>
                         </div>
                     </div>
@@ -304,7 +312,7 @@
                 return true;
             });
 
-            if(_.has(productData, 'product_id')){
+            if (_.has(productData, 'product_id')) {
                 requiredInformation = {'link': true, 'name': true, 'tags': true};
                 requiredOwner = {'owner_name': true};
                 requiredMedia = {'thumbnail': true};
@@ -321,11 +329,11 @@
                     $('#informasi').find('input[name="' + key + '"]').val(productData.info[key]);
                 });
 
-                _.forEach(productData.tag_id, function(id, i){
+                _.forEach(productData.tag_id, function (id, i) {
                     var tagName = productData.tag_name[i];
 
-                    $('#product-tags option[value="'+id+'"]').remove();
-                    $('.product-tags-selected').append('<span class="tag is-success">'+tagName+'<button onclick="removeTag(this)" tagId="'+id+'" tagName="'+tagName+'" class="tag-remove-selected delete is-small"></button></span>');
+                    $('#product-tags option[value="' + id + '"]').remove();
+                    $('.product-tags-selected').append('<span class="tag is-success">' + tagName + '<button onclick="removeTag(this)" tagId="' + id + '" tagName="' + tagName + '" class="tag-remove-selected delete is-small"></button></span>');
                 });
                 $('#product-subject').val(productData.info.subject);
 
@@ -337,22 +345,22 @@
             }
         }
 
-        function addTag(){
+        function addTag() {
             var tagId = $('#product-tags').val();
 
             _.forEach(tagId, function (id) {
-                var tagName = $('#product-tags').find("option[value='"+id+"']").attr('name');
+                var tagName = $('#product-tags').find("option[value='" + id + "']").attr('name');
 
-                $('#product-tags option[value="'+id+'"]').remove();
+                $('#product-tags option[value="' + id + '"]').remove();
 
-                $('.product-tags-selected').append('<span class="tag is-success">'+tagName+'<button onclick="removeTag(this)" tagId="'+id+'" tagName="'+tagName+'" class="tag-remove-selected delete is-small"></button></span>');
+                $('.product-tags-selected').append('<span class="tag is-success">' + tagName + '<button onclick="removeTag(this)" tagId="' + id + '" tagName="' + tagName + '" class="tag-remove-selected delete is-small"></button></span>');
             });
         }
 
-        function removeTag(currTag){
+        function removeTag(currTag) {
             var tagId = $(currTag).attr('tagId');
             var tagName = $(currTag).attr('tagName');
-            $('#product-tags').append('<option value="'+tagId+'" name="'+tagName+'"style="text-transform: capitalize">'+tagName+'</option>');
+            $('#product-tags').append('<option value="' + tagId + '" name="' + tagName + '"style="text-transform: capitalize">' + tagName + '</option>');
             $(currTag).parent().remove();
 
             _.pull(productData['tag_id'], parseInt(tagId));
@@ -391,7 +399,7 @@
 
             productData['info']['subject'] = $('#product-subject').val();
 
-            $('.product-tags-selected').find('button').each(function (index, el){
+            $('.product-tags-selected').find('button').each(function (index, el) {
                 productData['tag_id'].push($(el).attr('tagId'));
             });
 
@@ -399,7 +407,7 @@
             setActiveTab('#media');
         }
 
-        function postProduct(){
+        function postProduct() {
             var ownerName = $('#pemilik').find('input[name="owner_name"]').val();
             var ownerTwitter = $('#pemilik').find('input[name="owner_twitter"]').val();
 
@@ -413,18 +421,18 @@
                 productData,
                 {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
             )
-            .then(function (response) {
-                if(response){
-                    window.location = response.data;
-                }
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
+                .then(function (response) {
+                    if (response) {
+                        window.location = response.data;
+                    }
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
         }
 
-        function checkRequiredField(){
-            $('#informasi input[name="link"], input[name="name"]').change(function(){
+        function checkRequiredField() {
+            $('#informasi input[name="link"], input[name="name"]').change(function () {
                 var key = $(this).attr('name');
                 requiredInformation[key] = !!$(this).val();
 
@@ -436,45 +444,45 @@
                 enableNextButton('informasi', requiredInformation);
             })
 
-            $('#pemilik').find('input[name="owner_name"]').change(function(){
+            $('#pemilik').find('input[name="owner_name"]').change(function () {
                 requiredOwner['owner_name'] = !!$(this).val();
 
                 enableNextButton('pemilik', requiredOwner);
             });
         }
 
-        function enableNextButton(id, values){
-            var btn = $('#'+id).find('.product-next-button');
+        function enableNextButton(id, values) {
+            var btn = $('#' + id).find('.product-next-button');
             var tmpVal = true;
 
-            _.forEach(values, function(value){
-                if(!value){
+            _.forEach(values, function (value) {
+                if (!value) {
                     tmpVal = false;
                 }
             });
 
-            if(tmpVal){
+            if (tmpVal) {
                 $(btn).removeAttr('disabled');
 
-                if(id === 'informasi'){
+                if (id === 'informasi') {
                     $(btn).attr('onClick', 'setProductInfo()');
-                } else if(id === 'pemilik'){
+                } else if (id === 'pemilik') {
                     $(btn).attr('onClick', 'postProduct()');
-                } else if(id === 'media'){
+                } else if (id === 'media') {
                     $(btn).attr('onClick', "setActiveTab('#pemilik')");
                 }
-            } else{
+            } else {
                 $(btn).attr('disabled', true);
                 $(btn).removeAttr('onClick');
             }
         }
 
-        function validateProductData(){
+        function validateProductData() {
             //validate product url
-            $('#informasi').find('input[name="link"]').change(function(){
+            $('#informasi').find('input[name="link"]').change(function () {
                 var value = $(this).val();
                 var inputLink = this;
-                if(value){
+                if (value) {
                     axios.post(
                         "{{route('product.validate')}}",
                         {action: 'productUrl', value: value},
@@ -482,12 +490,13 @@
                     )
                         .then(function (response) {
                             var isValid = response.data.isValid;
-                            if(!isValid){
-                                var message = '<p class="help is-danger"> Product URL sudah tersedia </p>';
+                            var productUrl = response.data.data;
+                            if (!isValid) {
+                                var message = '<p class="help is-danger"> Product URL sudah tersedia : <a href="' + productUrl + '">' + productUrl + ' </a></p>';
                                 $(inputLink).addClass('is-danger');
                                 $(inputLink).parent().parent().find('.help').remove();
                                 $(inputLink).parent().parent().append(message);
-                            } else{
+                            } else {
                                 $(inputLink).removeClass('is-danger');
                                 $(inputLink).parent().parent().find('.help').remove();
                             }
@@ -499,10 +508,10 @@
             });
 
             //validate youtube and get id
-            $('#media').find('input[name="youtubeUrl"]').change(function(){
+            $('#media').find('input[name="youtubeUrl"]').change(function () {
                 var value = $(this).val();
                 var inputLink = this;
-                if(value){
+                if (value) {
                     axios.post(
                         "{{route('product.validate')}}",
                         {action: 'youtubeUrl', value: value},
@@ -511,12 +520,12 @@
                         .then(function (response) {
                             var isValid = response.data.isValid;
                             var youtubeId = response.data.data;
-                            if(!isValid){
+                            if (!isValid) {
                                 var message = '<p class="help is-danger"> Youtube URL tidak valid </p>';
                                 $(inputLink).addClass('is-danger');
                                 $(inputLink).parent().parent().find('.help').remove();
                                 $(inputLink).parent().parent().append(message);
-                            } else{
+                            } else {
                                 $(inputLink).removeClass('is-danger');
                                 $(inputLink).parent().parent().find('.help').remove();
                                 productData['youtube_id'] = youtubeId;
@@ -545,17 +554,18 @@
         };
 
         var thumbnailOption = {
-            init: function(){
-                this.on("maxfilesexceeded", function(file) {});
-                this.on("complete", function(file) {
+            init: function () {
+                this.on("maxfilesexceeded", function (file) {
+                });
+                this.on("complete", function (file) {
                     this.removeFile(file);
                 });
-                this.on("uploadprogress", function(file) {
+                this.on("uploadprogress", function (file) {
                     $('#thumbnail .dz-message').html('<progress class="progress is-primary" value="50" max="100">50%</progress>').show();
                 });
-                this.on("success", function(file, res){
+                this.on("success", function (file, res) {
                     $('#thumbnail .dz-message').html('<progress class="progress is-primary" value="100" max="100">100%</progress>').show();
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $('#thumbnail .dz-message').text('Drop files here to upload').show();
                     }, 1000);
                     productData.thumbnail = res.image_url;
@@ -565,14 +575,15 @@
                     enableNextButton('media', requiredMedia);
                 });
                 //TODO handling error
-                this.on("error", function(file, res) {});
+                this.on("error", function (file, res) {
+                });
             }
         };
 
         var imagesOption = {
             addRemoveLinks: true,
-            init: function(){
-                if(productData['images']){
+            init: function () {
+                if (productData['images']) {
                     var me = this;
 
                     _.forEach(productData['images'], function (imgName) {
@@ -594,7 +605,7 @@
                         {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
                     )
                 });
-                this.on("success", function(file, res){
+                this.on("success", function (file, res) {
                     productData.images.push(res.image);
                 });
             }

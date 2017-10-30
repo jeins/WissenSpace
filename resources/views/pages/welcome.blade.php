@@ -28,7 +28,7 @@
               <h2 class="subtitle is-4">
                 Punya referensi belajar menarik? yuk share di wissenspace!
               </h2>
-              <a href='/kontribusi' class="button">Pasang Link</a>
+              <a class="button home-contribute">Pasang Link</a>
               <a href='/explore' class="button">Lihat semuanya</a>
             </div>
         </div>
@@ -54,4 +54,13 @@
         </div>
     </div>
 
+@endsection
+@section('page_script')
+    <script type="text/javascript">
+        @if (Auth::guest())
+            $('.home-contribute').attr('onClick', '$(".modal.login").addClass("is-active")');
+        @else
+            $('.home-contribute').attr('href', '{{route("contribute")}}');
+        @endif
+    </script>
 @endsection
