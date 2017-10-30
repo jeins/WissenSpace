@@ -25,11 +25,15 @@ class DatabaseSeeder extends Seeder
         DB::table('tags')->insert([
             ['name' => 'tech'],
             ['name' => 'startup'],
+            ['name' => 'design'],
+            ['name' => 'programming'],
             ['name' => 'bisnis'],
+            ['name' => 'bahasa'],
+            ['name' => 'matematika'],
             ['name' => 'kimia'],
             ['name' => 'fisika'],
-            ['name' => 'matematika'],
-            ['name' => 'ekonomi'],
+            ['name' => 'marketing'],
+            ['name' => 'productivity'],
         ]);
 
         //user

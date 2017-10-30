@@ -93,6 +93,6 @@ class SocialController extends Controller
     private function generateNewUserName($userName)
     {
         //TODO generate new username if already exist!
-        return $userName . '99';
+        return $userName . time();
     }
 }

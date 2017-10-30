@@ -10881,6 +10881,19 @@ label.panel-block:hover {
   color: white;
 }
 
+.panel-heading.is-blue {
+  background: #3273dc;
+  color: white;
+}
+
+.is-landing-page .hero-body {
+  background-image: url(/images/cover-landingpage.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 80%;
+  background-attachment: fixed;
+}
+
 .has-small-vm {
   margin: 20px auto;
 }

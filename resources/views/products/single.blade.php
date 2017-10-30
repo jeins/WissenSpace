@@ -117,7 +117,7 @@
                         <div class="content">
                             <nav class="level">
                                 <div class="level-left">
-                                    <a class="button is-primary level-item" href='{{$product->link}}' target="_blank">
+                                    <a class="button is-primary level-item" href='{{ (stristr($product->link, 'http') != TRUE) ? 'http://'.trim($product->link).'?ref=wissenspace.com' : $product->link.'?ref=wissenspace.com' }}' target="_blank">
                                                 <span class="icon">
                                                   <i class="fa fa-globe"></i>
                                                 </span>

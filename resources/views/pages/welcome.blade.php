@@ -19,7 +19,7 @@
 @endsection
 
 @section('content')
-    <section class="hero is-ws-grey has-medium-vm">
+    <section class="hero is-ws-grey has-medium-vm is-landing-page">
         <div class="hero-body">
             <div class="container">
               <h1 class="title is-3">
@@ -37,7 +37,7 @@
     <div class="columns">
         <div class="column">
             <div class="panel">
-                <h3 class="panel-heading">Referensi terramai</h3>
+                <h3 class="panel-heading is-blue">Referensi terramai</h3>
                 @foreach ($top_products as $top_product)
                     <a class="panel-block" href="explore/{{$top_product->slug}}">{{$top_product->name}}</a>
                 @endforeach
@@ -46,7 +46,7 @@
 
         <div class="column">
             <div class="panel">
-                <h3 class="panel-heading">Referensi terbaru</h3>
+                <h3 class="panel-heading is-blue">Referensi terbaru</h3>
                 @foreach ($new_products as $new_product)
                     <a class="panel-block" href="explore/{{$new_product->slug}}">{{$new_product->name}}</a>
                 @endforeach

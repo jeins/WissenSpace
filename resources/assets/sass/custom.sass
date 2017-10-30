@@ -1,4 +1,5 @@
 $main-grey-color: rgb(58, 71, 74);
+$is-blue: #3273dc;
 
 .container
     max-width: 980px
@@ -20,6 +21,19 @@ $main-grey-color: rgb(58, 71, 74);
       background-color: $main-grey-color
       .title, .subtitle
           color: white
+
+.panel-heading
+    &.is-blue
+         background: $is-blue
+         color: white
+
+.is-landing-page
+    .hero-body
+        background-image: url(/images/cover-landingpage.png)
+        background-repeat: no-repeat
+        background-size: cover
+        background-position: 0 80%;
+        background-attachment: fixed
 
 .has-small-vm
     margin: 20px auto
