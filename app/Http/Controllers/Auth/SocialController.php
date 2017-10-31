@@ -36,7 +36,6 @@ class SocialController extends Controller
      */
     public function getHandler($provider)
     {
-        dd($provider);
         $userObject = Socialite::driver($provider)->user();
 
         $socialUser = null;
