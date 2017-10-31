@@ -17,5 +17,5 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'noProvider' => 'tak ada provider',
     'denied' => 'kamu tidak mengizinkan share profile data',
-    'registerSuccess' => 'berhasil register!'
+    'registerSuccess' => 'terima kasih! selamat bergabung di wissenspace!'
 ];

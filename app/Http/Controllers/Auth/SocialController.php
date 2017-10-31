@@ -36,6 +36,7 @@ class SocialController extends Controller
      */
     public function getHandler($provider)
     {
+        dd($provider);
         $userObject = Socialite::driver($provider)->user();
 
         $socialUser = null;
@@ -79,14 +80,12 @@ class SocialController extends Controller
             }
 
             auth()->login($socialUser, true);
-
             return redirect('/explore')->with('success', trans('auth.registerSuccess'));
         }
 
         $socialUser = $getUserFromEmail;
 
         auth()->login($socialUser, true);
-
         return redirect(URL::previous());
     }
 
