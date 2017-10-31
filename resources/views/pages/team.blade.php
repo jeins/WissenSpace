@@ -21,7 +21,7 @@
             <img class="media-left" src="/images/team/juan.jpg" alt="foto juan akbar" width="100">
             <div class="media-right">
                 <div class="content">
-                    <div class="title is-size-4">Muh. Juan Akbar</div>
+                    <div class="title is-size-5">Muh. Juan Akbar</div>
                     <div class="subtitle">Aktvitas saat ini</div>
                     <a href='' class="button" target="_blank">Halo!</a>
                 </div>

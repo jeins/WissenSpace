@@ -196,7 +196,7 @@
             <div id="media" class="tab-pane animated">
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Upload Thumbnail* (sebagai gambar preview)</label>
+                        <label class="label">Upload Gambar (logo/icon)</label>
                     </div>
                     <div class="field-body">
                         <div class="field">

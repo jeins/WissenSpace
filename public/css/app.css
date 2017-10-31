@@ -10887,7 +10887,7 @@ label.panel-block:hover {
 }
 
 .is-landing-page .hero-body {
-  background-image: url(/images/cover-landingpage.png);
+  background-image: url(/images/cover-landingpage.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 80%;
@@ -10932,6 +10932,10 @@ label.panel-block:hover {
 
   .has-medium-vm {
     margin: 20px auto;
+  }
+
+  .media-product {
+    display: block;
   }
 }
 
