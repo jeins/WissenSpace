@@ -117,7 +117,7 @@
                         <div class="content">
                             <nav class="level">
                                 <div class="level-left">
-                                    <a class="button is-primary level-item" href='{{ (stristr($product->link, 'http') != TRUE) ? 'http://'.trim($product->link).'?ref=wissenspace.com' : $product->link.'?ref=wissenspace.com' }}' target="_blank">
+                                    <a class="button is-primary level-item" href='{{ (stristr($product->link, 'http') != TRUE) ? 'http://'.trim($product->link) : $product->link }}' target="_blank">
                                                 <span class="icon">
                                                   <i class="fa fa-globe"></i>
                                                 </span>
@@ -125,7 +125,7 @@
                                     </a>
                                 </div>
                             </nav>
-                            <p>{{$product->subject}}</p>
+                            <p class="is-long-text">{{$product->subject}}</p>
                         </div>
                     </div>
                     <div class="tile is-child box">
@@ -165,7 +165,7 @@
                                         <div class="content">
                                             <b><a href="/profile/{{$comment->user->name}}"> {{'@'.$comment->user->name}}</a></b>
                                             - </b> pada {{$comment->created_at->diffForHumans() }} <br>
-                                            <p>{{$comment->subject}}</p>
+                                            <p class="is-long-text">{{$comment->subject}}</p>
                                         </div>
                                         @if(Auth::check())
                                             @if ($comment->user->id === Auth::user()->id)

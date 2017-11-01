@@ -10914,6 +10914,10 @@ label.panel-block:hover {
   margin-bottom: 100px;
 }
 
+.is-long-text {
+  white-space: pre-line;
+}
+
 @media (max-width: 1024px) {
   .navbar-menu a {
     margin: 3px 0px;
