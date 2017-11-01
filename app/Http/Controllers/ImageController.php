@@ -26,7 +26,7 @@ class ImageController extends Controller
             $fileName = md5(uniqid('', true)) . '.' . $file->getClientOriginalExtension();
 
             File::makeDirectory($imageFullPath, $mode = 0755, true, true);
-            Image::make($file)->resize(200, 200)->save($imageFullPath . $fileName);
+            Image::make($file)->save($imageFullPath . $fileName);
 
             return response()->json(['image_url' => route('image.view', ['type' => $type, 'image' => $fileName]), 'image' => $fileName], 200);
         }
