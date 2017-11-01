@@ -79,20 +79,18 @@ class SocialController extends Controller
             }
 
             auth()->login($socialUser, true);
-
             return redirect('/explore')->with('success', trans('auth.registerSuccess'));
         }
 
         $socialUser = $getUserFromEmail;
 
         auth()->login($socialUser, true);
-
         return redirect(URL::previous());
     }
 
     private function generateNewUserName($userName)
     {
         //TODO generate new username if already exist!
-        return $userName . '99';
+        return $userName . time();
     }
 }

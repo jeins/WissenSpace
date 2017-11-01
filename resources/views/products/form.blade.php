@@ -197,7 +197,7 @@
             <div id="media" class="tab-pane animated">
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Upload Thumbnail* (sebagai preview)</label>
+                        <label class="label">Upload Gambar (logo/icon)</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -217,7 +217,7 @@
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Upload Screenshot</label>
+                        <label class="label">Upload Screenshot (tidak wajib)</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -236,12 +236,12 @@
                 {{-- YOUTUBE URL --}}
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Youtube URL</label>
+                        <label class="label">Youtube URL (tidak wajib)</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input" name="youtubeUrl" placeholder="url video (jika ada), (contoh: https://www.youtube.com/watch?v=xifBB2f28mw)">
+                                <input class="input" name="youtubeUrl" placeholder="url video, (contoh: https://www.youtube.com/watch?v=xifBB2f28mw)">
                             </div>
                         </div>
                     </div>

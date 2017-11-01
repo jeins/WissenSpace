@@ -22,7 +22,7 @@
                 <input type="hidden" name="photo" value="{{$user->photo}}">
 
                 <div class="field">
-                    <label class="label">Lama Lengkap</label>
+                    <label class="label">Nama Lengkap</label>
                     <div class="control">
                         <input class="input" name="full_name" type="text" value="{{$user->full_name}}">
                     </div>
@@ -41,7 +41,7 @@
                     <div class="control has-icons-left">
                         <input class="input" name="linkedin" type="text"
                                value="{{isset($socialMedia->linkedin) ? $socialMedia->linkedin : ''}}"
-                               placeholder="Linkedin">
+                               placeholder="username Linkedin">
                         <span class="icon is-small is-left">
                         <i class="fa fa-linkedin-square"></i>
                     </span>
@@ -51,22 +51,22 @@
                     <div class="control has-icons-left">
                         <input class="input" name="twitter" type="text"
                                value="{{isset($socialMedia->twitter) ? $socialMedia->twitter : ''}}"
-                               placeholder="Twitter">
+                               placeholder="username Twitter">
                         <span class="icon is-small is-left">
                         <i class="fa fa-twitter-square"></i>
                     </span>
                     </div>
                 </div>
-                <div class="field">
+                {{-- <div class="field">
                     <div class="control has-icons-left">
                         <input class="input" name="github" type="text"
                                value="{{isset($socialMedia->github) ? $socialMedia->github : ''}}"
-                               placeholder="Github">
+                               placeholder="username Github">
                         <span class="icon is-small is-left">
                         <i class="fa fa-github-square"></i>
                     </span>
                     </div>
-                </div>
+                </div> --}}
                 <div class="field">
                     <div class="control has-icons-left">
                         <input class="input" name="website" type="text"

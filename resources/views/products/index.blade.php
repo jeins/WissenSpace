@@ -135,6 +135,11 @@
 @section('page_script')
      <script type="text/javascript">
 
+     // sweetalert
+     @if (session('success'))
+     swal("Selamat!", "{{ session('success') }}", "success")
+     @endif
+
      //instagram ffeed
     $.get("/explore/load/instagram", function(data){
         if($.trim(data))

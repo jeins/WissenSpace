@@ -74,7 +74,7 @@
                     <nav class="level is-mobile">
                         <div class="level-left">
                             @if(isset($socialMedia->linkedin))
-                                <a class="level-item button is-small is-primary" href="{{$socialMedia->linkedin}}">
+                                <a class="level-item button is-small is-primary" href="https://linkedin.com/in/{{$socialMedia->linkedin}}">
                                     <span class="icon is-small">
                                       <i class="fa fa-linkedin"></i>
                                     </span>
@@ -83,23 +83,23 @@
                             @endif
 
                             @if(isset($socialMedia->twitter))
-                                <a class="level-item button is-small is-link" href="{{$socialMedia->twitter}}">
+                                <a class="level-item button is-small is-link" href="https://twitter.com/{{$socialMedia->twitter}}">
                                     <span class="icon is-small">
                                       <i class="fa fa-twitter"></i>
                                     </span>
                                     <span>Twitter</span>
                                 </a>
                             @endif
-                            @if(isset($socialMedia->github))
+                            {{-- @if(isset($socialMedia->github))
                                 <a class="level-item button is-small" href="{{$socialMedia->github}}">
                                     <span class="icon is-small">
                                       <i class="fa fa-github"></i>
                                     </span>
                                     <span>Github</span>
                                 </a>
-                            @endif
+                            @endif --}}
                             @if(isset($socialMedia->website))
-                                <a class="level-item button is-small is-info" href="{{$socialMedia->website}}">
+                                <a class="level-item button is-small is-info" href="{{ (stristr($socialMedia->website, 'http') != TRUE) ? 'http://'.trim($socialMedia->website) : $socialMedia->website }}">
                                     <span class="icon is-small">
                                       <i class="fa fa-globe"></i>
                                     </span>

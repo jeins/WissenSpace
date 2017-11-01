@@ -10881,6 +10881,19 @@ label.panel-block:hover {
   color: white;
 }
 
+.panel-heading.is-blue {
+  background: #3273dc;
+  color: white;
+}
+
+.is-landing-page .hero-body {
+  background-image: url(/images/cover-landingpage.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 80%;
+  background-attachment: fixed;
+}
+
 .has-small-vm {
   margin: 20px auto;
 }
@@ -10901,6 +10914,10 @@ label.panel-block:hover {
   margin-bottom: 100px;
 }
 
+.is-long-text {
+  white-space: pre-line;
+}
+
 @media (max-width: 1024px) {
   .navbar-menu a {
     margin: 3px 0px;
@@ -10919,6 +10936,10 @@ label.panel-block:hover {
 
   .has-medium-vm {
     margin: 20px auto;
+  }
+
+  .media-product {
+    display: block;
   }
 }
 
