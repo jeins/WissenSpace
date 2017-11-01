@@ -298,6 +298,11 @@ class ProductController extends Controller
 
             $field['thumbnail'] = $product->thumbnail;
             $field['images'] = json_decode($product->images);
+
+            if(!$field['images']){
+                $field['images'] = [];
+            }
+
             $field['youtube_url'] = ($product->youtube_id) ? 'https://youtube.com/watch?v=' . $product->youtube_id : '';
             $field['youtube_id'] = $product->youtube_id;
         }
@@ -343,7 +348,8 @@ class ProductController extends Controller
 
         switch ($action) {
             case 'productUrl':
-                $product = Product::where('link', 'LIKE', "%{$this->getDomain($productData['value'])}%");
+                $url = rtrim(str_replace(['https', 'http',  '://'], '', $productData['value']),  '/');
+                $product = Product::where('link', 'LIKE', "%{$url}%");
                 $isValid = ($product->exists()) ? false : true;
                 if(!$isValid){
                     $data = route('product.view', $product->first()->slug);

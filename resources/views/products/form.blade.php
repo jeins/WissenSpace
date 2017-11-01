@@ -440,8 +440,8 @@
             });
 
             $('#informasi').on('DOMSubtreeModified', '.product-tags-selected', function () {
-                requiredInformation['tags'] = ($(this).find('button').length > 0);console.log(requiredInformation['tags'])
-                enableNextButton('informasi', requiredInformation);
+                requiredInformation['tags'] = ($(this).find('button').length > 0);
+                enableNextButton('informasi', requiredInformation)
             })
 
             $('#pemilik').find('input[name="owner_name"]').change(function () {
