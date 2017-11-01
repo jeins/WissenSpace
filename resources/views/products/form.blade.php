@@ -138,6 +138,21 @@
                     </div>
                 </div>
 
+                {{--DESCRIPTION--}}
+                <div class="field is-horizontal" style="margin-top: 30px">
+                    <div class="field-label is-normal">
+                        <label class="label">Deskripsi</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input id="product-subject" type="hidden" name="subject" placeholder="{{trans('product.add.info.description')}}">
+                                <trix-editor input="product-subject" no-uploads></trix-editor>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {{--CATEGORIES--}}
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
@@ -176,20 +191,7 @@
                     </div>
                 </div>
 
-                {{--DESCRIPTION--}}
-                <div class="field is-horizontal" style="margin-top: 30px">
-                    <div class="field-label is-normal">
-                        <label class="label">Deskripsi</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <input id="product-subject" type="hidden" name="subject" placeholder="{{trans('product.add.info.description')}}">
-                                <trix-editor input="product-subject" no-uploads></trix-editor>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <a class="product-next-button button is-success is-outlined is-flex" disabled>Lanjut</a>
             </div>
