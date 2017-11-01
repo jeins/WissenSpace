@@ -10,7 +10,7 @@ Route::get('/profile/{name}', ['as' => 'profile.show', 'uses' => 'ProfileControl
 Route::get('/explore/{slug}', ['as' => 'product.view', 'uses' => 'ProductController@show']);
 Route::get('/explore/planet/{name}', 'ProductController@filterTag');
 Route::get('/explore/media/{name}', 'ProductController@filterMedia');
-Route::get('/image/{type}/{image}', ['as' => 'image.view', 'uses' => 'ImageController@show']);
+Route::get('/image/{type}/{image}/{width?}/{height?}', ['as' => 'image.view', 'uses' => 'ImageController@show']);
 
 //LoadMore
 Route::get('/explore/load-more/{id}' , 'ProductController@loadMore');

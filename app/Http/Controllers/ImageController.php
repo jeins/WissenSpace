@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Image;
@@ -34,7 +33,7 @@ class ImageController extends Controller
         return response()->json(false, 200);
     }
 
-    public function show($type, $image)
+    public function show($type, $image, $width = null, $height = null)
     {
         if($type !== 'u' && $type !== 'p' && $type !== 'ws'){
             abort(403);
@@ -50,7 +49,15 @@ class ImageController extends Controller
         }
 
         if($imagePath){
-            return Image::make(storage_path() . $imagePath . $image)->response();
+            $image = Image::make(storage_path() . $imagePath . $image);
+
+            if($width && $height){
+                $image->fit($width, $height, function($constraint){
+                    $constraint->upsize();
+                });
+            }
+
+            return $image->response();
         }
 
         return false;

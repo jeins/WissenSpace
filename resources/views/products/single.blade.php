@@ -94,10 +94,10 @@
                             <div class="columns">
                                 <div class="column">
                                     <figure class="image is-3by2">
-                                        <img width="560" height="349"  id="show-image" src="{{$product->images[0]}}">
+                                        <img width="560" height="350" id="show-image" src="{{$product->images[0]}}/560/350" onclick="displayImageModal(this)" style="cursor: pointer;">
                                     </figure>
                                     <div class="video-wrapper">
-                                        <iframe width="560" height="349" frameborder="0" src="{{$product->youtube_id}}"
+                                        <iframe width="560" height="350" frameborder="0" src="{{$product->youtube_id}}"
                                                 allowfullscreen></iframe>
                                     </div>
                                 </div>
@@ -105,8 +105,8 @@
                             <div class="columns is-multiline">
                                 @foreach ($product->images as $image)
                                     <div class="column is-narrow">
-                                        <a class="product-image-thumbnail image is-64x64" image-url="{{$image}}">
-                                            <img src="{{$image}}">
+                                        <a class="product-image-thumbnail image is-64x64" image-url="{{$image}}/560/350">
+                                            <img src="{{$image}}/64/64">
                                         </a>
                                     </div>
                                 @endforeach
@@ -216,6 +216,8 @@
             </div>
         </div>
     </div>
+
+    @include('products.image_modal')
 @endsection
 
 @section('page_script')
@@ -236,6 +238,20 @@
                 $('#show-image').parent().show();
                 $('#show-image').attr('src', imageUrl);
             }
+        })
+    </script>
+
+    <script type="text/javascript">
+        function displayImageModal(img){
+            $(".modal.image-show").addClass("is-active");
+
+            var imageUrl = $(img).attr('src');
+            $(".image-modal").attr('src', imageUrl.substring(0, imageUrl.length - 8));
+        }
+
+        $(".modal-close.image-show, .modal-background").click(function () {
+            $(".modal.image-show").removeClass("is-active");
+            return false;
         })
     </script>
 @endsection
