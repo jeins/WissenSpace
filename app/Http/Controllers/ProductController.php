@@ -345,7 +345,9 @@ class ProductController extends Controller
             case 'productUrl':
                 $product = Product::where('link', 'LIKE', "%{$this->getDomain($productData['value'])}%");
                 $isValid = ($product->exists()) ? false : true;
-                $data = route('product.view', $product->first()->slug);
+                if(!$isValid){
+                    $data = route('product.view', $product->first()->slug);
+                }
                 break;
             case 'youtubeUrl':
                 $data = $this->getYoutubeId($productData['value']);

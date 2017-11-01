@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('page_css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/trix.css') }}">
     <link href="{{ asset('css/dropzone.css') }}" rel="stylesheet">
 
     <style>
@@ -137,21 +138,6 @@
                     </div>
                 </div>
 
-                {{--DESCRIPTION--}}
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">Deskripsi</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <textarea id="product-subject" name="subject" class="textarea is-flex"
-                                          placeholder="{{trans('product.add.info.description')}}"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 {{--CATEGORIES--}}
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
@@ -185,6 +171,21 @@
                                     </div>
                                 </div>
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{--DESCRIPTION--}}
+                <div class="field is-horizontal" style="margin-top: 30px">
+                    <div class="field-label is-normal">
+                        <label class="label">Deskripsi</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input id="product-subject" type="hidden" name="subject" placeholder="{{trans('product.add.info.description')}}">
+                                <trix-editor input="product-subject" no-uploads></trix-editor>
                             </div>
                         </div>
                     </div>
@@ -297,6 +298,7 @@
         var requiredInformation = {'link': false, 'name': false, 'tags': false};
         var requiredOwner = {'owner_name': false};
         var requiredMedia = {'thumbnail': false};
+        var productInfoKeys = ['link', 'name', 'tagline', 'subject'];
 
         init();
 
@@ -322,8 +324,6 @@
 
                 $('#productType' + productData['type_id']).removeClass('is-outlined');
 
-                var productInfoKeys = ['link', 'name', 'tagline'];
-
                 _.forEach(productInfoKeys, function (key) {
                     $('#informasi').find('input[name="' + key + '"]').val(productData.info[key]);
                 });
@@ -334,7 +334,6 @@
                     $('#product-tags option[value="' + id + '"]').remove();
                     $('.product-tags-selected').append('<span class="tag is-success">' + tagName + '<button onclick="removeTag(this)" tagId="' + id + '" tagName="' + tagName + '" class="tag-remove-selected delete is-small"></button></span>');
                 });
-                $('#product-subject').val(productData.info.subject);
 
                 $('#product-thumbnail').attr('src', productData.thumbnail);
                 $('#media').find('input[name="youtubeUrl"]').val(productData.youtube_url);
@@ -389,18 +388,20 @@
         }
 
         function setProductInfo() {
-            var productInfoKeys = ['link', 'name', 'tagline'];
-
             _.forEach(productInfoKeys, function (key) {
                 var valueOf = $('#informasi').find('input[name="' + key + '"]').val();
                 productData['info'][key] = valueOf;
             });
 
-            productData['info']['subject'] = $('#product-subject').val();
-
+            var tmpProductData = [];
             $('.product-tags-selected').find('button').each(function (index, el) {
-                productData['tag_id'].push($(el).attr('tagId'));
+                var tagId = $(el).attr('tagId');
+
+                if(!_.includes(productData['tag_id'], tagId)){
+                    tmpProductData.push(tagId);
+                }
             });
+            productData['tag_id'] = tmpProductData;
 
             $('#flow-tabs li:nth-child(3)').addClass('is-clickable');
             setActiveTab('#media');
@@ -439,7 +440,7 @@
             });
 
             $('#informasi').on('DOMSubtreeModified', '.product-tags-selected', function () {
-                requiredInformation['tags'] = ($(this).find('button').length > 0);
+                requiredInformation['tags'] = ($(this).find('button').length > 0);console.log(requiredInformation['tags'])
                 enableNextButton('informasi', requiredInformation);
             })
 
@@ -536,6 +537,15 @@
                 }
             });
         }
+    </script>
+
+    <script type="text/javascript" src="{{ asset('js/trix.js') }}"></script>
+    <script type="text/javascript">
+        document.addEventListener("trix-file-accept", function(event) {
+            if (event.target.hasAttribute("no-uploads")) {
+                event.preventDefault()
+            }
+        })
     </script>
 
     <script src="{{ asset('js/dropzone.js') }}"></script>

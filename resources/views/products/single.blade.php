@@ -125,7 +125,7 @@
                                     </a>
                                 </div>
                             </nav>
-                            <p>{{$product->subject}}</p>
+                            <p>{!! $product->subject !!}</p>
                         </div>
                     </div>
                     <div class="tile is-child box">

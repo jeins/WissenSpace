@@ -12,7 +12,10 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
+    .sass('resources/assets/sass/app.scss', 'public/css')
     .copy('node_modules/dropzone/dist/dropzone.js', 'public/js/dropzone.js')
     .copy('node_modules/dropzone/dist/dropzone.css', 'public/css/dropzone.css')
     .copy('node_modules/sweetalert/dist/sweetalert.min.js', 'public/js/sweetalert.min.js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .copy('node_modules/trix/dist/trix.js', 'public/js/trix.js')
+    .copy('node_modules/trix/dist/trix.css', 'public/css/trix.css')
+;
