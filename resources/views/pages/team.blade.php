@@ -23,7 +23,7 @@
                 <div class="content">
                     <div class="title is-size-5">Muh. Juan Akbar</div>
                     <div class="subtitle">Aktvitas saat ini</div>
-                    <a href='' class="button" target="_blank">Halo!</a>
+                    <a href='#' class="button" target="_blank">Halo!</a>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
             <div class="media-right">
                 <div class="content">
                     <div class="title is-size-4">Hilman Ramadhan</div>
-                    <div class="subtitle">Aktvitas saat ini</div>
+                    <div class="subtitle">Sharing sharing di sekolahkoding</div>
                     <a href='https://hilmanrdn.id' class="button" target="_blank">Halo!</a>
                 </div>
             </div>
@@ -44,8 +44,8 @@
             <div class="media-right">
                 <div class="content">
                     <div class="title is-size-4">Sylvia Martshalina</div>
-                    <div class="subtitle">Aktvitas saat ini</div>
-                    <a href='' class="button" target="_blank">Halo!</a>
+                    <div class="subtitle">Bussiness analyst di PT Qasico</div>
+                    <a href='#' class="button" target="_blank">Halo!</a>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
             <div class="media-right">
                 <div class="content">
                     <div class="title is-size-4">Fauzi Arif Sanjaya</div>
-                    <div class="subtitle">Aktvitas saat ini</div>
+                    <div class="subtitle">Frontend developer at oddity.agency Berlin</div>
                     <a href='http://fauzias.me/' class="button" target="_blank">Halo!</a>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                 <div class="content">
                     <div class="title is-size-4">Ebin Ardiansyah</div>
                     <div class="subtitle">Aktvitas saat ini</div>
-                    <a href='' class="button" target="_blank">Halo!</a>
+                    <a href='#' class="button" target="_blank">Halo!</a>
                 </div>
             </div>
         </div>

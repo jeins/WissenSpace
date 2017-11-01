@@ -278,7 +278,7 @@
                         <div class="field">
                             <div class="control">
                                 <input class="input" name="owner_twitter"
-                                       placeholder="twitter pemilik link ini (kalau ada)">
+                                       placeholder="username twitter pemilik link ini (kalau ada)">
                             </div>
                         </div>
                     </div>

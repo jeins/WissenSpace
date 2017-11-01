@@ -164,7 +164,7 @@ class ProductController extends Controller
             $product[$key] = $val;
         }
 
-        $slug = strtolower(str_replace(' ', '-', $product->name));
+        $slug = str_slug($product->name, '-');
         //if slug already exists
         if (Product::where('slug', $slug)->first() != null) {
             $slug .= '-' . time();
@@ -227,7 +227,7 @@ class ProductController extends Controller
         $user->point = $user->point + 10;
         $user->save();
 
-        $slug = strtolower(str_replace(' ', '-', $product->name));
+        $slug = str_slug($product->name, '-');
         //if slug already exists
         if (Product::where('slug', $slug)->first() != null) {
             $slug .= '-' . time();

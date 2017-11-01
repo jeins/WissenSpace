@@ -158,7 +158,7 @@
                                 <article class="media">
                                     <div class="media-left">
                                         <figure class="image is-64x64">
-                                            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                                            <img src="{{$comment->user->photo ? route('image.view', ['type' => \App\Http\Controllers\ImageController::USER_TYPE, 'image' => $user->photo]): route('image.view', [\App\Http\Controllers\ImageController::WISSENSPACE_TYPE, 'no_user_photo.png'])}}" alt="Image">
                                         </figure>
                                     </div>
                                     <div class="media-content">
