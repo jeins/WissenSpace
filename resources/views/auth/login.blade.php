@@ -11,8 +11,8 @@
                 <div class="has-medium-vm" style="text-align: center;">
                     <p class="subtitle">
                         Selamat datang di WissenSpace
-                        <br> saatnya berkontribusi untuk Indonesia!
-                        <br> share link bermanfaatyang kamu temukan di Internet</p>
+                        <br> Saatnya berkontribusi untuk Indonesia!
+                        <br> Share link bermanfaatyang kamu temukan di Internet</p>
                 </div>
 
                 <div class="columns">

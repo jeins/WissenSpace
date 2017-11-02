@@ -28,7 +28,7 @@ class Product extends Model
 
     public function type()
     {
-        return $this->hasMany('App\Models\Type');
+        return $this->hasOne('App\Models\Type');
     }
 
     public function tags()

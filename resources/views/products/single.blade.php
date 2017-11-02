@@ -202,8 +202,13 @@
                         <h3 class="subtitle">Pemilik</h3>
                         @if($product->makers->count())
                             @foreach ($product->makers as $maker)
-                                <li><a href='https://twitter.com/{{$maker->twitter_username}}'>{{$maker->name}} </a>
-                                </li>
+                                <li>
+                                @if (!empty($maker->twitter_username))
+                                    <a href='https://twitter.com/{{$maker->twitter_username}}'>{{$maker->name}} </a>
+                                @else
+                                    {{$maker->name}}
+                                @endif
+                                </li>            
                             @endforeach
                         @else
                             <li>Tidak ada keterangan</li>

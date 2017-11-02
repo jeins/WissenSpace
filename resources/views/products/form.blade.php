@@ -172,7 +172,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="tile is-child">
+                                            <div class="tile is-child" id="add_tag_btn">
                                                 <button class="button" onclick="addTag()">
                                                 <span class="icon">
                                                   <i class="fa fa-plus"></i>
@@ -185,7 +185,7 @@
                                         <div class="tags product-tags-selected"></div>
                                     </div>
                                 </div>
-
+                                <p>*Maximal 3 tag</p>
                             </div>
                         </div>
                     </div>
@@ -350,11 +350,13 @@
 
             _.forEach(tagId, function (id) {
                 var tagName = $('#product-tags').find("option[value='" + id + "']").attr('name');
-
                 $('#product-tags option[value="' + id + '"]').remove();
-
                 $('.product-tags-selected').append('<span class="tag is-success">' + tagName + '<button onclick="removeTag(this)" tagId="' + id + '" tagName="' + tagName + '" class="tag-remove-selected delete is-small"></button></span>');
             });
+
+            //max 3 tags
+            if($('.product-tags-selected .tag').length > 2)
+                $('#add_tag_btn').hide()
         }
 
         function removeTag(currTag) {
@@ -362,6 +364,10 @@
             var tagName = $(currTag).attr('tagName');
             $('#product-tags').append('<option value="' + tagId + '" name="' + tagName + '"style="text-transform: capitalize">' + tagName + '</option>');
             $(currTag).parent().remove();
+
+            //check max tag
+            if($('.product-tags-selected .tag').length < 3)
+                $('#add_tag_btn').show()
 
             _.pull(productData['tag_id'], parseInt(tagId));
         }
