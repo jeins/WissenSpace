@@ -46,7 +46,7 @@
 <div class="container has-small-vm">
     <nav class="navbar">
         <div class="navbar-brand">
-            <a href="/" class="navbar-item">
+            <a href="/">
                 <img src="/images/logo.png" alt="logo wissenspace" width="150">
             </a>
 

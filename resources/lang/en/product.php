@@ -10,10 +10,10 @@ return [
     'add.jenis.title' => 'Mau share link apa?',
     'add.jenis.subtitle' => '*Pilih kategori yang mau dishare',
 
-    'add.info.title' => 'Silakan Isi Informasinya',
+    'add.info.title' => 'Silahkan isi Informasinya',
     'add.info.url' => 'Paste URL, (contoh: https://google.com)',
     'add.info.name' => 'Nama Produk',
     'add.info.tagline' => 'Contoh:tempat belajar kimia terbaik! (max 120 chars)',
     'add.info.description' => 'Deskripsi tentang produk ini',
-    'add.info.category' => 'Pilih Kategorie'
+    'add.info.category' => 'Pilih Kategori'
 ];

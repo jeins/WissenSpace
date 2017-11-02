@@ -88,7 +88,7 @@
         <div class="column is-one-quarter has-text-centered is-hidden-touch">
             <div class="notification is-primary">
                 <div class="title is-size-4">Halo!</div>
-                 <div class="subtitle">
+                 <div class="is-size-5 has-small-vm">
                     Tahu link belajar seru di internet?
                     share di wissenspace yuk!
                 </div>

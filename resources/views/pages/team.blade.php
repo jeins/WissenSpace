@@ -11,64 +11,49 @@
         Team WissenSpace
       </h1>
 
-       <p>
+       <p class="subtitle">
             Tim wissenspace tersebar di Makassar, Jakarta & Berlin.<br>
             Silahkan disapa kalau ketemu :P
        </p>
 
-        <br>
-        <div class="media">
-            <img class="media-left" src="/images/team/juan.jpg" alt="foto juan akbar" width="100">
-            <div class="media-right">
-                <div class="content">
-                    <div class="title is-size-5">Muh. Juan Akbar</div>
-                    <div class="subtitle">Aktvitas saat ini</div>
-                    <a href='#' class="button" target="_blank">Halo!</a>
-                </div>
-            </div>
-        </div>
+       <br>
 
-        <div class="media">
-            <img class="media-left" src="/images/team/hilman.jpg" alt="foto hilman ramadhan" width="100">
-            <div class="media-right">
-                <div class="content">
-                    <div class="title is-size-4">Hilman Ramadhan</div>
-                    <div class="subtitle">Sharing sharing di sekolahkoding</div>
-                    <a href='https://hilmanrdn.id' class="button" target="_blank">Halo!</a>
-                </div>
-            </div>
-        </div>
+       <div class="columns">
+           <div class="column">
+               <img  src="/images/team/juan.jpg" alt="foto juan akbar" width="100" >
+               <div class="title is-size-5">Muh. Juan Akbar</div>
+               <div class="subtitle is-size-6">Aktvitas saat ini</div>
+               <a href='#' class="button" target="_blank">Halo!</a>
+           </div>
+           <div class="column">
+               <img  src="/images/team/hilman.jpg" alt="foto hilman ramadhan" width="100" >
+               <div class="title is-size-5">Hilman Ramadhan</div>
+               <div class="subtitle is-size-6">Sharing sharing di sekolahkoding</div>
+               <a href='https://hilmanrdn.id' class="button" target="_blank">Halo!</a>
+           </div>
+           <div class="column">
+               <img  src="/images/team/sylvi.jpg" alt="foto Sylvia Martshalina" width="100" >
+               <div class="title is-size-5">Sylvia Martshalina</div>
+               <div class="subtitle is-size-6">Bussiness analyst di PT Qasico</div>
+               <a href='#' class="button" target="_blank">Halo!</a>
+           </div>
+       </div>
 
-        <div class="media">
-            <img class="media-left" src="/images/team/sylvi.jpg" alt="foto Sylvia Martshalina" width="100">
-            <div class="media-right">
-                <div class="content">
-                    <div class="title is-size-4">Sylvia Martshalina</div>
-                    <div class="subtitle">Bussiness analyst di PT Qasico</div>
-                    <a href='#' class="button" target="_blank">Halo!</a>
-                </div>
-            </div>
-        </div>
+       <div class="columns">
+           <div class="column">
+               <img  src="/images/team/ebin.jpg" alt="foto Ebin Aridansyah" width="100" >
+               <div class="title is-size-5">Ebin Ardiansyah</div>
+               <div class="subtitle is-size-6">Aktvitas saat ini</div>
+               <a href='#' class="button" target="_blank">Halo!</a>
+           </div>
+           <div class="column">
+               <img  src="/images/team/fauzi.jpg" alt="foto Fauzi Arif Senjaya" width="100" >
+               <div class="title is-size-5">Fauzi Arif Sanjaya</div>
+               <div class="subtitle is-size-6">Frontend developer at oddity.agency Berlin</div>
+               <a href='http://fauzias.me/' class="button" target="_blank">Halo!</a>
+           </div>
+           <div class="column">
 
-        <div class="media">
-            <img class="media-left" src="/images/team/fauzi.jpg" alt="foto Fauzi Arif Senjaya" width="100">
-            <div class="media-right">
-                <div class="content">
-                    <div class="title is-size-4">Fauzi Arif Sanjaya</div>
-                    <div class="subtitle">Frontend developer at oddity.agency Berlin</div>
-                    <a href='http://fauzias.me/' class="button" target="_blank">Halo!</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="media">
-            <img class="media-left" src="/images/team/ebin.jpg" alt="foto Ebin Aridansyah" width="100">
-            <div class="media-right">
-                <div class="content">
-                    <div class="title is-size-4">Ebin Ardiansyah</div>
-                    <div class="subtitle">Aktvitas saat ini</div>
-                    <a href='#' class="button" target="_blank">Halo!</a>
-                </div>
-            </div>
-        </div>
+           </div>
+       </div>
 @endsection

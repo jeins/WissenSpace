@@ -156,7 +156,7 @@
                 {{--CATEGORIES--}}
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Tag / Kategorie *</label>
+                        <label class="label">Kategori *</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
