@@ -185,7 +185,7 @@
                                         <div class="tags product-tags-selected"></div>
                                     </div>
                                 </div>
-                                <p>*Maximal 3 tag</p>
+                                <p><b><i>*Maximal 3 tag</i></b></p>
                             </div>
                         </div>
                     </div>
@@ -199,7 +199,7 @@
             <div id="media" class="tab-pane animated">
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Upload Gambar (logo/icon)</label>
+                        <label class="label">Upload Gambar (logo/icon) *</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -348,7 +348,10 @@
         function addTag() {
             var tagId = $('#product-tags').val();
 
-            _.forEach(tagId, function (id) {
+            _.forEach(tagId, function (id, i) {
+                if(i === 3){
+                    return false;
+                }
                 var tagName = $('#product-tags').find("option[value='" + id + "']").attr('name');
                 $('#product-tags option[value="' + id + '"]').remove();
                 $('.product-tags-selected').append('<span class="tag is-success">' + tagName + '<button onclick="removeTag(this)" tagId="' + id + '" tagName="' + tagName + '" class="tag-remove-selected delete is-small"></button></span>');
@@ -561,7 +564,7 @@
         Dropzone.autoDiscover = false;
         var basicOption = {
             paramName: 'file',
-            maxFilesize: 1,
+            maxFilesize: 5,
             dictMaxFilesExceeded: '',
             addRemoveLinks: false,
             acceptedFiles: '.jpeg,.jpg,.png,.gif',

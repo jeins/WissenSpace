@@ -1,6 +1,7 @@
 #!/bin/sh
  
 ssh wissenspace@wissenspace.com <<EOF
+  ~/_backups/backup.sh migrate
   cd ~/prod
   git reset --hard HEAD
   git pull origin master

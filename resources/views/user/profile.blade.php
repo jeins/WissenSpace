@@ -183,7 +183,7 @@
                 this.on("success", function (file, res) {
                     $('#user-photo .dz-message').html('<progress class="progress is-primary" value="100" max="100">100%</progress>').show();
                     setTimeout(function () {
-                        $('#user-photo .dz-message').text('Drop files here to upload').show();
+                        $('#user-photo .dz-message').html('klick untuk upload <b>max. 2mb</b>').show();
                     }, 1000);
 
                     $('#user-photo-img').attr('src', res.image_url);

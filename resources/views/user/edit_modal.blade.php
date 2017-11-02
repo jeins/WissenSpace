@@ -12,7 +12,8 @@
                     <div class="dz-preview"></div>
                     <form id="user-photo-add" method="POST" action="{{route('image.upload', \App\Http\Controllers\ImageController::USER_TYPE)}}" class="dropzone"
                           enctype="multipart/form-data">
-                        <img id="user-photo-img" src="{{$user->photo ? route('image.view', ['type' => \App\Http\Controllers\ImageController::USER_TYPE, 'image' => $user->photo]) : 'https://cdn1.iconfinder.com/data/icons/business-charts/512/customer-512.png'}}">
+                        <img id="user-photo-img" src="{{$user->photo ? route('image.view', ['type' => \App\Http\Controllers\ImageController::USER_TYPE, 'image' => $user->photo]) : route('image.view', [\App\Http\Controllers\ImageController::WISSENSPACE_TYPE, 'no_user_photo.png'])}}">
+                        <div class="dz-default dz-message" data-dz-message><span>klick untuk upload <b>max. 2mb</b></span></div>
                     </form>
                 </div>
             </div>
