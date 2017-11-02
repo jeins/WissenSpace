@@ -6,5 +6,6 @@ ssh wissenspace@wissenspace.com <<EOF
   git reset --hard HEAD
   git pull origin master
   composer install
+  php artisan migrate
   exit
 EOF
