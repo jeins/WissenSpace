@@ -1,6 +1,9 @@
 $main-grey-color: rgb(58, 71, 74);
 $is-blue: #3273dc;
 
+.is-ws-grey-text
+    color: $main-grey-color
+
 .container
     max-width: 980px
 
@@ -41,7 +44,7 @@ $is-blue: #3273dc;
 .has-medium-vm
     margin: 40px auto
 
-.products
+.products-link
     padding: 5px
     &:hover
         background-color: #e8ebed
@@ -51,6 +54,17 @@ $is-blue: #3273dc;
 
 .is-long-text
     white-space: pre-line
+
+.error_page
+    > .column:first-child
+        display: flex
+        justify-content: center
+        flex-direction: column
+    .title
+        font-size: 100px
+    .subtitle
+        font-size: 40px
+
 
 @media (max-width: 1024px)
     .navbar-menu
@@ -70,3 +84,16 @@ $is-blue: #3273dc;
 
     .media-product
         display: block
+
+    .products
+        display: block
+        .subtitle
+            margin-bottom: 0px
+        .level-right, .level-left
+            display: inline-block
+
+    .error_page
+        .title
+            font-size: 40px
+        .subtitle
+            font-size: 20px

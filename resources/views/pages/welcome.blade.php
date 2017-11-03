@@ -19,7 +19,16 @@
 @endsection
 
 @section('content')
-    <section class="hero is-ws-grey has-medium-vm is-landing-page">
+
+    <div class="notification notif-greeting is-warning">
+        <div class="columns">
+            <div class="column">
+                <span class="is-size-5">Hey! Salam kenal dan Selamat datang!</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero is-ws-grey has-small-vm is-landing-page">
         <div class="hero-body">
             <div class="container">
               <h1 class="title is-3">
@@ -29,7 +38,7 @@
                 Punya referensi belajar menarik? Share linknya di wissenspace!
               </h2>
               <a class="button home-contribute">Pasang Link</a>
-              <a href='/explore' class="button">Lihat semuanya</a>
+              <a href='/explore' class="button">Lihat-Lihat</a>
             </div>
         </div>
     </section>
@@ -62,5 +71,7 @@
         @else
             $('.home-contribute').attr('href', '{{route("contribute")}}');
         @endif
+
+        $('.notif-greeting').delay(1000).fadeOut(2500);
     </script>
 @endsection

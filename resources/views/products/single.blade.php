@@ -44,7 +44,7 @@
             <div class="tile">
                 <div class="tile is-parent is-vertical">
                     <div class="tile is-child box">
-                        <article class="media">
+                        <article class="products media">
                             <div class="media-left">
                                 <figure class="image is-128x128">
                                     <img src="{{$product->thumbnail ?: route('image.view', [\App\Http\Controllers\ImageController::WISSENSPACE_TYPE, 'no_user_photo.png'])}}"

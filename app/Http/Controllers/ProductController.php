@@ -99,7 +99,7 @@ class ProductController extends Controller
         }
 
         foreach ($products->take($limit) as $product) {
-            echo "<a href='/explore/" . $product->slug . "' class='products media'  data-id=" . $product->id . ">
+            echo "<a href='/explore/" . $product->slug . "' class='products products-link media'  data-id=" . $product->id . ">
                         <img class='media-left' src=" . $product->thumbnail . " width='100'>
                         <div class='media-content'>
                             <h3 class='title is-size-5 is-capitalized'>" . $product->name . "</h3>

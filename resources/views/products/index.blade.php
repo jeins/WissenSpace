@@ -53,7 +53,7 @@
 
         <div class="column">
             @foreach ($products->take(10) as $product)
-                <a href='/explore/{{$product->slug}}' class="products media"  data-id="{{$product->id}}">
+                <a href='/explore/{{$product->slug}}' class="products products-link media"  data-id="{{$product->id}}">
                     <img class="media-left" src="{{$product->thumbnail}}" width="100">
                     <div class="media-content">
                         <h3 class="title is-size-5 is-capitalized">{{ $product->name }}</h3>
@@ -88,10 +88,10 @@
         <div class="column is-one-quarter has-text-centered is-hidden-touch">
             <div class="notification is-primary">
                 <div class="title is-size-4">Halo!</div>
-                 <div class="is-size-5 has-small-vm">
+                 <div class="is-size-5">
                     Tahu link belajar seru di internet?
                     share di wissenspace yuk!
-                </div>
+                </div><br>
                 <a class="button" href='/kontribusi'>Kontribusi 🚀</a>
             </div>
             <div class="insta-feed notification is-primary"></div>

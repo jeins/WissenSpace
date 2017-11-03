@@ -42,7 +42,7 @@
 
     <div class="has-small-vm">
         <p class="title is-size-5">Apa saja link yang boleh dimasukkan?</p>
-        <p class="subtitle is-size-6">Pada dasarnya semuanya, channel atau video youtube, bacaan artikel, aplikasi web ataupun mobile juga boleh</p>
+        <p class="subtitle is-size-6">Pada dasarnya semuanya, channel atau video youtube, bacaan artikel, aplikasi web ataupun mobile juga boleh. Selama bermanfaat</p>
     </div>
     <hr>
 
@@ -52,7 +52,7 @@
         bibit manfaat yang kita tanam sekarang, pohonnya bisa ngelindungin banyak orang dan menghasilkan bibit bibit berikutnya!</p>
     </div>
 
-    <h1 class="title is-size-5">Ada Saran atau Pertanyaan?</h1>    
+    <h1 class="title is-size-5">Ada Saran atau Pertanyaan?</h1>
     <div id="disqus_thread">
     </div>
     <script>
