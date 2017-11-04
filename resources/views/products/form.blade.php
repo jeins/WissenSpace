@@ -147,7 +147,7 @@
                         <div class="field">
                             <div class="control">
                                 <input id="product-subject" type="hidden" name="subject" placeholder="{{trans('product.add.info.description')}}">
-                                <trix-editor input="product-subject" no-uploads></trix-editor>
+                                <trix-editor input="product-subject" class="trix-content" autofocus no-uploads></trix-editor>
                             </div>
                         </div>
                     </div>
@@ -349,7 +349,7 @@
             var tagId = $('#product-tags').val();
 
             _.forEach(tagId, function (id, i) {
-                if(i === 3){
+                if(i === 3 || $('.product-tags-selected').find('button').length >= 3){
                     return false;
                 }
                 var tagName = $('#product-tags').find("option[value='" + id + "']").attr('name');
@@ -409,11 +409,13 @@
                 var tagId = $(el).attr('tagId');
 
                 if(!_.includes(productData['tag_id'], tagId)){
-                    tmpProductData.push(tagId);
+                    if(tmpProductData.length < 3){
+                        tmpProductData.push(tagId);
+                    }
                 }
             });
             productData['tag_id'] = tmpProductData;
-
+            console.log(productData)
             $('#flow-tabs li:nth-child(3)').addClass('is-clickable');
             setActiveTab('#media');
         }
@@ -455,7 +457,7 @@
                 enableNextButton('informasi', requiredInformation)
             })
 
-            $('#pemilik').find('input[name="owner_name"]').change(function () {
+            $('#pemilik').find('input[name="owner_name"]').keyup(function () {console.log(!!$(this).val())
                 requiredOwner['owner_name'] = !!$(this).val();
 
                 enableNextButton('pemilik', requiredOwner);
