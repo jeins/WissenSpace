@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Social;
 use App\Models\User;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -26,6 +26,8 @@ class SocialController extends Controller
                 ->with('error', trans('auth.noProvider'));
         }
 
+        Session::put('lastUrl', URL::previous());
+
         return Socialite::driver($provider)->redirect();
     }
 
@@ -41,6 +43,8 @@ class SocialController extends Controller
         $socialUser = null;
 
         $getUserFromEmail = User::where('email', '=', $userObject->email)->first();
+
+        $redirectUrl = Session::get('lastUrl') ? Session::get('lastUrl') : route('products.view');
 
         if(empty($getUserFromEmail)){
             $getUserSocial = Social::where('social_id', '=', $userObject->id)
@@ -79,13 +83,13 @@ class SocialController extends Controller
             }
 
             auth()->login($socialUser, true);
-            return redirect('/explore')->with('success', trans('auth.registerSuccess'));
+            return redirect($redirectUrl)->with('success', trans('auth.registerSuccess'));
         }
 
         $socialUser = $getUserFromEmail;
 
         auth()->login($socialUser, true);
-        return redirect(URL::previous());
+        return redirect($redirectUrl);
     }
 
     private function generateNewUserName($userName)
