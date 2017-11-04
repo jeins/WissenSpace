@@ -90,6 +90,7 @@
                 <div class="title is-size-4">Halo!</div>
                  <div class="is-size-5">
                     Tahu link belajar seru di internet?
+                    boleh video youtube, website, artikel, buku dll.
                     share di wissenspace yuk!
                 </div><br>
                 <a class="button" href='/kontribusi'>Kontribusi 🚀</a>

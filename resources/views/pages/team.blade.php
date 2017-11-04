@@ -22,19 +22,19 @@
            <div class="column">
                <img  src="/images/team/juan.jpg" alt="foto juan akbar" width="100" >
                <div class="title is-size-5">Muh. Juan Akbar</div>
-               <div class="subtitle is-size-6">Dari Pontianak! bekerja dan kuliah di Berlin </div>
+               <div class="subtitle is-size-6">Dari Pontianak </div>
                <a href='http://mjuan.info/' class="button" target="_blank">Halo!</a>
            </div>
            <div class="column">
                <img  src="/images/team/hilman.jpg" alt="foto hilman ramadhan" width="100" >
                <div class="title is-size-5">Hilman Ramadhan</div>
-               <div class="subtitle is-size-6">Dari Makasssar! Sharing sharing di sekolahkoding</div>
+               <div class="subtitle is-size-6">Dari Makasssar</div>
                <a href='https://hilmanrdn.id' class="button" target="_blank">Halo!</a>
            </div>
            <div class="column">
                <img  src="/images/team/sylvi.jpg" alt="foto Sylvia Martshalina" width="100" >
                <div class="title is-size-5">Sylvia Martshalina</div>
-               <div class="subtitle is-size-6">Dari Jakarta! Bussiness analyst di PT Qasico</div>
+               <div class="subtitle is-size-6">Dari Jakarta</div>
                <a href='https://instagram.com/sylviamartshalina/' class="button" target="_blank">Halo!</a>
            </div>
        </div>
@@ -43,13 +43,13 @@
            <div class="column">
                <img  src="/images/team/ebin.jpg" alt="foto Ebin Aridansyah" width="100" >
                <div class="title is-size-5">Ebin Ardiansyah</div>
-               <div class="subtitle is-size-6">Dari Anambas! Kuliah di TU Berlin & mengurus IWKZ Tutorium</div>
+               <div class="subtitle is-size-6">Dari Anambas</div>
                <a href='https://www.instagram.com/ebinardian/' class="button" target="_blank">Halo!</a>
            </div>
            <div class="column">
                <img  src="/images/team/fauzi.jpg" alt="foto Fauzi Arif Senjaya" width="100" >
                <div class="title is-size-5">Fauzi Arif Sanjaya</div>
-               <div class="subtitle is-size-6">Dari Bogor! kuliah di TU & Frontend developer di oddity.agency Berlin</div>
+               <div class="subtitle is-size-6">Dari Tasik</div>
                <a href='http://fauzias.me/' class="button" target="_blank">Halo!</a>
            </div>
            <div class="column">
