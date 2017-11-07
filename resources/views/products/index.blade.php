@@ -72,6 +72,13 @@
                                         </span>
                                         <span>{{$product->comments_count}}</span>
                                     </span>
+
+                                    <span class="tag">
+                                        <span class="icon is-small">
+                                          <i class="fa fa-heart"></i>
+                                        </span>
+                                        <span>{{$product->votes_count}}</span>
+                                    </span>
                                 </div>
                             </div>
                         </div>

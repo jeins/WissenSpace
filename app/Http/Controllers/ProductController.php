@@ -11,6 +11,7 @@ use App\Models\Maker;
 use GuzzleHttp\Client;
 use App\Models\Product;
 use App\Models\ProductTag;
+use App\Models\ProductVote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -29,7 +30,9 @@ class ProductController extends Controller
     {
         $tags = Tag::select('name')->has('products')->get();
         $types = Type::all();
-        $products = Product::with('tags')->withCount('comments')->orderBy('id', 'desc')->get();
+        $products = Product::with('tags')->withCount('comments')
+                                        ->withCount('votes')
+                                        ->orderBy('id', 'desc')->get();
 
         return view('products/index', compact('products', 'tags', 'types'));
     }
@@ -40,6 +43,8 @@ class ProductController extends Controller
 
         if ($product === null)
             abort(404);
+
+        $product_votes = ProductVote::where('product_id', $product->id)->count();
 
         if (!empty($product->images) && $product->images !== 'null') {
             $tmpImages = json_decode($product->images);
@@ -55,7 +60,7 @@ class ProductController extends Controller
             $product->images = $tmpImages;
         }
 
-        return view('products/single', compact('product'));
+        return view('products/single', compact('product', 'product_votes'));
     }
 
     public function filterTag($name)
@@ -397,5 +402,25 @@ class ProductController extends Controller
         }
 
         return $youtubeId;
+    }
+
+    public function like($id)
+    {
+        $user_id = Auth::user()->id;
+
+        //check if already like
+        if($productVote = ProductVote::where('user_id', $user_id)
+                                      ->where('product_id', $id)->first()) {
+            $productVote->delete();
+            $status = 'unlike';
+        } else {
+            ProductVote::create([
+                'user_id' => $user_id,
+                'product_id' => $id,
+            ]);
+            $status = 'like';
+        }
+
+        return response()->json(['status' => $status], 200);
     }
 }

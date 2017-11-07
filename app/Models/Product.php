@@ -20,7 +20,6 @@ class Product extends Model
         return $this->hasMany('App\Models\Maker');
     }
 
-
     public function comments()
     {
         return $this->hasMany('App\Models\ProductComment');
@@ -34,5 +33,10 @@ class Product extends Model
     public function tags()
     {
         return $this->belongsToMany('App\Models\Tag');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany('App\Models\ProductVote');
     }
 }

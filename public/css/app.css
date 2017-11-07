@@ -10884,6 +10884,10 @@ img {
   margin-right: 0;
 }
 
+.container .navbar .navbar-brand {
+  margin-left: 0px;
+}
+
 .hero.is-ws-grey {
   background-color: #3a474a;
 }

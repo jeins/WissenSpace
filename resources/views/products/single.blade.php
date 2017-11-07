@@ -86,6 +86,13 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <a href="#" class="button is-danger is-hidden-desktop" id="like_button" data-product-id="{{$product->id}}">
+                                    <span class="icon is-small">
+                                      <i class="fa fa-heart"></i>
+                                    </span>
+                                    <span id="like_total">{{$product_votes}}</span>
+                                </a>
                             </div>
                         </article>
                     </div>
@@ -194,6 +201,13 @@
         <div class="column is-one-quarter">
             <div class="tile">
                 <div class="tile is-parent is-vertical">
+                    <a href="#" class="tile is-child button is-danger is-hidden-touch" id="like_button" data-product-id="{{$product->id}}">
+                        <span class="icon is-small">
+                          <i class="fa fa-heart"></i>
+                        </span>
+                        <span id="like_total">{{$product_votes}}</span>
+                    </a>
+
                     <div class="tile is-child box">
                         <h3 class="subtitle">Astronot</h3>
                         <a href="/profile/{{$product->user->name}}"> {{$product->user->name}} </a>
@@ -232,6 +246,25 @@
         swal("Selamat!", "{{ session('success') }}", "success")
         @endif
 
+        //Like system
+        $('#like_button').on('click', function(){
+            var _this = $(this);
+            var _url  = "/product/like/" + _this.attr('data-product-id');
+
+            $.get(_url).done(function(data){
+                var _likeTotal = _this.find('#like_total');
+                if (data['status'] == 'like'){
+                    _likeTotal.html(parseInt(_likeTotal.html())+ 1);
+                    swal("Berhasil!", "makasih feedbacknya!", "success");
+                } else {
+                    _likeTotal.html(parseInt(_likeTotal.html())- 1);
+                }
+            }).fail(function(error){
+                if(error.status == 401)
+                    window.location = "/login";
+            });
+        });
+
         $('.product-image-thumbnail').click(function () {
             var imageUrl = $(this).attr('image-url');
 
@@ -244,9 +277,7 @@
                 $('#show-image').attr('src', imageUrl);
             }
         })
-    </script>
 
-    <script type="text/javascript">
         function displayImageModal(img){
             $(".modal.image-show").addClass("is-active");
 
