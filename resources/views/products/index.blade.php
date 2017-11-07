@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('meta-data')
-    <title>Explore {{trans('info.title')}}</title>
+    <title>Explore {{$selected_tag}} - {{trans('info.title')}}</title>
     <meta name="author" content="WissenSpace Team">
-    <meta name="description" content="Referensi belajar terbaru di wissenspace. {{trans('info.desc')}}">
+    <meta name="description" content="Referensi belajar {{ $selected_tag }} terbaru di wissenspace. {{trans('info.desc')}}">
     <!-- twitter -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="wissenspace">
     <meta name="twitter:creator" content="WissenSpace Team">
-    <meta name="twitter:title" content="Explore {{trans('info.title')}}">
+    <meta name="twitter:title" content="Explore {{$selected_tag}} {{trans('info.title')}}">
     <meta name="twitter:url" content="https://wissenspace.com">
-    <meta name="twitter:description" content="Referensi belajar terbaru di wissenspace. {{trans('info.desc')}}">
+    <meta name="twitter:description" content="Referensi belajar {{$selected_tag}} terbaru di wissenspace. {{trans('info.desc')}}">
     <meta name="twitter:image:src" content="/images/logo.png">
     <!-- facebook -->
-    <meta property="og:title" content="Explore {{trans('info.title')}}" />
-    <meta property="og:description" content="Referensi belajar terbaru di wissenspace. {{trans('info.desc')}}">
+    <meta property="og:title" content="Explore {{$selected_tag}} {{trans('info.title')}}" />
+    <meta property="og:description" content="Referensi belajar  {{$selected_tag}} terbaru di wissenspace. {{trans('info.desc')}}">
     <meta property="og:image" content="/images/logo.png">
 @endsection
 
@@ -22,10 +22,10 @@
     <section class="hero is-ws-grey has-small-vm is-landing-page has-text-centered">
         <div class="hero-body">
           <h1 class="title is-3">
-            Galaksi WissenSpace
+              {{ ($selected_tag) ? 'Planet ' . ucfirst($selected_tag) : 'Galaksi WissenSpace' }}
           </h1>
           <h2 class="subtitle is-4">
-             Temukan sumber belajar favoritmu
+             Temukan sumber belajar {{ ($selected_tag) ? $selected_tag : '' }} favoritmu
           </h2>
         </div>
     </section>

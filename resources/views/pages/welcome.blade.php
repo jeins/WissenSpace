@@ -27,10 +27,10 @@
                 WissenSpace - Belajar hal baru setiap hari
               </h1>
               <h2 class="subtitle is-4">
-                Punya referensi belajar menarik? Share linknya di wissenspace!
+                Temukan & share referensi belajar menarik di wissenspace!
               </h2>
-              <a class="button home-contribute">Pasang Link</a>
               <a href='/explore' class="button">Lihat-Lihat</a>
+              <a class="button home-contribute">Pasang Link</a>
             </div>
         </div>
     </section>

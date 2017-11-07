@@ -28,13 +28,14 @@ class ProductController extends Controller
 
     public function index()
     {
-        $tags = Tag::select('name')->has('products')->get();
         $types = Type::all();
+        $selected_tag = null;
+        $tags = Tag::select('name')->has('products')->get();
         $products = Product::with('tags')->withCount('comments')
                                         ->withCount('votes')
                                         ->orderBy('id', 'desc')->get();
 
-        return view('products/index', compact('products', 'tags', 'types'));
+        return view('products/index', compact('products', 'tags', 'types', 'selected_tag'));
     }
 
     public function show($slug)
@@ -65,24 +66,27 @@ class ProductController extends Controller
 
     public function filterTag($name)
     {
-        $tags = Tag::select('name')->has('products')->get();
         $types = Type::all();
-        $products = Product::with('tags')->withCount('comments')->orderBy('id', 'desc')->whereHas('tags', function ($q) use ($name) {
-            $q->where('name', $name);
-        })->get();
+        $selected_tag = $name;
+        $tags = Tag::select('name')->has('products')->get();
+        $products = Product::with('tags')->withCount('comments')->withCount('votes')
+                        ->orderBy('id', 'desc')->whereHas('tags', function ($q) use ($name) {
+                            $q->where('name', $name);
+                        })->get();
 
-        return view('products/index', compact('products', 'tags', 'types'));
+        return view('products/index', compact('products', 'tags', 'types', 'selected_tag'));
     }
 
     public function filterMedia($name)
     {
-        $tags = Tag::select('name')->has('products')->get();
+        $selected_tag = null;
         $types = Type::all();
         $type_id = Type::where('name', $name)->first();
+        $tags = Tag::select('name')->has('products')->get();
+        $products = Product::with('tags')->withCount('comments')->withCount('votes')
+                        ->orderBy('id', 'desc')->where('type_id', $type_id->id)->get();
 
-        $products = Product::with('tags')->withCount('comments')->orderBy('id', 'desc')->where('type_id', $type_id->id)->get();
-
-        return view('products/index', compact('products', 'tags', 'types'));
+        return view('products/index', compact('products', 'tags', 'types', 'selected_tag'));
     }
 
     public function loadMore(Request $request, $name_or_id, $id = null)
