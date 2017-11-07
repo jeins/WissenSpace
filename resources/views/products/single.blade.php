@@ -52,6 +52,13 @@
                                 </figure>
                             </div>
                             <div class="media-content">
+                                <a href="#" class="button is-danger is-pulled-right" id="like_button" data-product-id="{{$product->id}}">
+                                    <span class="icon is-small">
+                                      <i class="fa fa-heart"></i>
+                                    </span>
+                                    <span id="like_total">{{$product_votes}}</span>
+                                </a>
+
                                 <div class="content">
                                     <h1 class="title is-size-4">{{$product->name}}</h1>
                                     <h2 class="subtitle is-size-5">{{$product->tagline}}</h2>
@@ -86,13 +93,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <a href="#" class="button is-danger is-hidden-desktop" id="like_button" data-product-id="{{$product->id}}">
-                                    <span class="icon is-small">
-                                      <i class="fa fa-heart"></i>
-                                    </span>
-                                    <span id="like_total">{{$product_votes}}</span>
-                                </a>
                             </div>
                         </article>
                     </div>
@@ -201,12 +201,12 @@
         <div class="column is-one-quarter">
             <div class="tile">
                 <div class="tile is-parent is-vertical">
-                    <a href="#" class="tile is-child button is-danger is-hidden-touch" id="like_button" data-product-id="{{$product->id}}">
+                    {{-- <a href="#" class="tile is-child button is-danger is-hidden-touch" id="like_button" data-product-id="{{$product->id}}">
                         <span class="icon is-small">
                           <i class="fa fa-heart"></i>
                         </span>
                         <span id="like_total">{{$product_votes}}</span>
-                    </a>
+                    </a> --}}
 
                     <div class="tile is-child box">
                         <h3 class="subtitle">Astronot</h3>
