@@ -88,7 +88,8 @@ class ProductController extends Controller
     public function loadMore(Request $request, $name_or_id, $id = null)
     {
         $limit = 10;
-        $products = Product::where('id', '<', $name_or_id)->withCount('comments')->orderBy('id', 'desc')->get();
+        $products = Product::where('id', '<', $name_or_id)->withCount('comments')
+                    ->withCount('votes')->orderBy('id', 'desc')->get();
 
         if (str_contains($request->fullUrl(), 'planet')) {
             $products = Product::with('tags')->withCount('comments')
@@ -123,6 +124,12 @@ class ProductController extends Controller
                                               <i class='fa fa-comment'></i>
                                             </span>
                                             <span>" . $product->comments_count . "</span>
+                                        </span>
+                                        <span class='tag'>
+                                            <span class='icon is-small'>
+                                              <i class='fa fa-heart'></i>
+                                            </span>
+                                            <span>". $product->votes_count ."</span>
                                         </span>
                                     </div>
                                 </div>

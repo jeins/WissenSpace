@@ -19,6 +19,17 @@
 @endsection
 
 @section('content')
+    <section class="hero is-ws-grey has-small-vm is-landing-page has-text-centered">
+        <div class="hero-body">
+          <h1 class="title is-3">
+            Galaksi WissenSpace
+          </h1>
+          <h2 class="subtitle is-4">
+             Temukan sumber belajar favoritmu
+          </h2>
+        </div>
+    </section>
+
     <div class="columns has-medium-vm">
       <div class="column is-one-quarter is-hidden-touch">
             <div>
