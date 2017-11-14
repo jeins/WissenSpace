@@ -2,18 +2,32 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Repositories\Interfaces\IProduct;
+use App\Repositories\Interfaces\IUser;
+use App\Repositories\ProductRepository;
+use App\Repositories\UserRepository;
 
-class AdminDashboardController extends Controller
+class AdminDashboardController extends AdminController
 {
-    public function __construct()
+    /** @var UserRepository */
+    private $userRepository;
+
+    /** @var ProductRepository */
+    private $productRepository;
+
+    public function __construct(IUser $user, IProduct $product)
     {
-        $this->middleware('auth:admin');
+        parent::__construct();
+
+        $this->userRepository = $user;
+        $this->productRepository = $product;
     }
 
-    public function indexView()
+    public function index()
     {
-        return view('admin.dashboard');
+        $userStatistic = $this->userRepository->getStatistic();
+        $productStatistic = $this->productRepository->getStatistic();
+
+        return view('admin.dashboard', compact('userStatistic', 'productStatistic'));
     }
 }

@@ -18,31 +18,50 @@
     <![endif]-->
 
     {{-- Styles --}}
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    @yield('template_linked_css')
+    @yield('css')
 
     {{-- Scripts --}}
-    <script>
-        window.Laravel = {!! json_encode([
-                'csrfToken' => csrf_token(),
-            ]) !!};
-    </script>
-
     @yield('head')
 
 </head>
 <body>
 <div id="app">
+    @if (Auth::guard('admin')->check())
+        <header class="hero is-light">
+            <div class="hero-head">
+                <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+                    <div class="navbar-brand">
+                        <a class="navbar-item">WS Administrator</a>
+                    </div>
+                    <div class="navbar-menu navbar-end" id="navMenu">
+                        <a class="navbar-item is-right" href="{{ route('admin.logout') }}">Logout</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
 
-    <div class="container">
+        <div class="section">
+            <div class="columns">
+                <aside class="column is-2">
+                    @include('admin.layouts.nav')
+                </aside>
+
+                <main class="column">
+                    @yield('content')
+                </main>
+            </div>
+        </div>
+    @else
         @yield('content')
-    </div>
-
+    @endif
 </div>
 
 {{-- Scripts --}}
-@yield('footer_scripts')
+<script src="{{ asset('js/app.js') }}"></script>
+@yield('script')
 
 </body>
 </html>

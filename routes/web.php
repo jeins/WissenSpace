@@ -53,5 +53,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/login', ['as' => 'admin.login.submit', 'uses' => 'Auth\AdminLoginController@login']);
     Route::get('/logout', ['as' => 'admin.logout', 'uses' => 'Auth\AdminLoginController@logout']);
 
-    Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'Admin\AdminDashboardController@indexView']);
+    Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'Admin\AdminDashboardController@index']);
+    Route::get('/users', ['as' => 'admin.users', 'uses' => 'Admin\UserController@getAll']);
+    Route::get('/products', ['as' => 'admin.products', 'uses' => 'Admin\ProductController@getAll']);
 });
