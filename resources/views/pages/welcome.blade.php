@@ -21,17 +21,15 @@
 @section('content')
 
     <section class="hero is-ws-grey has-small-vm is-landing-page">
-        <div class="hero-body">
-            <div class="container">
-              <h1 class="title is-3">
-                WissenSpace - Belajar hal baru setiap hari
-              </h1>
-              <h2 class="subtitle is-4">
-                Temukan & share referensi belajar menarik di wissenspace!
-              </h2>
-              <a href='/explore' class="button">Lihat-Lihat</a>
-              <a class="button home-contribute">Pasang Link</a>
-            </div>
+        <div class="hero-body has-text-centered">
+          <h1 class="title is-2">
+            WissenSpace
+          </h1>
+          <h2 class="subtitle is-3">
+            Temukan & share referensi belajar di sini
+          </h2>
+          <a href='/explore' class="button">Lihat-Lihat</a>
+          <a class="button home-contribute">Pasang Link</a>
         </div>
     </section>
 

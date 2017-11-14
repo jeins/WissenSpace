@@ -16,6 +16,8 @@
     <meta property="og:title" content="{{$product->name . ' - ' . $product->tagline}}"/>
     <meta property="og:description" content="{{ $product->subject }}">
     <meta property="og:image" content="{{$product->thumbnail}}">
+
+    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5a0a544505073300123e3977&product=unknown' async='async'></script>
 @endsection
 
 @section('page_css')
@@ -69,7 +71,7 @@
                                         @endif
                                     @endif
                                 </div>
-                                <div class="level">
+                                <div class="level has-small-vm">
                                     <div class="level-left">
                                         <div class="tags">
                                             @foreach ($product->tags as $tag)
@@ -135,6 +137,7 @@
                             <p class="is-long-text">{!! $product->subject !!}</p>
                         </div>
                     </div>
+
                     <div class="tile is-child box">
                         <p class="title">Diskusi</p>
                         @if (Auth::check())
@@ -198,7 +201,7 @@
             </div>
         </div>
 
-        <div class="column is-one-quarter">
+        <div class="column is-one-third">
             <div class="tile">
                 <div class="tile is-parent is-vertical">
                     {{-- <a href="#" class="tile is-child button is-danger is-hidden-touch" id="like_button" data-product-id="{{$product->id}}">
@@ -229,7 +232,7 @@
                         @endif
                     </div>
 
-                    <a class="button is-info" href="/explore">Kembali ke Galaksi </a>
+                    <div class="sharethis-inline-share-buttons"></div>
 
                 </div>
             </div>

@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'title' => 'WissenSpace - belajar hal baru setiap hari',
+    'title' => 'WissenSpace - Belajar setiap hari',
     'desc' => 'Punya referensi belajar menarik? yuk share di wissenspace!'
 ];

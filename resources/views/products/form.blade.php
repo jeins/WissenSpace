@@ -199,7 +199,7 @@
             <div id="media" class="tab-pane animated">
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Upload Gambar (logo/icon) *</label>
+                        <label class="label">Upload Gambar (logo/preview) *</label>
                     </div>
                     <div class="field-body">
                         <div class="field">

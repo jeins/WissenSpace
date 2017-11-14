@@ -105,7 +105,6 @@
 
         <div class="column is-one-quarter has-text-centered is-hidden-touch">
             <div class="notification is-primary">
-                <div class="title is-size-4">Halo!</div>
                  <div class="is-size-5">
                     Tahu link belajar seru di internet?
                     boleh video youtube, website, artikel, buku dll.
@@ -113,7 +112,7 @@
                 </div><br>
                 <a class="button" href='/kontribusi'>Kontribusi 🚀</a>
             </div>
-            <div class="insta-feed notification is-primary"></div>
+            {{-- <div class="insta-feed notification is-primary"></div> --}}
          </div>
 
          <div class="column is-one-quarter is-hidden-desktop">
