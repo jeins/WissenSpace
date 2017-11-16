@@ -53,13 +53,13 @@
                     @endforeach
                 </ul>
             </div>
-
+{{--
             <div class="has-small-vm">
                 <h3 class="is-size-5 has-text-weight-semibold">WissenSpace</h3>
                 <a class="has-text-grey"  href="/tentang">Tentang</a> /
                 <a class="has-text-grey" href="/team">Team</a> /
                 <a class="has-text-grey" href="/faq">Tanya</a>
-            </div>
+            </div> --}}
         </div>
 
         <div class="column">
@@ -113,6 +113,10 @@
                 <a class="button" href='/kontribusi'>Kontribusi 🚀</a>
             </div>
             {{-- <div class="insta-feed notification is-primary"></div> --}}
+
+            <a class="button is-info" href="https://facebook.com/wissenspace" target="_blank"> <i class="fa fa-facebook"></i></a>
+            <a class="button is-danger" href="https://instagram.com/wissenspace" target="_blank"> <i class="fa fa-instagram"></i></a>
+            <a class="button is-dark" href="https://twitter.com/wissenspace" target="_blank"> <i class="fa fa-twitter"></i></a>
          </div>
 
          <div class="column is-one-quarter is-hidden-desktop">

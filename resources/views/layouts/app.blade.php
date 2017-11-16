@@ -84,9 +84,14 @@
 <footer class="has-medium-vm has-text-centered">
     <p>&copy;2017 WissenSpace 🌏🚀👾🌚🌝</p>
     <p>
-        <a class="has-text-grey" href="https://twitter.com/wissenspace" target="_blank">Twitter</a> /
-        <a class="has-text-grey" href="https://facebook.com/wissenspace" target="_blank">Facebook</a> /
-        <a class="has-text-grey" href="https://instagram.com/wissenspace" target="_blank">Instagram</a>
+        <a class="has-text-grey"  href="/tentang">Tentang</a> /
+        <a class="has-text-grey" href="/team">Team</a> /
+        <a class="has-text-grey" href="/faq">Tanya</a>
+    </p>
+    <p>
+        <a class="button is-small is-info" href="https://facebook.com/wissenspace" target="_blank"> <i class="fa fa-facebook"></i></a>
+        <a class="button is-small is-danger" href="https://instagram.com/wissenspace" target="_blank"> <i class="fa fa-instagram"></i></a>
+        <a class="button is-small is-dark" href="https://twitter.com/wissenspace" target="_blank"> <i class="fa fa-twitter"></i></a>
     </p>
 </footer>
 
