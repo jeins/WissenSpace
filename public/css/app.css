@@ -10955,6 +10955,16 @@ img {
   font-size: 40px;
 }
 
+.level {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.level .level-right {
+  margin-top: 5px;
+  margin-left: auto;
+}
+
 @media (max-width: 1024px) {
   .navbar-menu a {
     margin: 3px 0px;

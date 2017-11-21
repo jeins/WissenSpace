@@ -141,7 +141,7 @@
                 {{--DESCRIPTION--}}
                 <div class="field is-horizontal" style="margin-top: 30px">
                     <div class="field-label is-normal">
-                        <label class="label">Deskripsi</label>
+                        <label class="label">Deskripsi *</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
