@@ -114,7 +114,7 @@ class ProductController extends Controller
                         <div class='media-content'>
                             <h3 class='title is-size-5 is-capitalized'>" . $product->name . "</h3>
                             <p class='subtitle is-size-6'>" . $product->tagline . "</p>
-                            <div class='level'>
+                            <div class='level is-clearfix'>
                                 <div class='level-left'>";
             foreach ($product->tags as $tag) {
                 echo "<span class='level-item tag'>#" . $tag->name . "</span>";

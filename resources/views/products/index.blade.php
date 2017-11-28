@@ -30,7 +30,7 @@
         </div>
     </section>
 
-    <div class="columns has-medium-vm">
+    <div class="columns has-medium-vm section-productslists">
       <div class="column is-one-quarter is-hidden-touch">
             <div>
                 <h3 class="is-size-5 has-text-weight-semibold">Planet</h3>
@@ -53,13 +53,6 @@
                     @endforeach
                 </ul>
             </div>
-{{--
-            <div class="has-small-vm">
-                <h3 class="is-size-5 has-text-weight-semibold">WissenSpace</h3>
-                <a class="has-text-grey"  href="/tentang">Tentang</a> /
-                <a class="has-text-grey" href="/team">Team</a> /
-                <a class="has-text-grey" href="/faq">Tanya</a>
-            </div> --}}
         </div>
 
         <div class="column">
@@ -69,7 +62,7 @@
                     <div class="media-content">
                         <h3 class="title is-size-5 is-capitalized">{{ $product->name }}</h3>
                         <p class="subtitle is-size-6">{{ $product->tagline }}</p>
-                        <div class="level">
+                        <div class="level is-clearfix">
                             <div class="level-left">
                                 @foreach ($product->tags as $tag)
                                     <span class="level-item tag">#{{$tag->name}}</span>
@@ -114,42 +107,46 @@
             </div>
             {{-- <div class="insta-feed notification is-primary"></div> --}}
 
-            <a class="button is-info" href="https://facebook.com/wissenspace" target="_blank"> <i class="fa fa-facebook"></i></a>
-            <a class="button is-danger" href="https://instagram.com/wissenspace" target="_blank"> <i class="fa fa-instagram"></i></a>
-            <a class="button is-dark" href="https://twitter.com/wissenspace" target="_blank"> <i class="fa fa-twitter"></i></a>
+            <div>
+                <a class="button is-info" href="https://facebook.com/wissenspace" target="_blank"> <i class="fa fa-facebook"></i></a>
+                <a class="button is-danger" href="https://instagram.com/wissenspace" target="_blank"> <i class="fa fa-instagram"></i></a>
+                <a class="button is-dark" href="https://twitter.com/wissenspace" target="_blank"> <i class="fa fa-twitter"></i></a>
+            </div>
          </div>
-
-         <div class="column is-one-quarter is-hidden-desktop">
-               <div>
-                   <h3 class="is-size-5 has-text-weight-semibold">Planet</h3>
-                   <ul>
-                       @foreach ($tags as $tag)
-                           <li>
-                               <a class="has-text-grey" href="/explore/planet/{{$tag->name}}"> #{{$tag->name}} </a>
-                           </li>
-                       @endforeach
-                   </ul>
-               </div>
-
-               <div class="has-small-vm">
-                   <h3 class="is-size-5 has-text-weight-semibold">Media</h3>
-                   <ul>
-                       @foreach ($types as $type)
-                           <li>
-                               <a class="has-text-grey" href="/explore/media/{{$type->name}}"> {{$type->name}} </a>
-                           </li>
-                       @endforeach
-                   </ul>
-               </div>
-
-               <div class="has-small-vm">
-                   <h3 class="is-size-5 has-text-weight-semibold">WissenSpace</h3>
-                   <a class="has-text-grey"  href="/tentang">Tentang</a> /
-                   <a class="has-text-grey" href="/team">Team</a> /
-                   <a class="has-text-grey" href="/faq">Tanya</a>
-               </div>
-           </div>
      </div>
+
+
+
+     <div class="column is-one-quarter is-hidden-desktop">
+           <div>
+               <h3 class="is-size-5 has-text-weight-semibold">Planet</h3>
+               <ul>
+                   @foreach ($tags as $tag)
+                       <li>
+                           <a class="has-text-grey" href="/explore/planet/{{$tag->name}}"> #{{$tag->name}} </a>
+                       </li>
+                   @endforeach
+               </ul>
+           </div>
+
+           <div class="has-small-vm">
+               <h3 class="is-size-5 has-text-weight-semibold">Media</h3>
+               <ul>
+                   @foreach ($types as $type)
+                       <li>
+                           <a class="has-text-grey" href="/explore/media/{{$type->name}}"> {{$type->name}} </a>
+                       </li>
+                   @endforeach
+               </ul>
+           </div>
+
+           <div class="has-small-vm">
+               <h3 class="is-size-5 has-text-weight-semibold">WissenSpace</h3>
+               <a class="has-text-grey"  href="/tentang">Tentang</a> /
+               <a class="has-text-grey" href="/team">Team</a> /
+               <a class="has-text-grey" href="/faq">Tanya</a>
+           </div>
+       </div>
 
 @endsection
 

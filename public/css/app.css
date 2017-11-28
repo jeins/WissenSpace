@@ -10869,7 +10869,15 @@ img {
 }
 
 .container {
-  max-width: 980px;
+  max-width: 1000px;
+}
+
+.section-productslists .column:first-child {
+  padding-left: 0;
+}
+
+.section-productslists .column:last-child {
+  padding-right: 0;
 }
 
 .navbar-menu a {
@@ -10973,7 +10981,7 @@ img {
 
 @media (max-width: 760px) {
   body {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
   }
 
@@ -10987,6 +10995,10 @@ img {
 
   .media-product {
     display: block;
+  }
+
+  .media-left {
+    float: left;
   }
 
   .products {
