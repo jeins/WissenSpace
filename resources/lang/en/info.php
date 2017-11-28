@@ -2,5 +2,5 @@
 
 return [
     'title' => 'WissenSpace - Belajar setiap hari',
-    'desc' => 'Punya referensi belajar menarik? yuk share di wissenspace!'
+    'desc' => 'Cari dan Sharing referensi belajar menarik yang ada di internet'
 ];

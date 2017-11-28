@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('meta-data')
-    <title>Explore {{$selected_tag}} - {{trans('info.title')}}</title>
+    <title>{{ empty($selected_tag) ? 'Explore' : 'Sumber belajar '.$selected_tag }} - {{trans('info.title')}}</title>
     <meta name="author" content="WissenSpace Team">
     <meta name="description" content="Referensi belajar {{ $selected_tag }} terbaru di wissenspace. {{trans('info.desc')}}">
     <!-- twitter -->
