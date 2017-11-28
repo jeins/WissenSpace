@@ -64,9 +64,12 @@
                         <p class="subtitle is-size-6">{{ $product->tagline }}</p>
                         <div class="level is-clearfix">
                             <div class="level-left">
-                                @foreach ($product->tags as $tag)
+                                @foreach ($product->tags->take(2) as $tag)
                                     <span class="level-item tag">#{{$tag->name}}</span>
                                 @endforeach
+                                @if(count($product->tags) == 3)
+                                    <span class="level-item level-item-plus">+1</span>
+                                @endif
                             </div>
                             <div class="level-right">
                                 <div class="tags">
