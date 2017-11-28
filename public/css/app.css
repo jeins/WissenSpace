@@ -10973,10 +10973,6 @@ img {
   margin-left: auto;
 }
 
-.level .level-item-plus {
-  color: #3a474a;
-}
-
 @media (max-width: 1024px) {
   .navbar-menu a {
     margin: 3px 0px;
