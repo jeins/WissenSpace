@@ -27,6 +27,9 @@ if(config('app.debug')){
     Route::get('/login/demo', ['as' => 'auth.demo', 'uses' => 'Auth\LoginController@demoUser']);
 }
 
+//testing midtrans
+Route::post('/snap/notification', 'SnapController@notification');
+
 // User Routes
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
@@ -44,6 +47,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/image/{type}/{image}', ['as' => 'image.delete', 'uses' => 'ImageController@delete']);
 
     Route::post('/profile/update/{userId}', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+
+    //testing midtrans
+    Route::get('/snap', 'SnapController@snap');
+    Route::get('/snaptoken', 'SnapController@token');
+    Route::post('/snapfinish', 'SnapController@finish');
 });
 
 
