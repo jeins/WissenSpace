@@ -18,7 +18,7 @@ class SnapController extends Controller
 
     public function snap()
     {
-        return view('checkout/snap_checkout');
+        return view('snap_checkout');
     }
 
     public function token()
